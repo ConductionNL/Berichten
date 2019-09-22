@@ -1,6 +1,6 @@
-# About this application
+# About this component
 
-Het berichten component is ontwikkeld voor de gemeente Utrecht en heeft als doel het functionele berichten verkeer te faciliteren. Denk hier bij aan berichten via een email naar een klant waar een, mogelijk, sjabloon in gebruikt wordt
+Het "berichten" component is ontwikkeld voor de gemeente Utrecht en heeft als doel het functionele berichten verkeer te faciliteren. Denk hierbij aan berichten via een email naar een klant waar een, mogelijk sjabloon in gebruikt wordt.
 
 ## Documentation
 
