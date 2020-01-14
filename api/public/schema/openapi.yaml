@@ -1175,7 +1175,7 @@ components:
   schemas:
     Message-read:
       type: object
-      description: 'A  message to be send to a spefic recipient or list troug a message service'
+      description: 'A  message to be send to a spefic recipient or list troug a message service.'
       properties:
         id:
           readOnly: true
@@ -1184,12 +1184,12 @@ components:
             url: 'http://schema.org/identifier'
           type: string
         reciever:
-          description: 'Iether a contact component person or contact list that will recieve this message'
+          description: 'Either a contact component person or contact list that will recieve this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
         sender:
-          description: 'Iether a contact component person, or wrc application that sends this message'
+          description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -1209,15 +1209,15 @@ components:
           type: string
     Message-write:
       type: object
-      description: 'A  message to be send to a spefic recipient or list troug a message service'
+      description: 'A  message to be send to a spefic recipient or list troug a message service.'
       properties:
         reciever:
-          description: 'Iether a contact component person or contact list that will recieve this message'
+          description: 'Either a contact component person or contact list that will recieve this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
         sender:
-          description: 'Iether a contact component person, or wrc application that sends this message'
+          description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -1237,7 +1237,7 @@ components:
           type: string
     'Message:jsonld-read':
       type: object
-      description: 'A  message to be send to a spefic recipient or list troug a message service'
+      description: 'A  message to be send to a spefic recipient or list troug a message service.'
       properties:
         '@context':
           readOnly: true
@@ -1255,12 +1255,12 @@ components:
             url: 'http://schema.org/identifier'
           type: string
         reciever:
-          description: 'Iether a contact component person or contact list that will recieve this message'
+          description: 'Either a contact component person or contact list that will recieve this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
         sender:
-          description: 'Iether a contact component person, or wrc application that sends this message'
+          description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -1280,7 +1280,7 @@ components:
           type: string
     'Message:jsonld-write':
       type: object
-      description: 'A  message to be send to a spefic recipient or list troug a message service'
+      description: 'A  message to be send to a spefic recipient or list troug a message service.'
       properties:
         '@context':
           readOnly: true
@@ -1292,12 +1292,12 @@ components:
           readOnly: true
           type: string
         reciever:
-          description: 'Iether a contact component person or contact list that will recieve this message'
+          description: 'Either a contact component person or contact list that will recieve this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
         sender:
-          description: 'Iether a contact component person, or wrc application that sends this message'
+          description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -1317,7 +1317,7 @@ components:
           type: string
     Service-read:
       type: object
-      description: 'A service that sends messages e.g. email or sms'
+      description: 'A service that sends messages e.g. email or sms.'
       properties:
         id:
           readOnly: true
@@ -1338,7 +1338,7 @@ components:
         - organization
     Service-write:
       type: object
-      description: 'A service that sends messages e.g. email or sms'
+      description: 'A service that sends messages e.g. email or sms.'
       properties:
         type:
           description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
@@ -1358,7 +1358,7 @@ components:
         - authorization
     'Service:jsonld-read':
       type: object
-      description: 'A service that sends messages e.g. email or sms'
+      description: 'A service that sends messages e.g. email or sms.'
       properties:
         '@context':
           readOnly: true
@@ -1388,7 +1388,7 @@ components:
         - organization
     'Service:jsonld-write':
       type: object
-      description: 'A service that sends messages e.g. email or sms'
+      description: 'A service that sends messages e.g. email or sms.'
       properties:
         '@context':
           readOnly: true
@@ -1419,60 +1419,94 @@ definitions:
   Message-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       reciever:
+        description: 'Either a contact component person or contact list that will recieve this message'
+        type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
         format: url
         maxLength: 255
       sender:
+        description: 'Either a contact component person, or wrc application that sends this message'
+        type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
         format: url
         maxLength: 255
       content:
+        description: 'The webresource template object (from wrc) that is used as content for this message'
+        type: string
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
         format: url
         maxLength: 255
       status:
+        description: 'The current status of this message'
+        type: string
         example: concept
         maxLength: 255
       data:
+        description: 'The data that is used to render the template'
+        type: string
         format: json
-      service: []
+      service:
+        description: 'The webresource template object (from wrc) that is used as content for this message'
+        type: \Service
     required: []
   Message-write:
     properties:
       reciever:
+        description: 'Either a contact component person or contact list that will recieve this message'
+        type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
         format: url
         maxLength: 255
       sender:
+        description: 'Either a contact component person, or wrc application that sends this message'
+        type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
         format: url
         maxLength: 255
       content:
+        description: 'The webresource template object (from wrc) that is used as content for this message'
+        type: string
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
         format: url
         maxLength: 255
       status:
+        description: 'The current status of this message'
+        type: string
         example: concept
         maxLength: 255
       data:
+        description: 'The data that is used to render the template'
+        type: string
         format: json
-      service: []
+      service:
+        description: 'The webresource template object (from wrc) that is used as content for this message'
+        type: \Service
     required: []
   Service-read:
     properties:
       id:
+        description: 'The UUID identifier of this resource'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
         example: smtp
         maxLength: 255
       organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
         example: '002851234'
         maxLength: 255
       configuration:
+        description: 'Any specific setting for this service'
+        type: string
         format: json
     required:
       - organization
@@ -1480,15 +1514,23 @@ definitions:
   Service-write:
     properties:
       type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
         example: smtp
         maxLength: 255
       organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
         example: '002851234'
         maxLength: 255
       authorization:
+        description: 'The autorization be it password or api key that is used to connect to the service'
+        type: string
         example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
         maxLength: 255
       configuration:
+        description: 'Any specific setting for this service'
+        type: string
         format: json
     required:
       - organization
@@ -1497,13 +1539,13 @@ tags:
   -
     name: Message
     description: |
-      A  message to be send to a spefic recipient or list troug a message service
+      A  message to be send to a spefic recipient or list troug a message service.
       
       
   -
     name: Service
     description: |
-      A service that sends messages e.g. email or sms
+      A service that sends messages e.g. email or sms.
       
       
 securityDefinitions:
