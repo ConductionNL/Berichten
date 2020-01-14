@@ -102,10 +102,9 @@ class Message
     private $service;
 
     /**
-     * @var string The data that is used to render the template
+     * @var array The data that is used to render the template
      *
      * @Groups({"read", "write"})
-     * @Assert\Json
      * @ORM\Column(type="json", nullable=true)
      */
     private $data = [];

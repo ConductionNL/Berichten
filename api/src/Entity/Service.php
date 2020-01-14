@@ -85,9 +85,8 @@ class Service
     private $authorization;
 
     /**
-     * @var string Any specific setting for this service
+     * @var array Any specific setting for this service
      *
-     * @Assert\Json
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
      */
