@@ -9,12 +9,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
-use App\Entity\Service;
-
 /**
- * A  message to be send to a spefic recipient or list troug a message service
- * 
+ * A  message to be send to a spefic recipient or list troug a message service.
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
@@ -23,24 +20,25 @@ use App\Entity\Service;
  */
 class Message
 {
-	/**
-	 * @var UuidInterface The UUID identifier of this resource
-	 *
-	 * @example e2984465-190a-4562-829e-a8cca81aa35d
-	 *
-	 * @Assert\Uuid
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface The UUID identifier of this resource
+     *
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
+     *
+     * @Assert\Uuid
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
      * @var string Iether a contact component person or contact list that will recieve this message
-	 * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
-     * 
+     *
+     * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
+     *
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -52,8 +50,9 @@ class Message
 
     /**
      * @var string Iether a contact component person, or wrc application that sends this message
-	 * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
-     *      
+     *
+     * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
+     *
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -65,8 +64,9 @@ class Message
 
     /**
      * @var string The webresource template object (from wrc) that is used as content for this message
-	 * @example https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f
-     * 
+     *
+     * @example https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f
+     *
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -78,13 +78,14 @@ class Message
 
     /**
      * @var string The current status of this message
-	 * @example concept
-	 * 
+     *
+     * @example concept
+     *
      * @Assert\Choice({"concept", "queued", "sending", "send", "delivered"})
-	 * @Assert\Length(
-	 *      max = 255
-	 * )
-	 * 
+     * @Assert\Length(
+     *      max = 255
+     * )
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
@@ -92,7 +93,7 @@ class Message
 
     /**
      * @var \Service The webresource template object (from wrc) that is used as content for this message
-     * 
+     *
      * @Groups({"read", "write"})
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Service", inversedBy="messages")
@@ -102,23 +103,23 @@ class Message
 
     /**
      * @var string The data that is used to render the template
-     * 
+     *
      * @Groups({"read", "write"})
      * @Assert\Json
      * @ORM\Column(type="json", nullable=true)
      */
     private $data = [];
-    
+
     public function getId(): ?string
     {
-    	return $this->id;
+        return $this->id;
     }
-    
+
     public function setId(string $id): self
     {
-    	$this->id = $id;
-    	
-    	return $this;
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getReciever(): ?string
