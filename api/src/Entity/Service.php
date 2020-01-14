@@ -12,8 +12,8 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A service that sends messages e.g. email or sms
- * 
+ * A service that sends messages e.g. email or sms.
+ *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
  *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
@@ -22,19 +22,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Service
 {
-	/**
-	 * @var UuidInterface The UUID identifier of this resource
-	 *
-	 * @example e2984465-190a-4562-829e-a8cca81aa35d
-	 *
-	 * @Assert\Uuid
-	 * @Groups({"read"})
-	 * @ORM\Id
-	 * @ORM\Column(type="uuid", unique=true)
-	 * @ORM\GeneratedValue(strategy="CUSTOM")
-	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-	 */
-	private $id;
+    /**
+     * @var UuidInterface The UUID identifier of this resource
+     *
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
+     *
+     * @Assert\Uuid
+     * @Groups({"read"})
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
 
     /**
      * @MaxDepth(1)
@@ -44,12 +44,13 @@ class Service
 
     /**
      * @var string The type of this service, iether use a pre configures service or just plain simple old smtp
+     *
      * @example smtp
-     * 
+     *
      * @Assert\Choice({"mailgun", "messagebird", "smtp"})
-	 * @Assert\Length(
-	 *      max = 255
-	 * ) 
+     * @Assert\Length(
+     *      max = 255
+     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
@@ -57,6 +58,7 @@ class Service
 
     /**
      * @var string The RSIN of the organization that ownes this service
+     *
      * @example 002851234
      *
      * @Assert\NotNull
@@ -70,8 +72,9 @@ class Service
 
     /**
      * @var string The autorization be it password or api key that is used to connect to the service
+     *
      * @example 013276cc-1483-46b4-ad5b-1cba5acf6d9f
-     * 
+     *
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -83,7 +86,7 @@ class Service
 
     /**
      * @var string Any specific setting for this service
-     * 
+     *
      * @Assert\Json
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
@@ -94,17 +97,17 @@ class Service
     {
         $this->messages = new ArrayCollection();
     }
-    
+
     public function getId(): ?string
     {
-    	return $this->id;
+        return $this->id;
     }
-    
+
     public function setId(string $id): self
     {
-    	$this->id = $id;
-    	
-    	return $this;
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
