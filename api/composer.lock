@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48af4cac3c2eac2289e6cf339b11a6ea",
+    "content-hash": "1e9f33cbb4b0690c985dd1539d61a15c",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -1730,6 +1730,63 @@
             "time": "2015-02-27T09:45:49+00:00"
         },
         {
+            "name": "egulias/email-validator",
+            "version": "2.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egulias/EmailValidator.git",
+                "reference": "c4b8d12921999d8a561004371701dbc2e05b5ece"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/c4b8d12921999d8a561004371701dbc2e05b5ece",
+                "reference": "c4b8d12921999d8a561004371701dbc2e05b5ece",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/lexer": "^1.0.1",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "dominicsayers/isemail": "^3.0.7",
+                "phpunit/phpunit": "^4.8.36|^7.5.15",
+                "satooshi/php-coveralls": "^1.0.1"
+            },
+            "suggest": {
+                "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Egulias\\EmailValidator\\": "EmailValidator"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Gulias Davis"
+                }
+            ],
+            "description": "A library for validating emails against several RFCs",
+            "homepage": "https://github.com/egulias/EmailValidator",
+            "keywords": [
+                "email",
+                "emailvalidation",
+                "emailvalidator",
+                "validation",
+                "validator"
+            ],
+            "time": "2020-01-05T14:11:20+00:00"
+        },
+        {
             "name": "fig/link-util",
             "version": "1.1.0",
             "source": {
@@ -2473,6 +2530,48 @@
                 "symfony"
             ],
             "time": "2019-11-22T14:22:26+00:00"
+        },
+        {
+            "name": "messagebird/php-rest-api",
+            "version": "v1.16.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/messagebird/php-rest-api.git",
+                "reference": "6a1666bdbfc4f33c54f090308cce7dc47c5e3014"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/messagebird/php-rest-api/zipball/6a1666bdbfc4f33c54f090308cce7dc47c5e3014",
+                "reference": "6a1666bdbfc4f33c54f090308cce7dc47c5e3014",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4.0",
+                "symfony/polyfill-php56": "^1.10"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.25"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MessageBird\\": "src/MessageBird/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "MessageBird",
+                    "email": "info@messagebird.com"
+                }
+            ],
+            "description": "MessageBird REST API client for PHP",
+            "homepage": "https://github.com/messagebird/php-rest-api",
+            "time": "2019-10-08T15:00:24+00:00"
         },
         {
             "name": "michelf/php-markdown",
@@ -5303,6 +5402,74 @@
                 "localization"
             ],
             "time": "2019-11-26T23:16:41+00:00"
+        },
+        {
+            "name": "symfony/mailer",
+            "version": "v4.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/mailer.git",
+                "reference": "1e6e1d074be84eab728b617aa08349b8a00b6f44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/1e6e1d074be84eab728b617aa08349b8a00b6f44",
+                "reference": "1e6e1d074be84eab728b617aa08349b8a00b6f44",
+                "shasum": ""
+            },
+            "require": {
+                "egulias/email-validator": "^2.1.10",
+                "php": "^7.1.3",
+                "psr/log": "~1.0",
+                "symfony/event-dispatcher": "^4.3",
+                "symfony/mime": "^4.4|^5.0",
+                "symfony/service-contracts": "^1.1|^2"
+            },
+            "conflict": {
+                "symfony/http-kernel": "<4.4",
+                "symfony/sendgrid-mailer": "<4.4"
+            },
+            "require-dev": {
+                "symfony/amazon-mailer": "^4.4|^5.0",
+                "symfony/google-mailer": "^4.4|^5.0",
+                "symfony/http-client-contracts": "^1.1|^2",
+                "symfony/mailchimp-mailer": "^4.4|^5.0",
+                "symfony/mailgun-mailer": "^4.4|^5.0",
+                "symfony/messenger": "^4.4|^5.0",
+                "symfony/postmark-mailer": "^4.4|^5.0",
+                "symfony/sendgrid-mailer": "^4.4|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mailer\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Mailer Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-12-02T16:18:01+00:00"
         },
         {
             "name": "symfony/maker-bundle",
