@@ -1206,7 +1206,24 @@ components:
           $ref: '#/components/schemas/Service-read'
         data:
           description: 'The data that is used to render the template'
+          type: array
+          items:
+            type: string
+        send:
+          readOnly: true
+          description: 'The moment this message was send'
           type: string
+          format: date-time
+        createdAt:
+          readOnly: true
+          description: 'The moment this component was found by the crawler'
+          type: string
+          format: date-time
+        updatedAt:
+          readOnly: true
+          description: 'The last time this component was changed'
+          type: string
+          format: date-time
     Message-write:
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -1234,7 +1251,9 @@ components:
           $ref: '#/components/schemas/Service-write'
         data:
           description: 'The data that is used to render the template'
-          type: string
+          type: array
+          items:
+            type: string
     'Message:jsonld-read':
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -1277,7 +1296,24 @@ components:
           $ref: '#/components/schemas/Service:jsonld-read'
         data:
           description: 'The data that is used to render the template'
+          type: array
+          items:
+            type: string
+        send:
+          readOnly: true
+          description: 'The moment this message was send'
           type: string
+          format: date-time
+        createdAt:
+          readOnly: true
+          description: 'The moment this component was found by the crawler'
+          type: string
+          format: date-time
+        updatedAt:
+          readOnly: true
+          description: 'The last time this component was changed'
+          type: string
+          format: date-time
     'Message:jsonld-write':
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -1314,7 +1350,9 @@ components:
           $ref: '#/components/schemas/Service:jsonld-write'
         data:
           description: 'The data that is used to render the template'
-          type: string
+          type: array
+          items:
+            type: string
     Service-read:
       type: object
       description: 'A service that sends messages e.g. email or sms.'
@@ -1333,7 +1371,19 @@ components:
           type: string
         configuration:
           description: 'Any specific setting for this service'
+          type: array
+          items:
+            type: string
+        createdAt:
+          readOnly: true
+          description: 'The moment this component was found by the crawler'
           type: string
+          format: date-time
+        updatedAt:
+          readOnly: true
+          description: 'The last time this component was changed'
+          type: string
+          format: date-time
       required:
         - organization
     Service-write:
@@ -1352,7 +1402,9 @@ components:
           type: string
         configuration:
           description: 'Any specific setting for this service'
-          type: string
+          type: array
+          items:
+            type: string
       required:
         - organization
         - authorization
@@ -1383,7 +1435,19 @@ components:
           type: string
         configuration:
           description: 'Any specific setting for this service'
+          type: array
+          items:
+            type: string
+        createdAt:
+          readOnly: true
+          description: 'The moment this component was found by the crawler'
           type: string
+          format: date-time
+        updatedAt:
+          readOnly: true
+          description: 'The last time this component was changed'
+          type: string
+          format: date-time
       required:
         - organization
     'Service:jsonld-write':
@@ -1411,7 +1475,9 @@ components:
           type: string
         configuration:
           description: 'Any specific setting for this service'
-          type: string
+          type: array
+          items:
+            type: string
       required:
         - organization
         - authorization
@@ -1448,8 +1514,16 @@ definitions:
         maxLength: 255
       data:
         description: 'The data that is used to render the template'
-        type: string
-        format: json
+        type: array
+      send:
+        description: 'The moment this message was send'
+        type: \DateTime
+      createdAt:
+        description: 'The moment this component was found by the crawler'
+        type: \DateTime
+      updatedAt:
+        description: 'The last time this component was changed'
+        type: \DateTime
       service:
         description: 'The webresource template object (from wrc) that is used as content for this message'
         type: \Service
@@ -1481,8 +1555,7 @@ definitions:
         maxLength: 255
       data:
         description: 'The data that is used to render the template'
-        type: string
-        format: json
+        type: array
       service:
         description: 'The webresource template object (from wrc) that is used as content for this message'
         type: \Service
@@ -1506,8 +1579,13 @@ definitions:
         maxLength: 255
       configuration:
         description: 'Any specific setting for this service'
-        type: string
-        format: json
+        type: array
+      createdAt:
+        description: 'The moment this component was found by the crawler'
+        type: \DateTime
+      updatedAt:
+        description: 'The last time this component was changed'
+        type: \DateTime
     required:
       - organization
       - authorization
@@ -1530,8 +1608,7 @@ definitions:
         maxLength: 255
       configuration:
         description: 'Any specific setting for this service'
-        type: string
-        format: json
+        type: array
     required:
       - organization
       - authorization

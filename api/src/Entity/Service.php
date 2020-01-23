@@ -10,6 +10,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * A service that sends messages e.g. email or sms.
@@ -47,7 +48,7 @@ class Service
      *
      * @example smtp
      *
-     * @Assert\Choice({"mailgun", "messagebird", "smtp"})
+     * @Assert\Choice({"mailer", "messagebird"})
      * @Assert\Length(
      *      max = 255
      * )
@@ -91,6 +92,24 @@ class Service
      * @ORM\Column(type="json", nullable=true)
      */
     private $configuration = [];
+    
+    /**
+     * @var DateTime The moment this component was found by the crawler
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+    
+    /**
+     * @var DateTime The last time this component was changed
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -186,5 +205,29 @@ class Service
         $this->configuration = $configuration;
 
         return $this;
+    }
+    
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+    	return $this->createdAt;
+    }
+    
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+    	$this->createdAt = $createdAt;
+    	
+    	return $this;
+    }
+    
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+    	return $this->updatedAt;
+    }
+    
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+    	$this->updatedAt = $updatedAt;
+    	
+    	return $this;
     }
 }

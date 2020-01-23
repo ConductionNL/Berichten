@@ -8,6 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * A  message to be send to a spefic recipient or list troug a message service.
@@ -100,6 +101,19 @@ class Message
      * @ORM\JoinColumn(nullable=false)
      */
     private $service;
+    
+    /**
+     * @var $serviceId The id of this message with the message service
+     *
+     * @example 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+     *
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $serviceId;
 
     /**
      * @var array The data that is used to render the template
@@ -108,6 +122,32 @@ class Message
      * @ORM\Column(type="json", nullable=true)
      */
     private $data = [];
+    
+    /**
+     * @var DateTime The moment this message was send
+     *
+     * @Groups({"read"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $send;
+    
+    /**
+     * @var DateTime The moment this component was found by the crawler
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+    
+    /**
+     * @var DateTime The last time this component was changed
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     public function getId(): ?string
     {
@@ -179,8 +219,20 @@ class Message
         $this->service = $service;
 
         return $this;
+    }    
+    
+    public function getServiceId(): ?string
+    {
+    	return $this->serviceId;
     }
-
+    
+    public function setServiceId(string $serviceId): self
+    {
+    	$this->serviceId = $serviceId;
+    	
+    	return $this;
+    }
+    
     public function getData(): ?array
     {
         return $this->data;
@@ -191,5 +243,41 @@ class Message
         $this->data = $data;
 
         return $this;
+    }
+    
+    public function getSend(): ?array
+    {
+    	return $this->send;
+    }
+    
+    public function setSend(?array $send): self
+    {
+    	$this->send = $send;
+    	
+    	return $this;
+    }
+    
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+    	return $this->createdAt;
+    }
+    
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+    	$this->createdAt = $createdAt;
+    	
+    	return $this;
+    }
+    
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+    	return $this->updatedAt;
+    }
+    
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+    	$this->updatedAt = $updatedAt;
+    	
+    	return $this;
     }
 }
