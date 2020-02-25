@@ -32,8 +32,9 @@ class MailService
 		$mailer = new Mailer($transport);	
 		
 		$sender = $this->commonGroundService->getResource($message->getSender());
-    	$reciever = $this->commonGroundService->getResource($message->getReciever());
-    	$content = $this->commonGroundService->getResource($message->getContent().'/render');
+    	$reciever = $this->commonGroundService->getResource($message->getReciever()); 
+    	$content = $this->commonGroundService->createResource($message->getData() ,$message->getContent().'/render');
+    	
     	$html = $content['content'];
     	$text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
     	
@@ -54,8 +55,7 @@ class MailService
 
         // ...
         
-        var_dump($sentEmail);
-        die;        
+        //var_dump($sentEmail);
         
         $message->setSend(New \Datetime);
         $message->setStatus('send');

@@ -54,7 +54,7 @@ class MessageSubscriber implements EventSubscriberInterface
     			break;
     		case 'messagebird':
     			$result = $this->messageService->sendMessage($result);
-    			break;
+    			break; 
     	}
     	
     	$em->persist($result);

@@ -95,7 +95,7 @@ class Message
     /**
      * @var \Service The webresource template object (from wrc) that is used as content for this message
      *
-     * @Groups({"read", "write"})
+     * @Groups({"read", "write"}) 
      * @MaxDepth(1)
      * @ORM\ManyToOne(targetEntity="App\Entity\Service", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
@@ -111,7 +111,7 @@ class Message
      *      max = 255
      * )
      * @Groups({"read"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="external_id", type="string", length=255)
      */
     private $serviceId;
 
