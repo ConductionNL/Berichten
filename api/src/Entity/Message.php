@@ -91,16 +91,6 @@ class Message
      * @ORM\Column(type="string", length=255)
      */
     private $status;
-
-    /**
-     * @var \Service The webresource template object (from wrc) that is used as content for this message
-     *
-     * @Groups({"read", "write"}) 
-     * @MaxDepth(1)
-     * @ORM\ManyToOne(targetEntity="App\Entity\Service", inversedBy="messages")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $service;
     
     /**
      * @var $serviceId The id of this message with the message service

@@ -38,12 +38,6 @@ class Service
     private $id;
 
     /**
-     * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="service", orphanRemoval=true)
-     */
-    private $messages;
-
-    /**
      * @var string The type of this service, iether use a pre configures service or just plain simple old smtp
      *
      * @example smtp
