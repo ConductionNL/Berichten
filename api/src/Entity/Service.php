@@ -75,7 +75,7 @@ class Service
      *      max = 255
      * )
      * @Groups({"write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, name ="authorization_key")
      */
     private $authorization;
 
