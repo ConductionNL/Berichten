@@ -35,7 +35,7 @@ class MessageService
 		$sms             = new \MessageBird\Objects\Message();
 		$sms->originator = $sender['telephones'][0]['telephone'];
 		$sms->recipients = array($reciever['telephones'][0]['telephone']);
-		$sms->body       = 'test 2';//$text;
+		$sms->body       = $text;
 		
 		
 		try {
