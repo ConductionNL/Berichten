@@ -101,7 +101,7 @@ class Message
      *      max = 255
      * )
      * @Groups({"read"})
-     * @ORM\Column(name="external_service_id", type="string", length=255)
+     * @ORM\Column(name="external_service_id", type="string", length=255, nullable=true)
      */
     private $externalServiceId;
 

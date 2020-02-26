@@ -1263,6 +1263,9 @@ components:
           description: 'The moment this message was send'
           type: string
           format: date-time
+        service:
+          description: 'The service used to send this message'
+          $ref: '#/components/schemas/Service-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -1304,6 +1307,9 @@ components:
           type: array
           items:
             type: string
+        service:
+          description: 'The service used to send this message'
+          $ref: '#/components/schemas/Service-write'
     'Message:jsonld-read':
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -1355,6 +1361,9 @@ components:
           description: 'The moment this message was send'
           type: string
           format: date-time
+        service:
+          description: 'The service used to send this message'
+          $ref: '#/components/schemas/Service:jsonld-read'
         dateCreated:
           readOnly: true
           description: 'The moment this request was created'
@@ -1405,6 +1414,9 @@ components:
           type: array
           items:
             type: string
+        service:
+          description: 'The service used to send this message'
+          $ref: '#/components/schemas/Service:jsonld-write'
     Service-read:
       type: object
       description: 'A service that sends messages e.g. email or sms.'
@@ -1587,12 +1599,15 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-02-26 05:47:18'
+        example: '2020-02-26 06:16:00'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-02-26 05:47:18'
+        example: '2020-02-26 06:16:00'
+      service:
+        description: 'The service used to send this message'
+        type: \Service
     required: []
   Message-write:
     properties:
@@ -1622,6 +1637,9 @@ definitions:
       data:
         description: 'The data that is used to render the template'
         type: array
+      service:
+        description: 'The service used to send this message'
+        type: \Service
     required: []
   Service-read:
     properties:
@@ -1647,12 +1665,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-02-26 05:47:18'
+        example: '2020-02-26 06:16:00'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-02-26 05:47:18'
+        example: '2020-02-26 06:16:00'
     required:
       - organization
       - authorization
