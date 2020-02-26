@@ -43,7 +43,7 @@ class CommongroundApplicationProvider implements UserProviderInterface
 		//if ($userData) {
 		//	$password = '...';
 			
-			// ...
+	// ...
 			
 			return new CommongroundApplication('Default Application', $uuid, null, ['user']);
 		//}

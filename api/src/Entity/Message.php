@@ -76,6 +76,12 @@ class Message
      * @ORM\Column(type="string", length=255)
      */
     private $content;
+    
+    /**     
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $data = [];
 
     /**
      * @var string The current status of this message
@@ -104,18 +110,10 @@ class Message
      * @ORM\Column(name="external_service_id", type="string", length=255, nullable=true)
      */
     private $externalServiceId;
-
     /**
-     * @var array The data that is used to render the template
+     * @var DateTime $send The moment this message was send
      *
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $data = [];
-    
-    /**
-     * @var DateTime The moment this message was send
-     *
+     * @Assert\DateTime
      * @Groups({"read"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -198,6 +196,18 @@ class Message
 
         return $this;
     }
+    
+    public function getData(): ?array
+    {
+    	return $this->data;
+    }
+    
+    public function setData(?array $data): self
+    {
+    	$this->data = $data;
+    	
+    	return $this;
+    }
 
     public function getStatus(): ?string
     {
@@ -234,25 +244,13 @@ class Message
     	
     	return $this;
     }
-    
-    public function getData(): ?array
-    {
-        return $this->data;
-    }
-
-    public function setData(?array $data): self
-    {
-        $this->data = $data;
-
-        return $this;
-    }
-    
-    public function getSend(): ?array
+        
+    public function getSend(): ?\DateTimeInterface
     {
     	return $this->send;
     }
     
-    public function setSend(?array $send): self
+    public function setSend(\DateTimeInterface  $send): self
     {
     	$this->send = $send;
     	

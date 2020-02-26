@@ -43,11 +43,14 @@ class MessageSubscriber implements EventSubscriberInterface
     {
     	$result = $event->getControllerResult();
     	$method = $event->getRequest()->getMethod();
-
-    	if (!$result instanceof Message || $result->getStatus() != 'queued' || $result->getSend() != null){
+    	$route = $event->getRequest()->attributes->get('_route');
+    	
+    	
+    	if ($route!= "api_messages_post_collection"){
     		return;
     	}
-
+    	
+    	
     	switch ($result->getService()->getType()) {
     		case 'mailer':
     			$result = $this->mailService->sendEmail($result);

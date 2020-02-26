@@ -27,7 +27,7 @@ class MailService
 	}
 
 	public function sendEmail(Message $message)
-	{
+	{		
 		$transport = Transport::fromDsn($message->getService()->getAuthorization());
 		$mailer = new Mailer($transport);	
 		
@@ -48,19 +48,12 @@ class MailService
     		->subject($content['name'])
     		->html($html)
         	->text($text);
-
+        	
         /** @var Symfony\Component\Mailer\SentMessage $sentEmail */
-        $sentEmail = $mailer->send($email);
-        // $messageId = $sentEmail->getMessageId();
-
-        // ...
-        
-        //var_dump($sentEmail);
+        $mailer->send($email);
         
         $message->setSend(New \Datetime);
         $message->setStatus('send');
-        $message->setServiceId($sentEmail->getMessageId());
-        //
         return $message;
     }
 	
