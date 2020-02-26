@@ -8,6 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -101,9 +102,9 @@ class Message
      *      max = 255
      * )
      * @Groups({"read"})
-     * @ORM\Column(name="external_id", type="string", length=255)
+     * @ORM\Column(name="external_service_id", type="string", length=255)
      */
-    private $serviceId;
+    private $externalServiceId;
 
     /**
      * @var array The data that is used to render the template
@@ -122,22 +123,34 @@ class Message
     private $send;
     
     /**
-     * @var DateTime The moment this component was found by the crawler
+     * @var Service $service The service used to send this message
+     * 
+     * @MaxDepth(1)
+     * @Groups({"read", "write"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Service", inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $service;
+    
+    /**
+     * @var Datetime $dateCreated The moment this request was created
      *
+     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $createdAt;
+    private $dateCreated;
     
     /**
-     * @var DateTime The last time this component was changed
+     * @var Datetime $dateModified  The moment this request last Modified
      *
+     * @Assert\DateTime
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="update")
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private $dateModified;
 
     public function getId(): ?string
     {
@@ -211,14 +224,14 @@ class Message
         return $this;
     }    
     
-    public function getServiceId(): ?string
+    public function getExternalServiceId(): ?string
     {
-    	return $this->serviceId;
+    	return $this->externalServiceId;
     }
     
-    public function setServiceId(string $serviceId): self
+    public function setExternalServiceId(string $externalServiceId): self
     {
-    	$this->serviceId = $serviceId;
+    	$this->externalServiceId= $externalServiceId;
     	
     	return $this;
     }
@@ -247,26 +260,26 @@ class Message
     	return $this;
     }
     
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->createdAt;
+    	return $this->dateCreated;
     }
     
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->createdAt = $createdAt;
+    	$this->dateCreated= $dateCreated;
     	
     	return $this;
     }
     
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->updatedAt;
+    	return $this->dateModified;
     }
     
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->updatedAt = $updatedAt;
+    	$this->dateModified = $dateModified;
     	
     	return $this;
     }

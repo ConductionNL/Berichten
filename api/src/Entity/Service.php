@@ -88,22 +88,32 @@ class Service
     private $configuration = [];
     
     /**
-     * @var DateTime The moment this component was found by the crawler
+     * @var Message[] $messages The messages send by this service
+     * 
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="service", orphanRemoval=true)
+     */
+    private $messages;
+    
+    /**
+     * @var Datetime $dateCreated The moment this request was created
      *
+     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $createdAt;
+    private $dateCreated;
     
     /**
-     * @var DateTime The last time this component was changed
+     * @var Datetime $dateModified  The moment this request last Modified
      *
+     * @Assert\DateTime
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="update")
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private $dateModified;
 
     public function __construct()
     {
@@ -201,26 +211,26 @@ class Service
         return $this;
     }
     
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->createdAt;
+    	return $this->dateCreated;
     }
     
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->createdAt = $createdAt;
+    	$this->dateCreated= $dateCreated;
     	
     	return $this;
     }
     
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->updatedAt;
+    	return $this->dateModified;
     }
     
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->updatedAt = $updatedAt;
+    	$this->dateModified = $dateModified;
     	
     	return $this;
     }

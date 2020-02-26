@@ -589,7 +589,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Message-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Message:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Message-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Message-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Message-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Message-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Message-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Message-write'
         description: 'The updated Message resource'
@@ -1167,7 +1191,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Service-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Service-write'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Service:jsonld-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Service-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Service-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Service-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Service-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Service-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/Service-write'
         description: 'The updated Service resource'
@@ -1201,9 +1249,10 @@ components:
         status:
           description: 'The current status of this message'
           type: string
-        service:
-          description: 'The webresource template object (from wrc) that is used as content for this message'
-          $ref: '#/components/schemas/Service-read'
+        externalServiceId:
+          readOnly: true
+          description: 'The id of this message with the message service'
+          type: string
         data:
           description: 'The data that is used to render the template'
           type: array
@@ -1214,14 +1263,18 @@ components:
           description: 'The moment this message was send'
           type: string
           format: date-time
-        createdAt:
+        dateCreated:
           readOnly: true
-          description: 'The moment this component was found by the crawler'
+          description: 'The moment this request was created'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
-        updatedAt:
+        dateModified:
           readOnly: true
-          description: 'The last time this component was changed'
+          description: 'The moment this request last Modified'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
     Message-write:
@@ -1246,9 +1299,6 @@ components:
         status:
           description: 'The current status of this message'
           type: string
-        service:
-          description: 'The webresource template object (from wrc) that is used as content for this message'
-          $ref: '#/components/schemas/Service-write'
         data:
           description: 'The data that is used to render the template'
           type: array
@@ -1291,9 +1341,10 @@ components:
         status:
           description: 'The current status of this message'
           type: string
-        service:
-          description: 'The webresource template object (from wrc) that is used as content for this message'
-          $ref: '#/components/schemas/Service:jsonld-read'
+        externalServiceId:
+          readOnly: true
+          description: 'The id of this message with the message service'
+          type: string
         data:
           description: 'The data that is used to render the template'
           type: array
@@ -1304,14 +1355,18 @@ components:
           description: 'The moment this message was send'
           type: string
           format: date-time
-        createdAt:
+        dateCreated:
           readOnly: true
-          description: 'The moment this component was found by the crawler'
+          description: 'The moment this request was created'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
-        updatedAt:
+        dateModified:
           readOnly: true
-          description: 'The last time this component was changed'
+          description: 'The moment this request last Modified'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
     'Message:jsonld-write':
@@ -1345,9 +1400,6 @@ components:
         status:
           description: 'The current status of this message'
           type: string
-        service:
-          description: 'The webresource template object (from wrc) that is used as content for this message'
-          $ref: '#/components/schemas/Service:jsonld-write'
         data:
           description: 'The data that is used to render the template'
           type: array
@@ -1374,14 +1426,18 @@ components:
           type: array
           items:
             type: string
-        createdAt:
+        dateCreated:
           readOnly: true
-          description: 'The moment this component was found by the crawler'
+          description: 'The moment this request was created'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
-        updatedAt:
+        dateModified:
           readOnly: true
-          description: 'The last time this component was changed'
+          description: 'The moment this request last Modified'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
       required:
@@ -1438,14 +1494,18 @@ components:
           type: array
           items:
             type: string
-        createdAt:
+        dateCreated:
           readOnly: true
-          description: 'The moment this component was found by the crawler'
+          description: 'The moment this request was created'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
-        updatedAt:
+        dateModified:
           readOnly: true
-          description: 'The last time this component was changed'
+          description: 'The moment this request last Modified'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
       required:
@@ -1512,21 +1572,27 @@ definitions:
         type: string
         example: concept
         maxLength: 255
+      externalServiceId:
+        description: 'The id of this message with the message service'
+        type: ''
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
       data:
         description: 'The data that is used to render the template'
         type: array
       send:
         description: 'The moment this message was send'
         type: \DateTime
-      createdAt:
-        description: 'The moment this component was found by the crawler'
-        type: \DateTime
-      updatedAt:
-        description: 'The last time this component was changed'
-        type: \DateTime
-      service:
-        description: 'The webresource template object (from wrc) that is used as content for this message'
-        type: \Service
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-02-26 05:47:18'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-02-26 05:47:18'
     required: []
   Message-write:
     properties:
@@ -1556,9 +1622,6 @@ definitions:
       data:
         description: 'The data that is used to render the template'
         type: array
-      service:
-        description: 'The webresource template object (from wrc) that is used as content for this message'
-        type: \Service
     required: []
   Service-read:
     properties:
@@ -1580,12 +1643,16 @@ definitions:
       configuration:
         description: 'Any specific setting for this service'
         type: array
-      createdAt:
-        description: 'The moment this component was found by the crawler'
-        type: \DateTime
-      updatedAt:
-        description: 'The last time this component was changed'
-        type: \DateTime
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-02-26 05:47:18'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-02-26 05:47:18'
     required:
       - organization
       - authorization

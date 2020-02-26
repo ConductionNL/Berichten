@@ -12,8 +12,11 @@ settings:
   repro: 'https://github.com/ConductionNL/Proto-component-commonground'
   subdomain: bs  
   domains:
-    - larping.eu 
-  domainsJson: ["larping.eu"]
+    - conduction.nl
+    - zaakonline.nl
+    - huwelijksplanner.online
+    - common-ground.dev
+  domainsJson: ["conduction.nl","zaakonline.nl","huwelijksplanner.online","common-ground.dev"]
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
