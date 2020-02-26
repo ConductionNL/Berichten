@@ -43,23 +43,23 @@ class MessageSubscriber implements EventSubscriberInterface
     {
     	$result = $event->getControllerResult();
     	$method = $event->getRequest()->getMethod();
-    	
+
     	if (!$result instanceof Message || $result->getStatus() != 'queued' || $result->getSend() != null){
     		return;
     	}
-    	
+
     	switch ($result->getService()->getType()) {
     		case 'mailer':
     			$result = $this->mailService->sendEmail($result);
     			break;
     		case 'messagebird':
     			$result = $this->messageService->sendMessage($result);
-    			break; 
+    			break;
     	}
-    	
-    	$em->persist($result);
-    	$em->flush($result);
-        
+
+    	$this->em->persist($result);
+    	$this->em->flush();
+
 
         return $result;
     }
