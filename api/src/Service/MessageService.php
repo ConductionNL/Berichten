@@ -54,7 +54,7 @@ class MessageService
 		
 		$message->setSend(New \Datetime);
 		$message->setStatus('send');
-		$message->setServiceId($MessageResult->id);
+		//$message->setServiceId($MessageResult->id);
 		//
 		return $message;
 		
