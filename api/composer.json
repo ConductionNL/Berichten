@@ -31,7 +31,7 @@
 		"symfony/mercure-bundle": "*",
 		"symfony/postmark-mailer": "4.4.*",
 		"symfony/property-access": "4.4.*",
-		"symfony/sendgrid-mailer": "4.4.*",
+		"symfony/translation": "4.4.*",
 		"symfony/yaml": "4.3.*",
 		"tbbc/money-bundle": "^3.1",
 		"webonyx/graphql-php": "^0.13.8"

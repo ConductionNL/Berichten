@@ -1559,10 +1559,11 @@ definitions:
       id:
         description: 'The UUID identifier of this resource'
         type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
+        eaxample: '#/components/schemas/RamseyUuidUuidInterface-read'
         format: uuid
-      reciever:
-        description: 'Either a contact component person or contact list that will recieve this message'
+        example: 9b9eea1a-ef04-427d-b8bd-7f5c24801874
+      name:
+        description: 'The name of this example property'
         type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
         format: url
