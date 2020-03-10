@@ -45,6 +45,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -72,6 +73,7 @@ class Message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
+     * @Gedmo\Versioned
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -86,6 +88,7 @@ class Message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
+     * @Gedmo\Versioned
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -100,6 +103,7 @@ class Message
      *
      * @example https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
+     * @Gedmo\Versioned
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -110,6 +114,7 @@ class Message
     private $content;
     
     /**     
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
      */
@@ -120,6 +125,7 @@ class Message
      *
      * @example concept
      *
+     * @Gedmo\Versioned
      * @Assert\Choice({"concept", "queued", "sending", "send", "delivered"})
      * @Assert\Length(
      *      max = 255
@@ -135,6 +141,7 @@ class Message
      *
      * @example 013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 255
      * )
@@ -145,6 +152,7 @@ class Message
     /**
      * @var DateTime $send The moment this message was send
      *
+     * @Gedmo\Versioned
      * @Assert\DateTime
      * @Groups({"read"})
      * @ORM\Column(type="datetime", nullable=true)

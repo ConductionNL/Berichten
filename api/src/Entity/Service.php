@@ -47,6 +47,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
  * 
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -74,6 +75,7 @@ class Service
      *
      * @example smtp
      *
+     * @Gedmo\Versioned
      * @Assert\Choice({"mailer", "messagebird"})
      * @Assert\Length(
      *      max = 255
@@ -88,6 +90,7 @@ class Service
      *
      * @example 002851234
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -102,6 +105,7 @@ class Service
      *
      * @example 013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -114,6 +118,7 @@ class Service
     /**
      * @var array Any specific setting for this service
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
      */
