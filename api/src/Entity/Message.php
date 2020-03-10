@@ -3,6 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -15,9 +21,36 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
- *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     itemOperations={
+ *          "get",
+ *          "put",
+ *          "delete",
+ *          "get_change_logs"={
+ *              "path"="/messages/{id}/change_log",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Changelogs",
+ *                  "description"="Gets al the change logs for this resource"
+ *              }
+ *          },
+ *          "get_audit_trail"={
+ *              "path"="/messages/{id}/audit_trail",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Audittrail",
+ *                  "description"="Gets the audit trail for this resource"
+ *              }
+ *          }
+ *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
+ * 
+ * @ApiFilter(BooleanFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
+ * @ApiFilter(SearchFilter::class)
  */
 class Message
 {
@@ -40,6 +73,7 @@ class Message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
+     * @Gedmo\Versioned
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -54,6 +88,7 @@ class Message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
+     * @Gedmo\Versioned
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -68,6 +103,7 @@ class Message
      *
      * @example https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
+     * @Gedmo\Versioned
      * @Assert\Url
      * @Assert\Length(
      *      max = 255
@@ -78,6 +114,7 @@ class Message
     private $content;
     
     /**     
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
      */
@@ -88,6 +125,7 @@ class Message
      *
      * @example concept
      *
+     * @Gedmo\Versioned
      * @Assert\Choice({"concept", "queued", "sending", "send", "delivered"})
      * @Assert\Length(
      *      max = 255
@@ -103,6 +141,7 @@ class Message
      *
      * @example 013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 255
      * )
@@ -113,6 +152,7 @@ class Message
     /**
      * @var DateTime $send The moment this message was send
      *
+     * @Gedmo\Versioned
      * @Assert\DateTime
      * @Groups({"read"})
      * @ORM\Column(type="datetime", nullable=true)
