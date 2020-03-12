@@ -1,481 +1,272 @@
 <?php
 
-// src/Service/HuwelijkService.php
+// src/Controller/DefaultController.php
 
-namespace App\Service;
+namespace App\Controller;
 
-use GuzzleHttp\Client;
-use Symfony\Component\Cache\Adapter\AdapterInterface as CacheInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Service\CommonGroundService;
+use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Annotation\Route;
 
-class CommonGroundService
+/**
+ * Class LandingpageController
+ * @package App\Controller
+ * @Route("/")
+ */
+class LandingpageController extends AbstractController
 {
-	private $params;
-	private $cache;
-	private $session;
-	private $headers;
+    /**
+     * @Route("/")
+     * @Template
+     */
+    public function indexAction(Session $session, Request $request, CommonGroundService $commonGroundService)
+    {
+        // Wat doen we hier eigenlijk met organizations en groups?
+        $organizations = []; // $commonGroundService->getResourceList('https://cc.larping.online/organizations',["name"=>"fc"]);
+        $groups = []; // $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
+        $products = $commonGroundService->getResourceList('https://pdc.larping.eu/products')["hydra:member"];
 
-	public function __construct(ParameterBagInterface $params, SessionInterface $session, CacheInterface $cache)
-	{
-		$this->params = $params;
-		$this->session = $session;
-		$this->cash = $cache;
-		$this->session= $session;
-
-		// To work with NLX we need a couple of default headers
-		$this->headers = [
-				'Accept'        => 'application/ld+json',
-				'Content-Type'  => 'application/json',
-				'Authorization'  => $this->params->get('app_commonground_key'),
-				'X-NLX-Request-Application-Id' => $this->params->get('app_commonground_id')// the id of the application performing the request
-		];
-
-		if($session->get('user')){
-			$headers['X-NLX-Request-User-Id'] = $session->get('user')['@id'];
-		}
-
-		if($session->get('process')){
-			$headers[] = $session->get('process')['@id'];
-		}
+        $orderUri = $session->get('order');
+        $order = false; // Aangezien we de order variable aan hettemplate passeeren moetdie zowiezo bestaan
+        if ($orderUri) {
+            $order = $commonGroundService->getResource($orderUri);
+        }
 
 
-		// We might want to overwrite the guzle config, so we declare it as a separate array that we can then later adjust, merge or otherwise influence
-		$this->guzzleConfig = [
-				// Base URI is used with relative requests
-				'http_errors' => false,
-				//'base_uri' => 'https://wrc.zaakonline.nl/applications/536bfb73-63a5-4719-b535-d835607b88b2/',
-				// You can set any number of default request options.
-				'timeout'  => 4000.0,
-				// To work with NLX we need a couple of default headers
-				'headers' => $this->headers,
-		];
+        // Kijken of het formulier is getriggerd
+        if ($request->isMethod('POST')) {
 
-		// Lets start up a default client
-		$this->client = new Client($this->guzzleConfig);
-	}
+            // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
+            $session->set('offers', $request->request->get('offers'));
 
-	/*
-	 * Get a single resource from a common ground componant
-	 */
-	public function getResourceList($url, $query = [], $force = false, $async = false)
-	{
-		if (!$url) {
-			return false;
-		}
-		
-		// Split enviroments, if the env is not dev the we need add the env to the url name
-		$parsedUrl = parse_url($url);
-		
-		// We only do this on non-production enviroments
-		if($this->params->get('app_env') != "prod"){
-			
-			// Lets make sure we dont have doubles
-			$url = str_replace($this->params->get('app_env').'.','',$url);
-			
-			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
-			$host = explode('.', $parsedUrl['host']);
-			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
-		}
-		
-		$elementList = [];
-		foreach($query as $element){
-			if(!is_array($element)){
-				return;
-			}
-			$elementList[] = implode("=",$element);
-		}
-		$elementList = implode(",", $elementList);
+            // flashban zetten met eindresultaat
+            $this->addFlash('success', 'Uw product(en) is toegevoegd');
 
-		// To work with NLX we need a couple of default headers
-		$headers = $this->headers;
-		if($elementList){
-			$headers['X-NLX-Request-Data-Elements'] = $elementList;
-			$headers['X-NLX-Request-Data-Subject'] = $elementList;			
-		}
-		
-		$item = $this->cash->getItem('commonground_'.md5($url));
-		if ($item->isHit() && !$force) {
-			//return $item->get();
-		}
-		
-		if(!$async){
-			$response = $this->client->request('GET', $url, [
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
-		}
-		else {
-			
-			$response = $this->client->requestAsync('GET', $url, [
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
-		}
-		
-		if($response->getStatusCode() != 200){
-			var_dump('GET returned:'.$response->getStatusCode());
-			var_dump(json_encode($query));
-			var_dump(json_encode($headers));
-			var_dump(json_encode($url));
-			var_dump($response->getBody());
-			die;
-		}
-		
-		$response = json_decode($response->getBody(), true);
+            return $this->redirect($this->generateUrl('app_landingpage_betalen'));
+        }
 
-		/* @todo this should look to al @id keus not just the main root */
-		if(array_key_exists('hydra:member', $response) && $response['hydra:member']){
-			foreach($response['hydra:member'] as $key => $embedded){
-				if(array_key_exists('@id', $embedded) && $embedded['@id']){
-					$response['hydra:member'][$key]['@id'] =  $parsedUrl["scheme"]."://".$parsedUrl["host"].$embedded['@id'];
-				}
-			}
-		}
+        return ['organisations' => $organizations, 'groups' => $groups, 'products' => $products, 'order' => $order, $this->redirect('/')];
+    }
 
-		$item->set($response);
-		$item->expiresAt(new \DateTime('tomorrow'));
-		$this->cash->save($item);
+    /**
+     * @Route("/betalen")
+     * @Template
+     */
+    public function betalenAction(Session $session, Request $request, CommonGroundService $commonGroundService)
+    {
+        // Als we geen order hebbenkunnen we logischerwijs ook geen betaling verwerken
+        $offers = $session->get('offers');
 
-		return $response;
-	}
+        // Terug sturen als er geen offers zijn
+        if(!$offers || count($offers) < 1) {
+            $this->addFlash('danger', 'There are no products in your basket');
+            return $this->redirect($this->generateUrl('app_landingpage_index'));
+        }
 
-	/*
-	 * Get a single resource from a common ground componant
-	 */
-	public function getResource($url, $query = [], $force = false, $async = false)
-	{
+        // Kijken of het formulier is getriggerd
+        if ($request->isMethod('POST')) {
 
-		if (!$url) {
-			//return false;
-		}
-		
-		// Split enviroments, if the env is not dev the we need add the env to the url name
-		$parsedUrl = parse_url($url);
-		
-		// We only do this on non-production enviroments
-		if($this->params->get('app_env') != "prod"){
-			
-			// Lets make sure we dont have doubles
-			$url = str_replace($this->params->get('app_env').'.','',$url);
-			
-			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
-			$host = explode('.', $parsedUrl['host']);
-			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
-		}
-		
-		// To work with NLX we need a couple of default headers
-		$headers = $this->headers;
-		$headers['X-NLX-Request-Subject-Identifier'] = $url;
+            // Lets check on required values
+            $requiredValues = ['givenName','familyName','street','street','houseNumber','postalCode','locality','email'];
+            $error = false;
+            foreach($requiredValues as $requiredValue){
+                if(!$request->request->get($requiredValue)|| $request->request->get($requiredValue) == null){
+                    $this->addFlash('danger', $requiredValue.' is a required value');
+                    $error = true;
+                }
+            }
 
-		$item = $this->cash->getItem('commonground_'.md5($url));
-		if ($item->isHit() && !$force) {
-			//return $item->get();
-		}
-		
-		if(!$async){
-			$response = $this->client->request('GET', $url, [
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
-		}
-		else {
-			
-			$response = $this->client->requestAsync('GET', $url, [
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
-		}
-		
-		if($response->getStatusCode() != 200){
-			var_dump('GET returned:'.$response->getStatusCode());
-			var_dump(json_encode($query));
-			var_dump(json_encode($headers));
-			var_dump(json_encode($url));
-			var_dump($response->getBody());
-			die;
-		}
-		
-		$response = json_decode($response->getBody(), true);
-		
-		if(array_key_exists('@id', $response) && $response['@id']){
-			$response['@id'] = $parsedUrl["scheme"]."://".$parsedUrl["host"].$response['@id'];
-		}
+            if($error){
+                return ['offers' => $offers];
+            }
 
-		$item->set($response);
-		$item->expiresAt(new \DateTime('tomorrow'));
-		$this->cash->save($item);
+            // contact persoon aanmaken op order
+            $contact['givenName'] = $request->request->get('givenName');
+            $contact['additionalName'] = $request->request->get('additionalName');
+            $contact['familyName'] = $request->request->get('familyName');
 
-		return $response;
-	}
+            $contact['street'] = $request->request->get('street');
+            $contact['houseNumber'] = $request->request->get('houseNumber');
+            $contact['houseNumberSuffix'] = $request->request->get('houseNumberSuffix');
 
-	/*
-	 * Get a single resource from a common ground componant
-	 */
-	public function updateResource($resource, $url = null, $async = false)
-	{
-		if (!$url && array_key_exists('@id', $resource)) {
-			$url = $resource['@id'];
-		}
-		
-		// Split enviroments, if the env is not dev the we need add the env to the url name
-		$parsedUrl = parse_url($url);
-		
-		// We only do this on non-production enviroments
-		if($this->params->get('app_env') != "prod"){
-			
-			// Lets make sure we dont have doubles
-			$url = str_replace($this->params->get('app_env').'.','',$url);
-			
-			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
-			$host = explode('.', $parsedUrl['host']);
-			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
-		}
-		
-		// To work with NLX we need a couple of default headers
-		$headers = $this->headers;
-		$headers['X-NLX-Request-Subject-Identifier'] = $url;
-		
-		unset($resource['@context']);
-		unset($resource['@id']);
-		unset($resource['@type']);
-		unset($resource['id']);
-		unset($resource['_links']);
-		unset($resource['_embedded']);
-		
-		foreach($resource as $key=>$value){
-			if($value == null || (is_array($value && empty($value)))){
-				unset($resource[$key]);
-			}
-		}
-		
-		
-		if(!$async){
-			$response = $this->client->request('PUT', $url, [
-					'body' => json_encode($resource),
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
-		}
-		else {
-			
-			$response = $this->client->requestAsync('PUT', $url, [
-					'body' => json_encode($resource),
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
-		}
-		
-		if($response->getStatusCode() != 200){
-			var_dump('PUT returned:'.$response->getStatusCode());
-			var_dump($headers);
-			var_dump(json_encode($resource));
-			var_dump(json_encode($url));
-			var_dump(json_encode($response->getBody()));
-			die;
-		}
-
-		$response = json_decode($response->getBody(), true);
-		
-		if(array_key_exists('@id', $response) && $response['@id']){
-			$response['@id'] = $parsedUrl["scheme"]."://".$parsedUrl["host"].$response['@id'];
-		}
-
-		// Lets cash this item for speed purposes
-		$item = $this->cash->getItem('commonground_'.md5($url));
-		$item->set($response);
-		$item->expiresAt(new \DateTime('tomorrow'));
-		$this->cash->save($item);
-
-		return $response;
-	}
-
-	/*
-	 * Get a single resource from a common ground componant
-	 */
-	public function createResource($resource, $url = null, $async = false)
-	{
-		if (!$url && array_key_exists('@id', $resource)) {
-			$url = $resource['@id'];
-		}
-		
-		// Split enviroments, if the env is not dev the we need add the env to the url name
-		$parsedUrl = parse_url($url);
-		
-		// We only do this on non-production enviroments
-		if($this->params->get('app_env') != "prod"){
-			
-			// Lets make sure we dont have doubles
-			$url = str_replace($this->params->get('app_env').'.','',$url);
-			
-			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
-			$host = explode('.', $parsedUrl['host']);
-			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
-		}
-		
-		if(!$async){
-			$response = $this->client->request('POST', $url, [
-					'body' => json_encode($resource),
-					'headers' => $headers,
-			]
-					);
-		}
-		else {
-			$response = $this->client->requestAsync('POST', $url, [
-					'body' => json_encode($resource),
-					'headers' => $headers,
-			]
-					);
-		}
-		
-		
-		if($response->getStatusCode() != 201){
-			var_dump('POST returned:'.$response->getStatusCode());
-			var_dump($headers);
-			var_dump(json_encode($resource));
-			var_dump(json_encode($url));
-			var_dump($headers);
-			var_dump($response->getBody());
-			die;
-		}
+            $contact['postalCode'] = $request->request->get('postalCode');
+            $contact['locality'] = $request->request->get('locality');
 
 
-		$response = json_decode($response->getBody(), true);
-		
-		if(array_key_exists('@id', $response) && $response['@id']){
-			$response['@id'] = $parsedUrl["scheme"]."://".$parsedUrl["host"].$response['@id'];
-		}
+            $contact['emails'] = [];
+            $contact['emails'][0] = ["name" => "primary", "email" => $request->request->get('email')];
+            $contact['telephones'] = [];
+            $contact['telephones'][0] = ["name" => "primary", "telephone" => $request->request->get('telephone')];
 
-		// Lets cash this item for speed purposes
-		$item = $this->cash->getItem('commonground_'.md5($url.'/'.$response['id']));
-		$item->set($response);
-		$item->expiresAt(new \DateTime('tomorrow'));
-		$this->cash->save($item);
+            $contact['sourceOrganization'] = '816802828'; // Ditmoet de RSIN van zijn
+            $contact = $commonGroundService->createResource($contact, 'https://cc.larping.eu/people');
 
-		return $response;
-	}
+            $order = [];
+            $order['targetOrganization'] = '816802828'; // Ditmoet de RSIN van zijn
+            $order['name'] = 'Website Order';
+            $order['customer'] = $contact['@id']; // Deze zou leeg moeten mogen zijn
+            $order['stage'] = 'cart'; // Deze zou leeg moeten mogen zijn
+            $order['items'] = [];
 
-	/*
-	 * Get a single resource from a common ground componant
-	 */
-	public function clearCash($url)
-	{
-	}
+            $order['remark'] = $request->request->get('remarks');
+            $order['customer'] = $contact['@id'];
 
-	/*
-	 * Get a list of available commonground components
-	 */
-	public function getComponentList()
-	{
-		$components = [
-				'cc'  => ['href'=>'http://cc.zaakonline.nl',  'authorization'=>''],
-				'lc'  => ['href'=>'http://lc.zaakonline.nl',  'authorization'=>''],
-				'ltc' => ['href'=>'http://ltc.zaakonline.nl', 'authorization'=>''],
-				'brp' => ['href'=>'http://brp.zaakonline.nl', 'authorization'=>''],
-				'irc' => ['href'=>'http://irc.zaakonline.nl', 'authorization'=>''],
-				'ptc' => ['href'=>'http://ptc.zaakonline.nl', 'authorization'=>''],
-				'mrc' => ['href'=>'http://mrc.zaakonline.nl', 'authorization'=>''],
-				'arc' => ['href'=>'http://arc.zaakonline.nl', 'authorization'=>''],
-				'vtc' => ['href'=>'http://vtc.zaakonline.nl', 'authorization'=>''],
-				'vrc' => ['href'=>'http://vrc.zaakonline.nl', 'authorization'=>''],
-				'pdc' => ['href'=>'http://pdc.zaakonline.nl', 'authorization'=>''],
-				'wrc' => ['href'=>'http://wrc.zaakonline.nl', 'authorization'=>''],
-				'orc' => ['href'=>'http://orc.zaakonline.nl', 'authorization'=>''],
-				'bc'  => ['href'=>'http://orc.zaakonline.nl', 'authorization'=>''],
-		];
+            if (!in_array('description',$order) || !$order['description']) {
+                $order['description'] = "Website Order";
+            }
 
-		return $components;
-	}
+            foreach ($offers as $offer) {
 
-	/*
-	 * Get the health of a commonground componant
-	 */
-	public function getComponentHealth(string $component, $force = false)
-	{
-		$componentList = $this->getComponentList();
+                // Dit is lelijk, eigenlijk zou de offer id an zich al een uri moeten zijn
+                $offer = $commonGroundService->getResource($offer);
 
-		$item = $this->cash->getItem('componentHealth_'.md5($component));
-		if ($item->isHit() && !$force) {
-			//return $item->get();
-		}
+                $orderItem = [];
+                $orderItem['offer'] = $offer['@id'];
+                $orderItem['name'] = $offer['name'];
+                $orderItem['description'] = $offer['description'];
+                $orderItem['quantity'] = 1;
+                $orderItem['price'] = number_format($offer['price'] / 100, 2, '.', ' '); // hier gaat iets mis dat dit nodig is
+                $orderItem['priceCurrency'] = $offer['priceCurrency'];
+                //$orderItem['taxPercentage'] = $offer['taxes'][0]['percentage']; // Taxes in orders en invoices moet worden bijgewerkt
+                $orderItem['taxPercentage'] = 0; /*@todo dit moet dus nog worden gefixed */
 
-		//@todo trhow symfony error
-		if (!array_key_exists($component, $componentList)) {
-			return false;
-		} else {
-			// Lets swap the component for a
+                /*@todo wtf gebruikt het orc snake case?*/
+                //$orderItem = $commonGroundService->createResource($orderItem, 'https://orc.larping.eu/order_items');
+                $order['items'][] = $orderItem;
+            }
 
-			// Then we like to know al the component endpoints
-			$component = $this->getComponentResources($component);
-		}
+            // order updaten
+            $order = $commonGroundService->createResource($order, 'https://orc.larping.eu/orders');
+            $session->set('order', $order['@id']);
 
-		// Lets loop trough the endoints and get health (the self endpoint is included)
-		foreach ($component['endpoints'] as $key=>$endpoint) {
+            // We don't want to make an invoice and payment if we do not have an price
+            if($order['price'] == "0.00"){
+                return $this->redirect($this->generateUrl('bevestiging'));
+            }
 
-			//var_dump($component['endpoints']);
-			//var_dump($endpoint);
+            // order naar bc sturen
+            $invoice = $commonGroundService->createResource($order, 'https://bc.larping.eu/order');
+            $session->set('invoice', $invoice['@id']);
+            // gebruikerdoorsturen naar terug gegeven responce
+            return $this->redirect($invoice['paymentUrl']);
+        }
 
-			$response = $this->client->request('GET', $component['href'].$endpoint['href'], ['Headers' =>['Authorization' => $component['authorization'], 'Accept' => 'application/health+json']]);
-			if ($response->getStatusCode() == 200) {
-				//$component['endpoints'][$key]['health'] = json_decode($response->getBody(), true);
-				$component['endpoints'][$key]['health'] = false;
-			}
-		}
+        return ['offers' => $offers];
+    }
 
-		$item->set($component);
-		$item->expiresAt(new \DateTime('tomorrow'));
-		$this->cash->save($item);
+    /**
+     * @Route("/betalen/bevestigen/{uuid}")
+     * @Template
+     */
+    public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
+    {
+        // Factuur ophalen aan de hand van id
+        if($uuid){
+            $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid, [], true);
 
-		return $component;
-	}
+            // We willen voorkomen dat je via deze route elke factuur kan opvragen
+            if ($invoice['@id'] != $session->get('invoice')) {
+                // Throw auth error
+            }
+        }
 
-	/*
-	 * Get a list of available resources on a commonground componant
-	 */
-	public function getComponentResources(string $component, $force = false)
-	{
-		$componentList = $this->getComponentList();
+        // Als de factuur doorkomt als "niet" betaald dan wachten we nog eens 5 seconden
+        $i = 0;
+        while(!$invoice["paid"] ){
+            sleep(1);
+            $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid, [], true);
+            $i++;
+            if($i > 20){
+                break;
+            }
+        }
 
-		$item = $this->cash->getItem('componentResources_'.md5($component));
-		if ($item->isHit() && !$force) {
-			//return $item->get();
-		}
 
-		//@todo trhow symfony error
-		if (!array_key_exists($component, $componentList)) {
-			return false;
-		} else {
-			// Lets swap the component for a version that has an endpoint and authorization
-			$component = $componentList[$component];
-		}
+        if(!in_array("paid", $invoice) || !$invoice["paid"]){
+            return ['invoice'=>$invoice];
+        }
 
-		$response = $this->client->request('GET', $component['href'], ['Headers' =>['Authorization' => $component['authorization'], 'Accept' => 'application/ld+json']]);
+        $order = $commonGroundService->getResource($invoice['order'], [], true);
+        $contact = $commonGroundService->getResource($order['customer'], [], true);
 
-		$component['status'] = $response->getStatusCode();
-		if ($response->getStatusCode() == 200) {
-			$component['endpoints'] = json_decode($response->getBody(), true);
-			// Lets pull any json-ld values
-			if (array_key_exists('_links', $component['endpoints'])) {
-				$component['endpoints'] = $component['endpoints']['_links'];
-			}
-		} else {
-			$component['endpoints'] = [];
-		}
+        $variables = ['invoice'=>$invoice,'order'=>$order,'contact'=>$contact];
 
-		$item->set($component);
-		$item->expiresAt(new \DateTime('tomorrow'));
-		$this->cash->save($item);
+        // mail versturen
+        $message= [
+            "reciever"=>$order['customer'],
+            "sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+            "content"=>"https://wrc.larping.eu/templates/cc7d0c70-bb59-4d85-9845-863e896e6ee9",
+            "service"=>"/services/dfb46b45-0737-4500-b8f9-2f791913c8ad",
+            "status"=>"concept",
+            //"externalServiceId"=>"7d48f13b-f44e-495b-b774-3d4f9b994b09",
+            "data"=> $variables
+        ];
+        $userMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        /*
+        $message= [
+        		"reciever"=>$order['customer'],
+        		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+        		"content"=>"https://wrc.larping.eu/templates/3b96e9bc-1d9c-4701-9554-4a597f01f4bf",
+        		"service"=>"/services/7d48f13b-f44e-495b-b774-3d4f9b994b09",
+        		"status"=>"concept",
+        		//"externalServiceId"=>"dfb46b45-0737-4500-b8f9-2f791913c8ad",
+        		"data"=> $variables
+        ];
+        $userSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        }
+        */
+        $message= [
+            "reciever"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+            "sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+            "content"=>"https://wrc.larping.eu/templates/e287f1f4-704e-49e3-8a33-eab955ff2158",
+            "service"=>"/services/dfb46b45-0737-4500-b8f9-2f791913c8ad",
+            "status"=>"concept",
+            //"externalServiceId"=>"7d48f13b-f44e-495b-b774-3d4f9b994b09",
+            "data"=> $variables
+        ];
+        $organisationMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        /*
+        $message= [
+        		"reciever"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+        		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+        		"content"=>"https://wrc.larping.eu/templates/db583bf1-22ab-47d5-8656-a6faf95a1f7f",
+        		"service"=>"/services/7d48f13b-f44e-495b-b774-3d4f9b994b09",
+        		"status"=>"concept",
+        		//"externalServiceId"=>"dfb46b45-0737-4500-b8f9-2f791913c8ad",
+        		"data"=> $variables
+        ];
+        $organisationSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        */
 
-		return $component;
-	}
+        // Clear the session for a new order
+
+        //todo check if the payment status is payed, if so remove order and invoice, if not don't.
+        $session->remove('order');
+        $session->remove('invoice');
+
+        return ['invoice'=>$invoice];
+    }
+
+    /**
+     * @Route ("/terms-of-services")
+     * @Template
+     */
+    public function termsofserviceAction(Session $session, Request $request, CommonGroundService $commonGroundService)
+    {
+        return [];
+    }
+
+
+    /**
+     * @Route ("/privacy-policy")
+     * @Template
+     */
+    public function privacypolicyAction(Session $session, Request $request, CommonGroundService $commonGroundService)
+    {
+        return [];
+    }
 }
