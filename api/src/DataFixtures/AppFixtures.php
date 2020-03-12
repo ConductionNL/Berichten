@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 
-        $id = Uuid::fromString('d1cc2c8c-c87d-4bb1-b468-9546b4ce29a5');
+        $id = Uuid::fromString('dfb46b45-0737-4500-b8f9-2f791913c8ad');
         $service = new Service();
         $service->setType("mailer");
         $service->setOrganization("https://wrc.larping.eu/templates/cc7d0c70-bb59-4d85-9845-863e896e6ee9");
