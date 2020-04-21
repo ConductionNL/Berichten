@@ -18,12 +18,9 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
-
-        if(!in_array("larping.eu",$this->params->get('app_domains'))){
+        if (strpos($this->params->get('app_domain'), "larping.eu") == false) {
             return false;
         }
-        // $product = new Product();
-        // $manager->persist($product);
 
         $id = Uuid::fromString('dfb46b45-0737-4500-b8f9-2f791913c8ad');
         $service = new Service();
