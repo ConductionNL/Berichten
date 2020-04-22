@@ -4579,6 +4579,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         reciever:
           description: 'Either a contact component person or contact list that will recieve this message'
           externalDocs:
@@ -4603,7 +4604,7 @@ components:
           type: string
         externalServiceId:
           readOnly: true
-          description: 'The id of this message with the message service'
+          description: ' id of this message with the message service'
           type: string
         send:
           readOnly: true
@@ -4677,6 +4678,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         reciever:
           description: 'Either a contact component person or contact list that will recieve this message'
           externalDocs:
@@ -4701,7 +4703,7 @@ components:
           type: string
         externalServiceId:
           readOnly: true
-          description: 'The id of this message with the message service'
+          description: ' id of this message with the message service'
           type: string
         send:
           readOnly: true
@@ -4775,6 +4777,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         type:
           description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
           type: string
@@ -4843,6 +4846,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         type:
           description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
           type: string
@@ -5006,12 +5010,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
     required: []
   AuditTrail-write:
     properties:
@@ -5059,12 +5063,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
     required: []
   ChangeLog-write:
     properties:
@@ -5106,7 +5110,7 @@ definitions:
         example: concept
         maxLength: 255
       externalServiceId:
-        description: 'The id of this message with the message service'
+        description: ' id of this message with the message service'
         type: ''
         example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
         maxLength: 255
@@ -5114,17 +5118,17 @@ definitions:
         description: 'The moment this message was send'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
       dateCreated:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
       service:
         description: 'The service used to send this message'
         type: \Service
@@ -5183,12 +5187,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 07:54:40'
+        example: '2020-04-22 07:10:22'
     required:
       - organization
       - authorization
@@ -5259,7 +5263,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: conduction.nl
-    url: pc.dev.conduction.nl
+    url: bs.dev.conduction.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
