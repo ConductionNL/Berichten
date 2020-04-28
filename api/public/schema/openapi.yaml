@@ -5010,12 +5010,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
     required: []
   AuditTrail-write:
     properties:
@@ -5063,12 +5063,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
     required: []
   ChangeLog-write:
     properties:
@@ -5118,17 +5118,17 @@ definitions:
         description: 'The moment this message was send'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
       dateCreated:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
       service:
         description: 'The service used to send this message'
         type: \Service
@@ -5187,12 +5187,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-22 07:10:22'
+        example: '2020-04-22 08:49:34'
     required:
       - organization
       - authorization
