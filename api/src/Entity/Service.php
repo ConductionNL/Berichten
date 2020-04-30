@@ -48,7 +48,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -61,7 +61,7 @@ class Service
      *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
-     * @Assert\Uuid 
+     * @Assert\Uuid
      * @Groups({"read"})
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
@@ -123,15 +123,15 @@ class Service
      * @ORM\Column(type="json", nullable=true)
      */
     private $configuration = [];
-    
+
     /**
      * @var Message[] $messages The messages send by this service
-     * 
+     *
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="service", orphanRemoval=true)
      */
     private $messages;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -141,13 +141,13 @@ class Service
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
      * @Assert\DateTime
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
@@ -247,28 +247,28 @@ class Service
 
         return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
