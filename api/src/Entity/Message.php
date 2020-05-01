@@ -46,7 +46,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -112,8 +112,8 @@ class Message
      * @ORM\Column(type="string", length=255)
      */
     private $content;
-    
-    /**     
+
+    /**
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
@@ -135,7 +135,7 @@ class Message
      * @ORM\Column(type="string", length=255)
      */
     private $status;
-    
+
     /**
      * @var $serviceId The id of this message with the message service
      *
@@ -149,6 +149,7 @@ class Message
      * @ORM\Column(name="external_service_id", type="string", length=255, nullable=true)
      */
     private $externalServiceId;
+
     /**
      * @var DateTime $send The moment this message was send
      *
@@ -158,17 +159,17 @@ class Message
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $send;
-    
+
     /**
      * @var Service $service The service used to send this message
-     * 
+     *
      * @MaxDepth(1)
      * @Groups({"read", "write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Service", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $service;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -178,13 +179,13 @@ class Message
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
      * @Assert\DateTime
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
@@ -236,16 +237,16 @@ class Message
 
         return $this;
     }
-    
+
     public function getData(): ?array
     {
     	return $this->data;
     }
-    
+
     public function setData(?array $data): self
     {
     	$this->data = $data;
-    	
+
     	return $this;
     }
 
@@ -271,53 +272,53 @@ class Message
         $this->service = $service;
 
         return $this;
-    }    
-    
+    }
+
     public function getExternalServiceId(): ?string
     {
     	return $this->externalServiceId;
     }
-    
+
     public function setExternalServiceId(string $externalServiceId): self
     {
     	$this->externalServiceId= $externalServiceId;
-    	
+
     	return $this;
     }
-        
+
     public function getSend(): ?\DateTimeInterface
     {
     	return $this->send;
     }
-    
+
     public function setSend(\DateTimeInterface  $send): self
     {
     	$this->send = $send;
-    	
+
     	return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
     	return $this->dateCreated;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
