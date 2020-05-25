@@ -4577,11 +4577,13 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         sender:
           description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
           externalDocs:
@@ -4591,37 +4593,38 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         status:
           description: 'The current status of this message'
           type: string
         externalServiceId:
-          readOnly: true
           description: ' id of this message with the message service'
           type: string
+          nullable: true
         send:
-          readOnly: true
           description: 'The moment this message was send'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         service:
           description: 'The service used to send this message'
           $ref: '#/components/schemas/Service-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     Message-write:
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -4631,11 +4634,13 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         sender:
           description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
           externalDocs:
@@ -4645,6 +4650,7 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         status:
           description: 'The current status of this message'
           type: string
@@ -4676,11 +4682,13 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         sender:
           description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
           externalDocs:
@@ -4690,37 +4698,38 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         status:
           description: 'The current status of this message'
           type: string
         externalServiceId:
-          readOnly: true
           description: ' id of this message with the message service'
           type: string
+          nullable: true
         send:
-          readOnly: true
           description: 'The moment this message was send'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         service:
           description: 'The service used to send this message'
           $ref: '#/components/schemas/Service:jsonld-read'
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     'Message:jsonld-write':
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -4739,11 +4748,13 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         sender:
           description: 'Either a contact component person, or wrc application that sends this message'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
           externalDocs:
@@ -4753,6 +4764,7 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         status:
           description: 'The current status of this message'
           type: string
@@ -4782,19 +4794,19 @@ components:
           items:
             type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
       required:
         - organization
     Service-write:
@@ -4808,9 +4820,9 @@ components:
           description: 'The RSIN of the organization that ownes this service'
           type: string
         authorization:
-          writeOnly: true
           description: 'The autorization be it password or api key that is used to connect to the service'
           type: string
+          nullable: true
         configuration:
           description: 'Any specific setting for this service'
           type: array
@@ -4851,19 +4863,19 @@ components:
           items:
             type: string
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
       required:
         - organization
     'Service:jsonld-write':
@@ -4886,9 +4898,9 @@ components:
           description: 'The RSIN of the organization that ownes this service'
           type: string
         authorization:
-          writeOnly: true
           description: 'The autorization be it password or api key that is used to connect to the service'
           type: string
+          nullable: true
         configuration:
           description: 'Any specific setting for this service'
           type: array
@@ -4898,6 +4910,147 @@ components:
         - organization
         - authorization
 definitions:
+  Message-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      reciever:
+        description: 'Either a contact component person or contact list that will recieve this message'
+        type: string
+        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        format: url
+        maxLength: 255
+      sender:
+        description: 'Either a contact component person, or wrc application that sends this message'
+        type: string
+        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        format: url
+        maxLength: 255
+      content:
+        description: 'The webresource template object (from wrc) that is used as content for this message'
+        type: string
+        example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
+        format: url
+        maxLength: 255
+      data: []
+      status:
+        description: 'The current status of this message'
+        type: string
+        example: concept
+        maxLength: 255
+      externalServiceId:
+        description: ' id of this message with the message service'
+        type: ''
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
+      send:
+        description: 'The moment this message was send'
+        type: string
+        format: date-time
+        example: '2020-05-25 13:33:37'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-05-25 13:33:37'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-05-25 13:33:37'
+      service:
+        description: 'The service used to send this message'
+        type: \Service
+    required: []
+  Message-write:
+    properties:
+      reciever:
+        description: 'Either a contact component person or contact list that will recieve this message'
+        type: string
+        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        format: url
+        maxLength: 255
+      sender:
+        description: 'Either a contact component person, or wrc application that sends this message'
+        type: string
+        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        format: url
+        maxLength: 255
+      content:
+        description: 'The webresource template object (from wrc) that is used as content for this message'
+        type: string
+        example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
+        format: url
+        maxLength: 255
+      data: []
+      status:
+        description: 'The current status of this message'
+        type: string
+        example: concept
+        maxLength: 255
+      service:
+        description: 'The service used to send this message'
+        type: \Service
+    required: []
+  Service-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
+        example: smtp
+        maxLength: 255
+      organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
+        example: '002851234'
+        maxLength: 255
+      configuration:
+        description: 'Any specific setting for this service'
+        type: array
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-05-25 13:33:37'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-05-25 13:33:37'
+    required:
+      - organization
+      - authorization
+  Service-write:
+    properties:
+      type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
+        example: smtp
+        maxLength: 255
+      organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
+        example: '002851234'
+        maxLength: 255
+      authorization:
+        description: 'The autorization be it password or api key that is used to connect to the service'
+        type: string
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
+      configuration:
+        description: 'Any specific setting for this service'
+        type: array
+    required:
+      - organization
+      - authorization
   AuditTrail-read:
     properties:
       id:
@@ -5002,12 +5155,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-22 08:49:34'
+        example: '2020-05-25 13:33:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-22 08:49:34'
+        example: '2020-05-25 13:33:37'
     required: []
   AuditTrail-write:
     properties:
@@ -5055,12 +5208,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-04-22 08:49:34'
+        example: '2020-05-25 13:33:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-04-22 08:49:34'
+        example: '2020-05-25 13:33:37'
     required: []
   ChangeLog-write:
     properties:
@@ -5070,160 +5223,7 @@ definitions:
         example: 'This log line is suspicius'
         maxLength: 2555
     required: []
-  Message-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      reciever:
-        description: 'Either a contact component person or contact list that will recieve this message'
-        type: string
-        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
-        maxLength: 255
-      sender:
-        description: 'Either a contact component person, or wrc application that sends this message'
-        type: string
-        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
-        maxLength: 255
-      content:
-        description: 'The webresource template object (from wrc) that is used as content for this message'
-        type: string
-        example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
-        format: url
-        maxLength: 255
-      data: []
-      status:
-        description: 'The current status of this message'
-        type: string
-        example: concept
-        maxLength: 255
-      externalServiceId:
-        description: ' id of this message with the message service'
-        type: ''
-        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
-        maxLength: 255
-      send:
-        description: 'The moment this message was send'
-        type: string
-        format: date-time
-        example: '2020-04-22 08:49:34'
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-04-22 08:49:34'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-04-22 08:49:34'
-      service:
-        description: 'The service used to send this message'
-        type: \Service
-    required: []
-  Message-write:
-    properties:
-      reciever:
-        description: 'Either a contact component person or contact list that will recieve this message'
-        type: string
-        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
-        maxLength: 255
-      sender:
-        description: 'Either a contact component person, or wrc application that sends this message'
-        type: string
-        example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
-        maxLength: 255
-      content:
-        description: 'The webresource template object (from wrc) that is used as content for this message'
-        type: string
-        example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
-        format: url
-        maxLength: 255
-      data: []
-      status:
-        description: 'The current status of this message'
-        type: string
-        example: concept
-        maxLength: 255
-      service:
-        description: 'The service used to send this message'
-        type: \Service
-    required: []
-  Service-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      type:
-        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
-        type: string
-        example: smtp
-        maxLength: 255
-      organization:
-        description: 'The RSIN of the organization that ownes this service'
-        type: string
-        example: '002851234'
-        maxLength: 255
-      configuration:
-        description: 'Any specific setting for this service'
-        type: array
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-04-22 08:49:34'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-04-22 08:49:34'
-    required:
-      - organization
-      - authorization
-  Service-write:
-    properties:
-      type:
-        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
-        type: string
-        example: smtp
-        maxLength: 255
-      organization:
-        description: 'The RSIN of the organization that ownes this service'
-        type: string
-        example: '002851234'
-        maxLength: 255
-      authorization:
-        description: 'The autorization be it password or api key that is used to connect to the service'
-        type: string
-        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
-        maxLength: 255
-      configuration:
-        description: 'Any specific setting for this service'
-        type: array
-    required:
-      - organization
-      - authorization
 tags:
-  -
-    name: AuditTrail
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
-  -
-    name: ChangeLog
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
     name: Message
     description: |
@@ -5236,21 +5236,33 @@ tags:
       A service that sends messages e.g. email or sms.
       
       
+  -
+    name: AuditTrail
+    description: |
+      An resource representing a log line.
+      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
+  -
+    name: ChangeLog
+    description: |
+      An resource representing a log line.
+      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the Service resource'
-      write: 'write right to the Service resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the Service resource'
-      write: 'write right to the Service resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
