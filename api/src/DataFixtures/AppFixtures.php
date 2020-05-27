@@ -31,7 +31,13 @@ class AppFixtures extends Fixture
 
             $manager->flush();
         }
-        if (strpos($this->params->get('app_domain'), 'huwelijksplanner.online') != false || $this->params->get('app_domain') == 'huwelijksplanner.online') {
+        if (
+            strpos($this->params->get('app_domain'), 'huwelijksplanner.online') != false ||
+            $this->params->get('app_domain') == 'huwelijksplanner.online' ||
+            strpos($this->params->get('app_domain'), 'utrecht.commmonground.nu') != false ||
+            $this->params->get('app_domain') == 'utrecht.commmonground.nu'
+
+        ) {
             $id = Uuid::fromString('a8b29815-7fdd-45a1-9951-aab9462b4457');
             $service = new Service();
             $service->setType('mailer');

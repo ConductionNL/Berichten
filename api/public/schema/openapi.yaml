@@ -10,7 +10,7 @@ info:
     - Version: V.0.1
     - Repository: [online](https://github.com/ConductionNL/berichtservice) / [zip](https://github.com/ConductionNL/berichtservice/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/bs-php) 
-    - Datamodel: [postman](/schema/bs.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    - Datamodel: [postman](/schema/bs.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
@@ -4598,7 +4598,7 @@ components:
           description: 'The current status of this message'
           type: string
         externalServiceId:
-          description: ' id of this message with the message service'
+          description: 'id of this message with the message service'
           type: string
           nullable: true
         send:
@@ -4703,7 +4703,7 @@ components:
           description: 'The current status of this message'
           type: string
         externalServiceId:
-          description: ' id of this message with the message service'
+          description: 'id of this message with the message service'
           type: string
           nullable: true
         send:
@@ -4942,25 +4942,25 @@ definitions:
         example: concept
         maxLength: 255
       externalServiceId:
-        description: ' id of this message with the message service'
-        type: ''
+        description: 'id of this message with the message service'
+        type: \The
         example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
         maxLength: 255
       send:
         description: 'The moment this message was send'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
       dateCreated:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
       service:
         description: 'The service used to send this message'
         type: \Service
@@ -5019,12 +5019,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
     required:
       - organization
       - authorization
@@ -5155,12 +5155,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
     required: []
   AuditTrail-write:
     properties:
@@ -5208,12 +5208,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-26 13:22:18'
+        example: '2020-05-27 13:33:16'
     required: []
   ChangeLog-write:
     properties:
