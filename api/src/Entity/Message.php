@@ -2,19 +2,18 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * A  message to be send to a spefic recipient or list troug a message service.
@@ -45,7 +44,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -137,7 +136,7 @@ class Message
     private $status;
 
     /**
-     * @var $serviceId The id of this message with the message service
+     * @var The id of this message with the message service
      *
      * @example 013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
@@ -151,7 +150,7 @@ class Message
     private $externalServiceId;
 
     /**
-     * @var DateTime $send The moment this message was send
+     * @var DateTime The moment this message was send
      *
      * @Gedmo\Versioned
      * @Assert\DateTime
@@ -161,7 +160,7 @@ class Message
     private $send;
 
     /**
-     * @var Service $service The service used to send this message
+     * @var Service The service used to send this message
      *
      * @MaxDepth(1)
      * @Groups({"read", "write"})
@@ -171,7 +170,7 @@ class Message
     private $service;
 
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Assert\DateTime
      * @Groups({"read"})
@@ -181,7 +180,7 @@ class Message
     private $dateCreated;
 
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Assert\DateTime
      * @Groups({"read"})
@@ -240,14 +239,14 @@ class Message
 
     public function getData(): ?array
     {
-    	return $this->data;
+        return $this->data;
     }
 
     public function setData(?array $data): self
     {
-    	$this->data = $data;
+        $this->data = $data;
 
-    	return $this;
+        return $this;
     }
 
     public function getStatus(): ?string
@@ -276,49 +275,49 @@ class Message
 
     public function getExternalServiceId(): ?string
     {
-    	return $this->externalServiceId;
+        return $this->externalServiceId;
     }
 
     public function setExternalServiceId(string $externalServiceId): self
     {
-    	$this->externalServiceId= $externalServiceId;
+        $this->externalServiceId = $externalServiceId;
 
-    	return $this;
+        return $this;
     }
 
     public function getSend(): ?\DateTimeInterface
     {
-    	return $this->send;
+        return $this->send;
     }
 
-    public function setSend(\DateTimeInterface  $send): self
+    public function setSend(\DateTimeInterface $send): self
     {
-    	$this->send = $send;
+        $this->send = $send;
 
-    	return $this;
+        return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateCreated;
+        return $this->dateCreated;
     }
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
+        $this->dateCreated = $dateCreated;
 
-    	return $this;
+        return $this;
     }
 
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
 
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
+        $this->dateModified = $dateModified;
 
-    	return $this;
+        return $this;
     }
 }

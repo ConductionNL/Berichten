@@ -3,19 +3,14 @@
 namespace App\Subscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
-use Doctrine\Common\Annotations\Reader;
+use App\Entity\Message;
+use App\Service\MailService;
+use App\Service\MessageService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Serializer\SerializerInterface;
-
-use App\Entity\Message;
-
-
-use App\Service\MailService;
-use App\Service\MessageService;
 
 class MessageSubscriber implements EventSubscriberInterface
 {
@@ -41,28 +36,25 @@ class MessageSubscriber implements EventSubscriberInterface
 
     public function message(GetResponseForControllerResultEvent $event)
     {
-    	$result = $event->getControllerResult();
-    	$method = $event->getRequest()->getMethod();
-    	$route = $event->getRequest()->attributes->get('_route');
-    	
-    	
-    	if ($route!= "api_messages_post_collection"){
-    		return;
-    	}
-    	
-    	
-    	switch ($result->getService()->getType()) {
-    		case 'mailer':
-    			$result = $this->mailService->sendEmail($result);
-    			break;
-    		case 'messagebird':
-    			$result = $this->messageService->sendMessage($result);
-    			break;
-    	}
+        $result = $event->getControllerResult();
+        $method = $event->getRequest()->getMethod();
+        $route = $event->getRequest()->attributes->get('_route');
 
-    	$this->em->persist($result);
-    	$this->em->flush();
+        if ($route != 'api_messages_post_collection') {
+            return;
+        }
 
+        switch ($result->getService()->getType()) {
+            case 'mailer':
+                $result = $this->mailService->sendEmail($result);
+                break;
+            case 'messagebird':
+                $result = $this->messageService->sendMessage($result);
+                break;
+        }
+
+        $this->em->persist($result);
+        $this->em->flush();
 
         return $result;
     }
