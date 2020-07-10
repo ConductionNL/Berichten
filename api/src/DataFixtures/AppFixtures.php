@@ -49,5 +49,21 @@ class AppFixtures extends Fixture
 
             $manager->flush();
         }
+        if (
+            strpos($this->params->get('app_domain'), 'zuid-drecht.nl') != false ||
+            $this->params->get('app_domain') == 'zuid-drecht.nl'
+
+        ) {
+            $id = Uuid::fromString('1541d15b-7de3-4a1a-a437-80079e4a14e0');
+            $service = new Service();
+            $service->setType('mailer');
+            $service->setOrganization('https://wrc.zuid-drecht.nl/organizations/4d1eded3-fbdf-438f-9536-8747dd8ab591');
+            $service->setAuthorization('mailgun+api://!changeme!:mail.zuid-drecht.nl@api.eu.mailgun.net');
+            $manager->persist($service);
+            $service->setId($id);
+            $manager->persist($service);
+
+            $manager->flush();
+        }
     }
 }
