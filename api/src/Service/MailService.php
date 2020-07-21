@@ -27,7 +27,7 @@ class MailService
 
     public function sendEmail(Message $message)
     {
-        if($message->getStatus() == 'queued'){
+        if ($message->getStatus() == 'queued') {
             $transport = Transport::fromDsn($message->getService()->getAuthorization());
             $mailer = new Mailer($transport);
 

@@ -24,10 +24,10 @@ class MessageService
 
     public function sendMessage(Message $message)
     {
-        if($message->getStatus() == 'queued') {
+        if ($message->getStatus() == 'queued') {
             $sender = $this->commonGroundService->getResource($message->getSender());
             $reciever = $this->commonGroundService->getResource($message->getReciever());
-            $content = $this->commonGroundService->createResource($message->getData(), $message->getContent() . '/render');
+            $content = $this->commonGroundService->createResource($message->getData(), $message->getContent().'/render');
 
             $html = $content['content'];
             $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
@@ -55,6 +55,7 @@ class MessageService
             $message->setStatus('send');
             //$message->setServiceId($MessageResult->id);
         }
+
         return $message;
     }
 }
