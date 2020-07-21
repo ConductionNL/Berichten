@@ -24,36 +24,37 @@ class MessageService
 
     public function sendMessage(Message $message)
     {
-        $sender = $this->commonGroundService->getResource($message->getSender());
-        $reciever = $this->commonGroundService->getResource($message->getReciever());
-        $content = $this->commonGroundService->createResource($message->getData(), $message->getContent().'/render');
+        if($message->getStatus() == 'queued') {
+            $sender = $this->commonGroundService->getResource($message->getSender());
+            $reciever = $this->commonGroundService->getResource($message->getReciever());
+            $content = $this->commonGroundService->createResource($message->getData(), $message->getContent() . '/render');
 
-        $html = $content['content'];
-        $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
+            $html = $content['content'];
+            $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
 
-        $messageBird = new \MessageBird\Client($message->getService()->getAuthorization());
+            $messageBird = new \MessageBird\Client($message->getService()->getAuthorization());
 
-        $sms = new \MessageBird\Objects\Message();
-        $sms->originator = $sender['telephones'][0]['telephone'];
-        $sms->recipients = [$reciever['telephones'][0]['telephone']];
-        $sms->body = $text;
+            $sms = new \MessageBird\Objects\Message();
+            $sms->originator = $sender['telephones'][0]['telephone'];
+            $sms->recipients = [$reciever['telephones'][0]['telephone']];
+            $sms->body = $text;
 
-        try {
-            $MessageResult = $messageBird->messages->create($sms);
-        } catch (\MessageBird\Exceptions\AuthenticateException $e) {
-            // That means that your accessKey is unknown
-            echo 'wrong login';
-        } catch (\MessageBird\Exceptions\BalanceException $e) {
-            // That means that you are out of credits, so do something about it.
-            echo 'no balance';
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+            try {
+                $MessageResult = $messageBird->messages->create($sms);
+            } catch (\MessageBird\Exceptions\AuthenticateException $e) {
+                // That means that your accessKey is unknown
+                echo 'wrong login';
+            } catch (\MessageBird\Exceptions\BalanceException $e) {
+                // That means that you are out of credits, so do something about it.
+                echo 'no balance';
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+            }
+
+            $message->setSend(new \Datetime());
+            $message->setStatus('send');
+            //$message->setServiceId($MessageResult->id);
         }
-
-        $message->setSend(new \Datetime());
-        $message->setStatus('send');
-        //$message->setServiceId($MessageResult->id);
-        //
         return $message;
     }
 }

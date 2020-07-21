@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b298544afba6f4757399357295d94171",
+    "content-hash": "478cde13e0ab3d139f7f1d10f3719b1a",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -2533,6 +2533,47 @@
             "time": "2019-12-28T01:32:28+00:00"
         },
         {
+            "name": "messagebird/php-rest-api",
+            "version": "v1.19.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/messagebird/php-rest-api.git",
+                "reference": "d4d73c624aea7ded471b49ef30b822dca61ce104"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/messagebird/php-rest-api/zipball/d4d73c624aea7ded471b49ef30b822dca61ce104",
+                "reference": "d4d73c624aea7ded471b49ef30b822dca61ce104",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MessageBird\\": "src/MessageBird/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "MessageBird",
+                    "email": "info@messagebird.com"
+                }
+            ],
+            "description": "MessageBird REST API client for PHP",
+            "homepage": "https://github.com/messagebird/php-rest-api",
+            "time": "2020-07-20T09:55:39+00:00"
+        },
+        {
             "name": "michelf/php-markdown",
             "version": "1.9.0",
             "source": {
@@ -3734,59 +3775,6 @@
                 "sumup"
             ],
             "time": "2019-08-28T14:48:03+00:00"
-        },
-        {
-            "name": "symfony/amazon-mailer",
-            "version": "v4.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/amazon-mailer.git",
-                "reference": "76ffa4decd00dc1de791a28be14e79fa45317528"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/amazon-mailer/zipball/76ffa4decd00dc1de791a28be14e79fa45317528",
-                "reference": "76ffa4decd00dc1de791a28be14e79fa45317528",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "symfony/mailer": "^4.4|^5.0"
-            },
-            "require-dev": {
-                "symfony/http-client": "^4.3|^5.0"
-            },
-            "type": "symfony-bridge",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Mailer\\Bridge\\Amazon\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Amazon Mailer Bridge",
-            "homepage": "https://symfony.com",
-            "time": "2020-01-04T13:00:46+00:00"
         },
         {
             "name": "symfony/asset",
@@ -7504,60 +7492,6 @@
             "time": "2020-04-03T17:46:33+00:00"
         },
         {
-            "name": "symfony/sendgrid-mailer",
-            "version": "v4.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/sendgrid-mailer.git",
-                "reference": "96a6c3081c9fb47a6784320147370939626aa6cd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/96a6c3081c9fb47a6784320147370939626aa6cd",
-                "reference": "96a6c3081c9fb47a6784320147370939626aa6cd",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "symfony/mailer": "^4.4|^5.0"
-            },
-            "require-dev": {
-                "symfony/http-client": "^4.3|^5.0"
-            },
-            "type": "symfony-bridge",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Mailer\\Bridge\\Sendgrid\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Sendgrid Mailer Bridge",
-            "homepage": "https://symfony.com",
-            "time": "2020-01-04T13:10:16+00:00"
-
-        },
-        {
             "name": "symfony/serializer",
             "version": "v4.4.8",
             "source": {
@@ -8883,6 +8817,59 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "symfony/amazon-mailer",
+            "version": "v4.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/amazon-mailer.git",
+                "reference": "76ffa4decd00dc1de791a28be14e79fa45317528"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/amazon-mailer/zipball/76ffa4decd00dc1de791a28be14e79fa45317528",
+                "reference": "76ffa4decd00dc1de791a28be14e79fa45317528",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/mailer": "^4.4|^5.0"
+            },
+            "require-dev": {
+                "symfony/http-client": "^4.3|^5.0"
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mailer\\Bridge\\Amazon\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Amazon Mailer Bridge",
+            "homepage": "https://symfony.com",
+            "time": "2020-01-04T13:00:46+00:00"
+        },
         {
             "name": "symfony/profiler-pack",
             "version": "v1.0.4",
