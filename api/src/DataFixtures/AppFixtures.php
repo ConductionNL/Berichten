@@ -76,7 +76,7 @@ class AppFixtures extends Fixture
             $id = Uuid::fromString('1541d15b-7de3-4a1a-a437-80079e4a14e0');
             $service = new Service();
             $service->setType('mailer');
-            $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc','type'=>'organizations','id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
+            $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
             $service->setAuthorization('mailgun+api://!changeme!:mail.westfriesland.commonground.nu@api.eu.mailgun.net');
             $manager->persist($service);
             $service->setId($id);
