@@ -63,7 +63,6 @@ class Attachment
     private $resources = [];
 
     /**
-     *
      * @ORM\ManyToOne(targetEntity=Message::class, inversedBy="attachments")
      */
     private $message;
