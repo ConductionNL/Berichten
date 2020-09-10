@@ -4219,6 +4219,106 @@ paths:
         - application/health+json
 components:
   schemas:
+    Attachment-read:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          type: string
+        uri:
+          description: 'Either a contact component person or contact list that will recieve this message'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        mime:
+          type: string
+        resources:
+          type: array
+          items:
+            type: string
+    Attachment-write:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          description: 'Either a contact component person or contact list that will recieve this message'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        mime:
+          type: string
+        resources:
+          type: array
+          items:
+            type: string
+    'Attachment:jsonld-read':
+      type: object
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          type: string
+        uri:
+          description: 'Either a contact component person or contact list that will recieve this message'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        mime:
+          type: string
+        resources:
+          type: array
+          items:
+            type: string
+    'Attachment:jsonld-write':
+      type: object
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          type: string
+        uri:
+          description: 'Either a contact component person or contact list that will recieve this message'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        mime:
+          type: string
+        resources:
+          type: array
+          items:
+            type: string
     AuditTrail-read:
       type: object
       description: 'An resource representing a log line.'
@@ -4661,6 +4761,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment-read'
     Message-write:
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -4693,6 +4797,10 @@ components:
         service:
           description: 'The service used to send this message'
           $ref: '#/components/schemas/Service-write'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment-write'
     'Message:jsonld-read':
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -4766,6 +4874,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment:jsonld-read'
     'Message:jsonld-write':
       type: object
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
@@ -4807,6 +4919,10 @@ components:
         service:
           description: 'The service used to send this message'
           $ref: '#/components/schemas/Service:jsonld-write'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment:jsonld-write'
     Service-read:
       type: object
       description: 'A service that sends messages e.g. email or sms.'
@@ -4986,20 +5102,21 @@ definitions:
         description: 'The moment this message was send'
         type: string
         format: date-time
-        example: '2020-09-09 13:43:14'
+        example: '2020-09-10 07:11:09'
       dateCreated:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-09 13:43:14'
+        example: '2020-09-10 07:11:09'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-09 13:43:14'
+        example: '2020-09-10 07:11:09'
       service:
         description: 'The service used to send this message'
         type: \Service
+      attachments: []
     required: []
   Message-write:
     properties:
@@ -5030,6 +5147,7 @@ definitions:
       service:
         description: 'The service used to send this message'
         type: \Service
+      attachments: []
     required: []
   Service-read:
     properties:
@@ -5055,12 +5173,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-09 13:43:14'
+        example: '2020-09-10 07:11:09'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-09 13:43:14'
+        example: '2020-09-10 07:11:09'
     required:
       - organization
       - authorization
@@ -5087,59 +5205,6 @@ definitions:
     required:
       - organization
       - authorization
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-09 13:43:14'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-09 13:43:14'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
   AuditTrail-read:
     properties:
       id:
@@ -5244,12 +5309,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-09 13:43:14'
+        example: '2020-09-10 07:11:09'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-09 13:43:14'
+        example: '2020-09-10 07:11:09'
     required: []
   AuditTrail-write:
     properties:
@@ -5257,6 +5322,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-10 07:11:09'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-10 07:11:09'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -5273,13 +5391,13 @@ tags:
       
       
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -5290,15 +5408,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
