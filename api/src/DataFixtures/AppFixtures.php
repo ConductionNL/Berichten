@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Service;
+use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -11,10 +12,12 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class AppFixtures extends Fixture
 {
     private $params;
+    private $commonGroundService;
 
-    public function __construct(ParameterBagInterface $params)
+    public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
     {
         $this->params = $params;
+        $this->commonGroundService = $commonGroundService;
     }
 
     public function load(ObjectManager $manager)
@@ -59,6 +62,22 @@ class AppFixtures extends Fixture
             $service->setType('mailer');
             $service->setOrganization('https://wrc.zuid-drecht.nl/organizations/4d1eded3-fbdf-438f-9536-8747dd8ab591');
             $service->setAuthorization('mailgun+api://!changeme!:mail.zuid-drecht.nl@api.eu.mailgun.net');
+            $manager->persist($service);
+            $service->setId($id);
+            $manager->persist($service);
+
+            $manager->flush();
+        }
+        if (
+            strpos($this->params->get('app_domain'), 'westfriesland.commonground.nu') != false ||
+            $this->params->get('app_domain') == 'westfriesland.commonground.nu'
+
+        ) {
+            $id = Uuid::fromString('ab0d332d-9c8c-490d-bcfb-2607d8690a03');
+            $service = new Service();
+            $service->setType('mailer');
+            $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
+            $service->setAuthorization('mailgun+api://!changeme!:mail.westfriesland.commonground.nu@api.eu.mailgun.net');
             $manager->persist($service);
             $service->setId($id);
             $manager->persist($service);
