@@ -42,9 +42,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -89,7 +86,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/services?",
+							"raw": "{{baseUrl}}/services",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -277,9 +274,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -324,7 +318,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"type\": \"smtp\",\r\n\"organization\": \"002851234\",\r\n\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\"configuration\": [\"string\"]\r\n}"
+							"raw": "{\r\n\t\"type\": \"messagebird\",\r\n\t\"organization\": \"002851234\",\r\n\t\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\t\"configuration\": [\"string\"]\r\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/services",
@@ -577,9 +574,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -861,9 +855,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -908,7 +899,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"type\": \"smtp\",\r\n\"organization\": \"002851234\",\r\n\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\"\r\n}"
+							"raw": "{\r\n\t\"type\": \"mailer\",\r\n\t\"organization\": \"002851234\",\r\n\t\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\t\"configuration\": [\"string\"]\r\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/services/{{service}}",
@@ -1129,319 +1123,6 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Updates the Service resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "77f9ad93-9e8f-46a2-bc0a-2f848c9098a4",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"configuration\": \"varchar\"\r\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/services/{{service}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"services",
-								"{{service}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Service resource updated",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"organization\": \"<string>\",\n    \"authorization\": \"<string>\",\n    \"type\": \"<string>\",\n    \"configuration\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/services/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"services",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"organization\": \"<string>\",\n \"id\": \"<string>\",\n \"type\": \"<string>\",\n \"configuration\": \"<string>\"\n}"
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"organization\": \"<string>\",\n    \"authorization\": \"<string>\",\n    \"type\": \"<string>\",\n    \"configuration\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/services/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"services",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"organization\": \"<string>\",\n    \"authorization\": \"<string>\",\n    \"type\": \"<string>\",\n    \"configuration\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/services/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"services",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -1515,9 +1196,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -1562,7 +1240,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/messages?",
+							"raw": "{{baseUrl}}/messages",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1750,9 +1428,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -1797,7 +1472,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"reciever\": \"https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7\",\r\n\"sender\": \"https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7\",\r\n\"content\": \"https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\"status\": \"concept\",\r\n\"data\": [\"string\"],\r\n\"service\": \"services/{{service}}\"\r\n}"
+							"raw": "{\r\n\"reciever\": \"https://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"sender\": \"https://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"content\": \"http://wrc.dev.zuid-drecht.nl/templates/01cb91e9-7211-45b8-aee9-6f044f3b41dc\",\r\n\"externalServiceId\": \"013276cc-1483-46b4-ad5b-1cbcf69f\",\r\n\"send\": null,\r\n\"status\": \"concept\",\r\n\"service\":\"/services/{{service}}\"\r\n\r\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/messages",
@@ -2050,9 +1728,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -2334,9 +2009,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -2381,7 +2053,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"reciever\": \"https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7\",\r\n\"sender\": \"https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7\",\r\n\"content\": \"https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\"status\": \"concept\",\r\n\"service\": \"services/{{service}}\"\r\n}"
+							"raw": "{\r\n\"reciever\": \"http://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"sender\": \"http://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"content\": \"http://wrc.dev.zuid-drecht.nl/templates/01cb91e9-7211-45b8-aee9-6f044f3b41dc\",\r\n\"externalServiceId\": \"013276cc-1483-46b4-ad5b-1cbcf69f\",\r\n\"send\": null,\r\n\"status\": \"concept\",\r\n\"service\":\"/services/{{service}}\"\r\n\r\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/messages/{{message}}",
@@ -2611,319 +2286,6 @@
 							],
 							"cookie": [],
 							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Updates the Message resource.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "cc683537-873b-4f54-a4a3-f91cbeb4462b",
-								"exec": [
-									"// example using pm.response.to.have\r",
-									"pm.test(\"response is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// example using response assertions\r",
-									"pm.test(\"response should be okay to process\", function () {\r",
-									"    pm.response.to.not.be.error;\r",
-									"    pm.response.to.not.have.jsonBody(\"error\");\r",
-									"});\r",
-									"\r",
-									"// example using pm.response.to.be*\r",
-									"pm.test(\"response must be valid and have a body\", function () {\r",
-									"     // assert that the status code is 200\r",
-									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
-									"     // assert that the response has a valid JSON body\r",
-									"     pm.response.to.be.withBody;\r",
-									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"description": "The JWT of the entity performing the request"
-							},
-							{
-								"key": "API-Version",
-								"value": "",
-								"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-							},
-							{
-								"key": "X-NLX-Logrecord-ID",
-								"value": "",
-								"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-							},
-							{
-								"key": "X-NLX-Request-Process-Id",
-								"value": "",
-								"description": "A process id for purpose registration (doelbinding)"
-							},
-							{
-								"key": "X-NLX-Request-Data-Elements",
-								"value": "",
-								"description": "A list of requested data elements"
-							},
-							{
-								"key": "X-NLX-Request-Data-Subject",
-								"value": "",
-								"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-							},
-							{
-								"key": "X-NLX-Audit-Clarification",
-								"value": "",
-								"description": "A clarification as to why a request has been made  (doelbinding)"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/vnd.api+json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"status\": \"sent\"\r\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/messages/{{message}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"messages",
-								"{{message}}"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Resource not found",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									},
-									{
-										"key": "Authorization",
-										"value": "",
-										"description": "The JWT of the entity performing the request"
-									},
-									{
-										"key": "API-Version",
-										"value": "",
-										"description": "The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)"
-									},
-									{
-										"key": "X-NLX-Logrecord-ID",
-										"value": "",
-										"description": "A  globally unique id of the request, which makes a request traceable throughout the network."
-									},
-									{
-										"key": "X-NLX-Request-Process-Id",
-										"value": "",
-										"description": "A process id for purpose registration (doelbinding)"
-									},
-									{
-										"key": "X-NLX-Request-Data-Elements",
-										"value": "",
-										"description": "A list of requested data elements"
-									},
-									{
-										"key": "X-NLX-Request-Data-Subject",
-										"value": "",
-										"description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`"
-									},
-									{
-										"key": "X-NLX-Audit-Clarification",
-										"value": "",
-										"description": "A clarification as to why a request has been made  (doelbinding)"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"reciever\": \"<string>\",\n    \"sender\": \"<string>\",\n    \"content\": \"<string>\",\n    \"status\": \"<string>\",\n    \"service\": {\n        \"organization\": \"<string>\",\n        \"authorization\": \"<string>\",\n        \"type\": \"<string>\",\n        \"configuration\": \"<string>\"\n    },\n    \"data\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/messages/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"messages",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Invalid input",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"reciever\": \"<string>\",\n    \"sender\": \"<string>\",\n    \"content\": \"<string>\",\n    \"status\": \"<string>\",\n    \"service\": {\n        \"organization\": \"<string>\",\n        \"authorization\": \"<string>\",\n        \"type\": \"<string>\",\n        \"configuration\": \"<string>\"\n    },\n    \"data\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/messages/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"messages",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Message resource updated",
-							"originalRequest": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"reciever\": \"<string>\",\n    \"sender\": \"<string>\",\n    \"content\": \"<string>\",\n    \"status\": \"<string>\",\n    \"service\": {\n        \"organization\": \"<string>\",\n        \"authorization\": \"<string>\",\n        \"type\": \"<string>\",\n        \"configuration\": \"<string>\"\n    },\n    \"data\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/messages/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"messages",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/hal+json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"id\": \"<string>\",\n \"reciever\": \"<string>\",\n \"sender\": \"<string>\",\n \"content\": \"<string>\",\n \"status\": \"<string>\",\n \"service\": {\n  \"organization\": \"<string>\",\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"configuration\": \"<string>\"\n },\n \"data\": \"<string>\"\n}"
 						}
 					]
 				}
@@ -2952,9 +2314,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -3163,9 +2522,6 @@
 						}
 					],
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -3359,6 +2715,21 @@
 			"protocolProfileBehavior": {}
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{authorization}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -3383,10 +2754,14 @@
 	],
 	"variable": [
 		{
-			"id": "4a530653-7480-49db-ab7b-4f89edb3e4b3",
+			"id": "d71d5126-1f2a-4983-b398-7ff192bc39ba",
 			"key": "baseUrl",
-			"value": "http://localhost:8080",
-			"type": "string"
+			"value": "localhost"
+		},
+		{
+			"id": "350d2705-d287-426b-b50d-792eac0f45d9",
+			"key": "authorization",
+			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
 	],
 	"protocolProfileBehavior": {}
