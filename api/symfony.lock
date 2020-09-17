@@ -468,6 +468,9 @@
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
     },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.18.1"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
     },
@@ -485,6 +488,9 @@
             "version": "4.4",
             "ref": "84842f6791eaef80618dda244d4e3bbcbbcdf543"
         }
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.18.1"
     },
     "symfony/process": {
         "version": "v4.3.1"
