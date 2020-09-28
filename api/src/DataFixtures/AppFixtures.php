@@ -67,6 +67,23 @@ class AppFixtures extends Fixture
             $manager->persist($service);
 
             $manager->flush();
+
+            if (
+                strpos($this->params->get('app_domain'), 'checking.nu') != false ||
+                $this->params->get('app_domain') == 'checking.nu'
+
+            ) {
+                $id = Uuid::fromString('eb7ffa01-4803-44ce-91dc-d4e3da7917da');
+                $service = new Service();
+                $service->setType('mailer');
+                $service->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
+                $service->setAuthorization('mailgun+api://!changeme!:mail.zuid-drecht.nl@api.eu.mailgun.net');
+                $manager->persist($service);
+                $service->setId($id);
+                $manager->persist($service);
+
+                $manager->flush();
+            }
         }
         if (
             strpos($this->params->get('app_domain'), 'westfriesland.commonground.nu') != false ||
