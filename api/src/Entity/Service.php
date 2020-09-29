@@ -109,7 +109,7 @@ class Service
      * @Assert\Length(
      *      max = 255
      * )
-     * @Groups({"write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true, name ="authorization_key")
      */
     private $authorization;

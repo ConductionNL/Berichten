@@ -25,6 +25,9 @@
     "composer/ca-bundle": {
         "version": "1.2.6"
     },
+    "composer/package-versions-deprecated": {
+        "version": "1.8.0"
+    },
     "composer/semver": {
         "version": "1.5.0"
     },
@@ -480,6 +483,9 @@
     "symfony/polyfill-php73": {
         "version": "v1.11.0"
     },
+    "symfony/polyfill-php80": {
+        "version": "v1.18.1"
+    },
     "symfony/postmark-mailer": {
         "version": "4.4",
         "recipe": {
@@ -488,9 +494,6 @@
             "version": "4.4",
             "ref": "84842f6791eaef80618dda244d4e3bbcbbcdf543"
         }
-    },
-    "symfony/polyfill-php80": {
-        "version": "v1.18.1"
     },
     "symfony/process": {
         "version": "v4.3.1"
