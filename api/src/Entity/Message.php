@@ -70,12 +70,11 @@ class Message
     private $id;
 
     /**
-     * @var string Either a contact component person or contact list that will recieve this message
+     * @var string Either a contact component person or contact list or an plain email that will recieve this message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
      * @Gedmo\Versioned
-     * @Assert\Url
      * @Assert\Length(
      *      max = 255
      * )
@@ -85,12 +84,11 @@ class Message
     private $reciever;
 
     /**
-     * @var string Either a contact component person, or wrc application that sends this message
+     * @var string Either a contact component person, or wrc application or an plain email that sends this message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
      * @Gedmo\Versioned
-     * @Assert\Url
      * @Assert\Length(
      *      max = 255
      * )
