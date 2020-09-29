@@ -61,6 +61,7 @@ class MailService
             }
             else
             {
+                // force rebuilds
                 $reciever = $message->getSender();
             }
 
