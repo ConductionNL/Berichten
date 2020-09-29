@@ -36,8 +36,6 @@ class MailService
             $transport = Transport::fromDsn($message->getService()->getAuthorization());
             $mailer = new Mailer($transport);
 
-            $sender = $this->commonGroundService->getResource($message->getSender());
-            $reciever = $this->commonGroundService->getResource($message->getReciever());
 
             $variables = ['variables' => $message->getData()];
 
@@ -46,9 +44,29 @@ class MailService
             $html = $content['content'];
             $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
 
+            if(filter_var($message->getSender(), FILTER_VALIDATE_URL))
+            {
+                $sender = $this->commonGroundService->getResource($message->getSender());
+                $sender = $sender['emails'][0]['email']
+            }
+            else
+            {
+                $sender = $message->getSender();
+            }
+
+            if(filter_var($message->getReciever(), FILTER_VALIDATE_URL))
+            {
+                $reciever = $this->commonGroundService->getResource($message->getReciever());
+                $reciever = $reciever['emails'][0]['email']
+            }
+            else
+            {
+                $reciever = $message->getSender();
+            }
+
             $email = (new Email())
-                ->from($sender['emails'][0]['email'])
-                ->to($reciever['emails'][0]['email'])
+                ->from($sender)
+                ->to($reciever)
                 //->cc('cc@example.com')
                 //->bcc('bcc@example.com')
                 //->replyTo('fabien@example.com')
