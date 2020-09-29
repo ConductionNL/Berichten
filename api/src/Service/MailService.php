@@ -38,7 +38,10 @@ class MailService
 
             $sender = $this->commonGroundService->getResource($message->getSender());
             $reciever = $this->commonGroundService->getResource($message->getReciever());
-            $content = $this->commonGroundService->createResource($message->getData(), $message->getContent().'/render');
+
+            $variables = ['variables' => $message->getData()];
+
+            $content = $this->commonGroundService->createResource($variables, $message->getContent().'/render');
 
             $html = $content['content'];
             $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
