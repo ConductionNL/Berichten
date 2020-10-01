@@ -2065,6 +2065,24 @@ paths:
               - asc
               - desc
         -
+          name: 'order[type]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[resource]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[data]'
           in: query
           required: false
@@ -2191,13 +2209,13 @@ paths:
           schema:
             type: string
         -
-          name: id
+          name: type
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'id[]'
+          name: 'type[]'
           in: query
           required: false
           schema:
@@ -2207,13 +2225,13 @@ paths:
           style: form
           explode: true
         -
-          name: reciever
+          name: resource
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'reciever[]'
+          name: 'resource[]'
           in: query
           required: false
           schema:
@@ -2222,122 +2240,6 @@ paths:
               type: string
           style: form
           explode: true
-        -
-          name: sender
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'sender[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: content
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'content[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: data
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'data[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: status
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'status[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: externalServiceId
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'externalServiceId[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: send
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'send[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
-          in: query
-          required: false
-          schema:
-            type: string
         -
           name: page
           in: query
@@ -4721,6 +4623,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        type:
+          description: 'The type of this message.'
+          type: string
+          nullable: true
+        resource:
+          description: 'A resource used for this message.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         data:
           type: array
           items:
@@ -4778,6 +4690,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        type:
+          description: 'The type of this message.'
+          type: string
+          nullable: true
+        resource:
+          description: 'A resource used for this message.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         data:
           type: array
           items:
@@ -4826,6 +4748,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        type:
+          description: 'The type of this message.'
+          type: string
+          nullable: true
+        resource:
+          description: 'A resource used for this message.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         data:
           type: array
           items:
@@ -4892,6 +4824,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        type:
+          description: 'The type of this message.'
+          type: string
+          nullable: true
+        resource:
+          description: 'A resource used for this message.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         data:
           type: array
           items:
@@ -5079,6 +5021,17 @@ definitions:
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
         format: url
         maxLength: 255
+      type:
+        description: 'The type of this message.'
+        type: string
+        example: WarningMessageX
+        maxLength: 255
+      resource:
+        description: 'A resource used for this message.'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/uc/users/2881bb7a-4e1a-49ga-a824-af6c9917a3e5'
+        format: url
+        maxLength: 255
       data: []
       status:
         description: 'The current status of this message'
@@ -5126,6 +5079,17 @@ definitions:
         description: 'The webresource template object (from wrc) that is used as content for this message'
         type: string
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
+        format: url
+        maxLength: 255
+      type:
+        description: 'The type of this message.'
+        type: string
+        example: WarningMessageX
+        maxLength: 255
+      resource:
+        description: 'A resource used for this message.'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/uc/users/2881bb7a-4e1a-49ga-a824-af6c9917a3e5'
         format: url
         maxLength: 255
       data: []

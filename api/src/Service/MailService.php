@@ -36,7 +36,6 @@ class MailService
             $transport = Transport::fromDsn($message->getService()->getAuthorization());
             $mailer = new Mailer($transport);
 
-
             $variables = ['variables' => $message->getData()];
 
             $content = $this->commonGroundService->createResource($variables, $message->getContent().'/render');
@@ -44,23 +43,17 @@ class MailService
             $html = $content['content'];
             $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
 
-            if(filter_var($message->getSender(), FILTER_VALIDATE_URL))
-            {
+            if (filter_var($message->getSender(), FILTER_VALIDATE_URL)) {
                 $sender = $this->commonGroundService->getResource($message->getSender());
                 $sender = $sender['emails'][0]['email'];
-            }
-            else
-            {
+            } else {
                 $sender = $message->getSender();
             }
 
-            if(filter_var($message->getReciever(), FILTER_VALIDATE_URL))
-            {
+            if (filter_var($message->getReciever(), FILTER_VALIDATE_URL)) {
                 $reciever = $this->commonGroundService->getResource($message->getReciever());
                 $reciever = $reciever['emails'][0]['email'];
-            }
-            else
-            {
+            } else {
                 // force rebuilds
                 $reciever = $message->getSender();
             }

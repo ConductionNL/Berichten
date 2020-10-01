@@ -51,7 +51,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"type": "exact", "resource": "exact"})
  */
 class Message
 {
@@ -111,6 +111,36 @@ class Message
      * @ORM\Column(type="string", length=255)
      */
     private $content;
+
+    /**
+     * @var string The type of this message.
+     *
+     * @example WarningMessageX
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string A resource used for this message.
+     *
+     * @example https://dev.zuid-drecht.nl/api/v1/uc/users/2881bb7a-4e1a-49ga-a824-af6c9917a3e5
+     *
+     * @Gedmo\Versioned
+     * @Assert\Url
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resource;
 
     /**
      * @Gedmo\Versioned
@@ -244,6 +274,30 @@ class Message
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getResource(): ?string
+    {
+        return $this->resource;
+    }
+
+    public function setResource(string $resource): self
+    {
+        $this->resource = $resource;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
