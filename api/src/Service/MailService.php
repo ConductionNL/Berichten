@@ -53,9 +53,15 @@ class MailService
             if (filter_var($message->getReciever(), FILTER_VALIDATE_URL)) {
                 $reciever = $this->commonGroundService->getResource($message->getReciever());
                 $reciever = $reciever['emails'][0]['email'];
-            } else {
-                // force rebuilds
-                $reciever = $message->getSender();
+            }
+            else
+            {
+                $reciever = $message->getReciever();
+            }
+
+            // If no sender is suplied we are going to self send the message
+            if(!$sender){
+                $sender = $reciever;
             }
 
             $email = (new Email())

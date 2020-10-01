@@ -5047,17 +5047,17 @@ definitions:
         description: 'The moment this message was send'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
       dateCreated:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
       service:
         description: 'The service used to send this message'
         type: \Service
@@ -5132,12 +5132,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
     required:
       - organization
       - authorization
@@ -5268,12 +5268,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
     required: []
   AuditTrail-write:
     properties:
@@ -5321,12 +5321,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 16:15:54'
+        example: '2020-09-29 19:23:33'
     required: []
   ChangeLog-write:
     properties:
