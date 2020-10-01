@@ -62,7 +62,7 @@ class MailService
             else
             {
                 // force rebuilds
-                $reciever = $message->getSender();
+                $reciever = $message->getReciever();
             }
 
             $email = (new Email())
