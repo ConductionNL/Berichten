@@ -4611,15 +4611,11 @@ components:
           type: string
           format: uuid
         reciever:
-          description: 'Either a contact component person or contact list that will recieve this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person or contact list or an plain email that will recieve this message'
           type: string
           nullable: true
         sender:
-          description: 'Either a contact component person, or wrc application that sends this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
         content:
@@ -4682,15 +4678,11 @@ components:
       description: 'A  message to be send to a spefic recipient or list troug a message service.'
       properties:
         reciever:
-          description: 'Either a contact component person or contact list that will recieve this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person or contact list or an plain email that will recieve this message'
           type: string
           nullable: true
         sender:
-          description: 'Either a contact component person, or wrc application that sends this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
         content:
@@ -4744,15 +4736,11 @@ components:
           type: string
           format: uuid
         reciever:
-          description: 'Either a contact component person or contact list that will recieve this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person or contact list or an plain email that will recieve this message'
           type: string
           nullable: true
         sender:
-          description: 'Either a contact component person, or wrc application that sends this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
         content:
@@ -4824,15 +4812,11 @@ components:
           readOnly: true
           type: string
         reciever:
-          description: 'Either a contact component person or contact list that will recieve this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person or contact list or an plain email that will recieve this message'
           type: string
           nullable: true
         sender:
-          description: 'Either a contact component person, or wrc application that sends this message'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
         content:
@@ -4882,6 +4866,10 @@ components:
         organization:
           description: 'The RSIN of the organization that ownes this service'
           type: string
+        authorization:
+          description: 'The autorization be it password or api key that is used to connect to the service'
+          type: string
+          nullable: true
         configuration:
           description: 'Any specific setting for this service'
           type: array
@@ -4903,6 +4891,7 @@ components:
           nullable: true
       required:
         - organization
+        - authorization
     Service-write:
       type: object
       description: 'A service that sends messages e.g. email or sms.'
@@ -4951,6 +4940,10 @@ components:
         organization:
           description: 'The RSIN of the organization that ownes this service'
           type: string
+        authorization:
+          description: 'The autorization be it password or api key that is used to connect to the service'
+          type: string
+          nullable: true
         configuration:
           description: 'Any specific setting for this service'
           type: array
@@ -4972,6 +4965,7 @@ components:
           nullable: true
       required:
         - organization
+        - authorization
     'Service:jsonld-write':
       type: object
       description: 'A service that sends messages e.g. email or sms.'
@@ -5012,16 +5006,14 @@ definitions:
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       reciever:
-        description: 'Either a contact component person or contact list that will recieve this message'
+        description: 'Either a contact component person or contact list or an plain email that will recieve this message'
         type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
         maxLength: 255
       sender:
-        description: 'Either a contact component person, or wrc application that sends this message'
+        description: 'Either a contact component person, or wrc application or an plain email that sends this message'
         type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
         maxLength: 255
       content:
         description: 'The webresource template object (from wrc) that is used as content for this message'
@@ -5055,17 +5047,17 @@ definitions:
         description: 'The moment this message was send'
         type: string
         format: date-time
-        example: '2020-10-01 09:17:39'
+        example: '2020-09-29 16:15:54'
       dateCreated:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-01 09:17:39'
+        example: '2020-09-29 16:15:54'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-01 09:17:39'
+        example: '2020-09-29 16:15:54'
       service:
         description: 'The service used to send this message'
         type: \Service
@@ -5074,16 +5066,14 @@ definitions:
   Message-write:
     properties:
       reciever:
-        description: 'Either a contact component person or contact list that will recieve this message'
+        description: 'Either a contact component person or contact list or an plain email that will recieve this message'
         type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
         maxLength: 255
       sender:
-        description: 'Either a contact component person, or wrc application that sends this message'
+        description: 'Either a contact component person, or wrc application or an plain email that sends this message'
         type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        format: url
         maxLength: 255
       content:
         description: 'The webresource template object (from wrc) that is used as content for this message'
@@ -5130,6 +5120,11 @@ definitions:
         type: string
         example: '002851234'
         maxLength: 255
+      authorization:
+        description: 'The autorization be it password or api key that is used to connect to the service'
+        type: string
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
       configuration:
         description: 'Any specific setting for this service'
         type: array
@@ -5137,12 +5132,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-01 09:17:39'
+        example: '2020-09-29 16:15:54'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-01 09:17:39'
+        example: '2020-09-29 16:15:54'
     required:
       - organization
       - authorization
@@ -5169,59 +5164,6 @@ definitions:
     required:
       - organization
       - authorization
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-10-01 09:17:39'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-10-01 09:17:39'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
   AuditTrail-read:
     properties:
       id:
@@ -5326,12 +5268,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-01 09:17:39'
+        example: '2020-09-29 16:15:54'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-01 09:17:39'
+        example: '2020-09-29 16:15:54'
     required: []
   AuditTrail-write:
     properties:
@@ -5339,6 +5281,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-29 16:15:54'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-29 16:15:54'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -5355,13 +5350,13 @@ tags:
       
       
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -5372,15 +5367,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -

@@ -79,7 +79,7 @@ class AppFixtures extends Fixture
             $service = new Service();
             $service->setType('mailer');
             $service->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
-            $service->setAuthorization('mailgun+api://!changeme!:mail.zuid-drecht.nl@api.eu.mailgun.net');
+            $service->setAuthorization($this->params->get('mailgun_key'));
             $manager->persist($service);
             $service->setId($id);
             $manager->persist($service);
