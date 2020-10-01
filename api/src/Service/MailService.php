@@ -61,8 +61,12 @@ class MailService
             }
             else
             {
-                // force rebuilds
                 $reciever = $message->getReciever();
+            }
+
+            // If no sender is suplied we are going to self send the message
+            if(!$sender){
+                $sender = $reciever;
             }
 
             $email = (new Email())
