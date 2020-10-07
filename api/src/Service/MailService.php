@@ -128,7 +128,7 @@ class MailService
         $client = new Client($guzzleConfig);
 
         $response = $client->post($attachment->getUri().'/render', [
-            'body'    => json_encode($attachment->getResources()),
+            'body'    => json_encode(['variables'=>$attachment->getResources()]),
             'headers' => $headers,
             'sink'    => $file,
         ]);
