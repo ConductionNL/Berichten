@@ -3029,6 +3029,869 @@ paths:
           description: 'Resource not found'
       produces:
         - application/health+json
+  /send_lists:
+    get:
+      tags:
+        - SendList
+      operationId: getSendListCollection
+      summary: 'Retrieves the collection of SendList resources.'
+      responses:
+        200:
+          description: 'SendList collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/SendList:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/SendList:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendList-read'
+      parameters:
+        -
+          name: mail
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: phone
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[name]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[description]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[mail]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[phone]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[organization]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - SendList
+      operationId: postSendListCollection
+      summary: 'Creates a SendList resource.'
+      responses:
+        201:
+          description: 'SendList resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+          links:
+            GetSendListItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getSendListItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /send_lists/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/SendList:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/SendList:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+        description: 'The new SendList resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/send_lists/{id}':
+    get:
+      tags:
+        - SendList
+      operationId: getSendListItem
+      summary: 'Retrieves a SendList resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'SendList resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - SendList
+      operationId: deleteSendListItem
+      summary: 'Removes the SendList resource.'
+      responses:
+        204:
+          description: 'SendList resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - SendList
+      operationId: putSendListItem
+      summary: 'Replaces the SendList resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'SendList resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/SendList:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/SendList:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+        description: 'The updated SendList resource'
+    patch:
+      tags:
+        - SendList
+      operationId: patchSendListItem
+      summary: 'Updates the SendList resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'SendList resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/SendList:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/SendList-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/SendList:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/SendList-write'
+        description: 'The updated SendList resource'
   /services:
     get:
       tags:
@@ -4119,6 +4982,821 @@ paths:
           description: 'Resource not found'
       produces:
         - application/health+json
+  /subscribers:
+    get:
+      tags:
+        - Subscriber
+      operationId: getSubscriberCollection
+      summary: 'Retrieves the collection of Subscriber resources.'
+      responses:
+        200:
+          description: 'Subscriber collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Subscriber:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Subscriber:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscriber-read'
+      parameters:
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[person]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Subscriber
+      operationId: postSubscriberCollection
+      summary: 'Creates a Subscriber resource.'
+      responses:
+        201:
+          description: 'Subscriber resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+          links:
+            GetSubscriberItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getSubscriberItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /subscribers/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Subscriber:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+        description: 'The new Subscriber resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/subscribers/{id}':
+    get:
+      tags:
+        - Subscriber
+      operationId: getSubscriberItem
+      summary: 'Retrieves a Subscriber resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Subscriber resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    delete:
+      tags:
+        - Subscriber
+      operationId: deleteSubscriberItem
+      summary: 'Removes the Subscriber resource.'
+      responses:
+        204:
+          description: 'Subscriber resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+    put:
+      tags:
+        - Subscriber
+      operationId: putSubscriberItem
+      summary: 'Replaces the Subscriber resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Subscriber resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Subscriber:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+        description: 'The updated Subscriber resource'
+    patch:
+      tags:
+        - Subscriber
+      operationId: patchSubscriberItem
+      summary: 'Updates the Subscriber resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Subscriber resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Subscriber:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Subscriber-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Subscriber-write'
+        description: 'The updated Subscriber resource'
 components:
   schemas:
     Attachment-read:
@@ -4849,6 +6527,166 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attachment:jsonld-write'
+    SendList-read:
+      type: object
+      description: 'SendList is a way for Organizations to send messages through email or phone.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this SendList.'
+          type: string
+        description:
+          description: 'The description of this SendList.'
+          type: string
+          nullable: true
+        mail:
+          description: 'True if this is an mailing list.'
+          type: boolean
+        phone:
+          description: 'True if this is an phone list.'
+          type: boolean
+        organization:
+          description: 'A organization in Web Resource Catalogus'
+          type: string
+        dateCreated:
+          description: 'The moment this proof was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this proof was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        subscribers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscriber-read'
+      required:
+        - name
+        - organization
+    SendList-write:
+      type: object
+      description: 'SendList is a way for Organizations to send messages through email or phone.'
+      required:
+        - name
+        - organization
+      properties:
+        name:
+          description: 'The name of this SendList.'
+          type: string
+        description:
+          description: 'The description of this SendList.'
+          type: string
+          nullable: true
+        mail:
+          description: 'True if this is an mailing list.'
+          type: boolean
+        phone:
+          description: 'True if this is an phone list.'
+          type: boolean
+        organization:
+          description: 'A organization in Web Resource Catalogus'
+          type: string
+        subscribers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscriber-write'
+    'SendList:jsonld-read':
+      type: object
+      description: 'SendList is a way for Organizations to send messages through email or phone.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this SendList.'
+          type: string
+        description:
+          description: 'The description of this SendList.'
+          type: string
+          nullable: true
+        mail:
+          description: 'True if this is an mailing list.'
+          type: boolean
+        phone:
+          description: 'True if this is an phone list.'
+          type: boolean
+        organization:
+          description: 'A organization in Web Resource Catalogus'
+          type: string
+        dateCreated:
+          description: 'The moment this proof was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this proof was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        subscribers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscriber:jsonld-read'
+      required:
+        - name
+        - organization
+    'SendList:jsonld-write':
+      type: object
+      description: 'SendList is a way for Organizations to send messages through email or phone.'
+      required:
+        - name
+        - organization
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this SendList.'
+          type: string
+        description:
+          description: 'The description of this SendList.'
+          type: string
+          nullable: true
+        mail:
+          description: 'True if this is an mailing list.'
+          type: boolean
+        phone:
+          description: 'True if this is an phone list.'
+          type: boolean
+        organization:
+          description: 'A organization in Web Resource Catalogus'
+          type: string
+        subscribers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscriber:jsonld-write'
     Service-read:
       type: object
       description: 'A service that sends messages e.g. email or sms.'
@@ -4997,6 +6835,110 @@ components:
       required:
         - organization
         - authorization
+    Subscriber-read:
+      type: object
+      description: 'SendList is a way for Applications to send messages through email or phone.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        person:
+          description: 'A contact in Contact Catalogus'
+          type: string
+        dateCreated:
+          description: 'The moment this proof was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this proof was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        sendLists:
+          type: array
+          items:
+            $ref: '#/components/schemas/SendList-read'
+      required:
+        - person
+    Subscriber-write:
+      type: object
+      description: 'SendList is a way for Applications to send messages through email or phone.'
+      required:
+        - person
+      properties:
+        person:
+          description: 'A contact in Contact Catalogus'
+          type: string
+        sendLists:
+          type: array
+          items:
+            $ref: '#/components/schemas/SendList-write'
+    'Subscriber:jsonld-read':
+      type: object
+      description: 'SendList is a way for Applications to send messages through email or phone.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        person:
+          description: 'A contact in Contact Catalogus'
+          type: string
+        dateCreated:
+          description: 'The moment this proof was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this proof was last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        sendLists:
+          type: array
+          items:
+            $ref: '#/components/schemas/SendList:jsonld-read'
+      required:
+        - person
+    'Subscriber:jsonld-write':
+      type: object
+      description: 'SendList is a way for Applications to send messages through email or phone.'
+      required:
+        - person
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        person:
+          description: 'A contact in Contact Catalogus'
+          type: string
+        sendLists:
+          type: array
+          items:
+            $ref: '#/components/schemas/SendList:jsonld-write'
 definitions:
   Message-read:
     properties:
@@ -5047,17 +6989,17 @@ definitions:
         description: 'The moment this message was send'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
       dateCreated:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
       service:
         description: 'The service used to send this message'
         type: \Service
@@ -5103,6 +7045,75 @@ definitions:
         type: \Service
       attachments: []
     required: []
+  SendList-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this SendList.'
+        type: string
+        example: 'News email'
+        maxLength: 255
+      description:
+        description: 'The description of this SendList.'
+        type: string
+        example: 'Mailing list for sending news'
+        maxLength: 255
+      mail:
+        description: 'True if this is an mailing list.'
+        type: bool
+        example: 'true'
+      phone:
+        description: 'True if this is an phone list.'
+        type: bool
+        example: 'true'
+      organization:
+        description: 'A organization in Web Resource Catalogus'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this proof was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this proof was last Modified'
+        type: \Datetime
+      subscribers: []
+    required:
+      - name
+      - organization
+  SendList-write:
+    properties:
+      name:
+        description: 'The name of this SendList.'
+        type: string
+        example: 'News email'
+        maxLength: 255
+      description:
+        description: 'The description of this SendList.'
+        type: string
+        example: 'Mailing list for sending news'
+        maxLength: 255
+      mail:
+        description: 'True if this is an mailing list.'
+        type: bool
+        example: 'true'
+      phone:
+        description: 'True if this is an phone list.'
+        type: bool
+        example: 'true'
+      organization:
+        description: 'A organization in Web Resource Catalogus'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      subscribers: []
+    required:
+      - name
+      - organization
   Service-read:
     properties:
       id:
@@ -5132,12 +7143,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
     required:
       - organization
       - authorization
@@ -5164,6 +7175,37 @@ definitions:
     required:
       - organization
       - authorization
+  Subscriber-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      person:
+        description: 'A contact in Contact Catalogus'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/cc/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this proof was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this proof was last Modified'
+        type: \Datetime
+      sendLists: []
+    required:
+      - person
+  Subscriber-write:
+    properties:
+      person:
+        description: 'A contact in Contact Catalogus'
+        type: string
+        example: 'https://dev.zuid-drecht.nl/api/v1/cc/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      sendLists: []
+    required:
+      - person
   AuditTrail-read:
     properties:
       id:
@@ -5268,12 +7310,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
     required: []
   AuditTrail-write:
     properties:
@@ -5321,12 +7363,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-29 19:23:33'
+        example: '2020-11-06 13:41:59'
     required: []
   ChangeLog-write:
     properties:
@@ -5344,9 +7386,21 @@ tags:
       
       
   -
+    name: SendList
+    description: |
+      SendList is a way for Organizations to send messages through email or phone.
+      
+      
+  -
     name: Service
     description: |
       A service that sends messages e.g. email or sms.
+      
+      
+  -
+    name: Subscriber
+    description: |
+      SendList is a way for Applications to send messages through email or phone.
       
       
   -
