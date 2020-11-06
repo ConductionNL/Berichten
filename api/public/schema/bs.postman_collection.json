@@ -2930,7 +2930,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"application\": \"/applications/{{application}}\"\n}",
+							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/360e17fb-1a98-48b7-a2a8-212c79a5f51a\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3514,7 +3514,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"application\": \"/applications/{{application}}\"\n}",
+							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/360e17fb-1a98-48b7-a2a8-212c79a5f51a\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3941,7 +3941,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"person\": \"cc/person\"\n}",
+							"raw": "{\n    \"person\": \"https://dev.zuid-drecht.nl/api/v1/cc/people/499aedcd-5bfe-4718-a785-7d0a1764eb0b\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -4525,7 +4525,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"person\": \"cc/person\"\n}",
+							"raw": "{\n    \"person\": \"https://dev.zuid-drecht.nl/api/v1/cc/people/499aedcd-5bfe-4718-a785-7d0a1764eb0b\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -5884,12 +5884,12 @@
 	],
 	"variable": [
 		{
-			"id": "57d87998-abf5-44af-969b-0e285fefc356",
+			"id": "3c463987-ab71-4611-bdf3-fb0abf49b287",
 			"key": "baseUrl",
 			"value": "localhost"
 		},
 		{
-			"id": "0591c986-6f40-4c3a-9aa3-01b44a31226e",
+			"id": "a2fa9b1b-2a06-4aa2-a69a-4a822f0ffec7",
 			"key": "authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
