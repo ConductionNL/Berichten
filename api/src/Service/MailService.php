@@ -46,18 +46,20 @@ class MailService
             if (filter_var($message->getSender(), FILTER_VALIDATE_URL)) {
                 $sender = $this->commonGroundService->getResource($message->getSender());
                 $sender = $sender['emails'][0]['email'];
-            }
-            else {
+            } else {
                 $sender = $message->getSender();
             }
 
             if (filter_var($message->getReciever(), FILTER_VALIDATE_URL)) {
                 $reciever = $this->commonGroundService->getResource($message->getReciever());
                 $reciever = $reciever['emails'][0]['email'];
+            } else {
+                $reciever = $message->getReciever();
             }
-            else {
-                // force rebuilds
-                $reciever = $message->getSender();
+
+            // If no sender is suplied we are going to self send the message
+            if (!$sender) {
+                $sender = $reciever;
             }
 
             $email = (new Email())
@@ -124,7 +126,7 @@ class MailService
         $client = new Client($guzzleConfig);
 
         $response = $client->post($attachment->getUri().'/render', [
-            'body'    => json_encode($attachment->getResources()),
+            'body'    => json_encode(['variables'=>$attachment->getResources()]),
             'headers' => $headers,
             'sink'    => $file,
         ]);
