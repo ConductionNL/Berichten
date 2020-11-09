@@ -6337,8 +6337,6 @@ components:
           nullable: true
         send:
           description: 'The moment this message was send'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -6347,15 +6345,11 @@ components:
           $ref: '#/components/schemas/Service-read'
         dateCreated:
           description: 'The moment this request was created'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         dateModified:
           description: 'The moment this request last Modified'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -6462,8 +6456,6 @@ components:
           nullable: true
         send:
           description: 'The moment this message was send'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -6472,15 +6464,11 @@ components:
           $ref: '#/components/schemas/Service:jsonld-read'
         dateCreated:
           description: 'The moment this request was created'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         dateModified:
           description: 'The moment this request last Modified'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -6727,15 +6715,11 @@ components:
             type: string
         dateCreated:
           description: 'The moment this request was created'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         dateModified:
           description: 'The moment this request last Modified'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -6801,15 +6785,11 @@ components:
             type: string
         dateCreated:
           description: 'The moment this request was created'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
         dateModified:
           description: 'The moment this request last Modified'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -6999,19 +6979,13 @@ definitions:
         maxLength: 255
       send:
         description: 'The moment this message was send'
-        type: string
-        format: date-time
-        example: '2020-11-09 13:36:54'
+        type: \DateTime
       dateCreated:
         description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-11-09 13:36:54'
+        type: \Datetime
       dateModified:
         description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-11-09 13:36:54'
+        type: \Datetime
       service:
         description: 'The service used to send this message'
         type: \Service
@@ -7153,14 +7127,10 @@ definitions:
         type: array
       dateCreated:
         description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-11-09 13:36:54'
+        type: \Datetime
       dateModified:
         description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-11-09 13:36:54'
+        type: \Datetime
     required:
       - organization
       - authorization
@@ -7322,12 +7292,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-09 13:36:54'
+        example: '2020-11-09 14:41:43'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-09 13:36:54'
+        example: '2020-11-09 14:41:43'
     required: []
   AuditTrail-write:
     properties:
@@ -7375,12 +7345,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-09 13:36:54'
+        example: '2020-11-09 14:41:43'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-09 13:36:54'
+        example: '2020-11-09 14:41:43'
     required: []
   ChangeLog-write:
     properties:
