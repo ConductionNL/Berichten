@@ -183,7 +183,6 @@ class Message
      * @var DateTime The moment this message was send
      *
      * @Gedmo\Versioned
-     * @Assert\DateTime
      * @Groups({"read"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -202,7 +201,6 @@ class Message
     /**
      * @var Datetime The moment this request was created
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
@@ -212,7 +210,6 @@ class Message
     /**
      * @var Datetime The moment this request last Modified
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
