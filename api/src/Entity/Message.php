@@ -121,7 +121,7 @@ class Message
      *      max = 255
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
     private $content;
 
