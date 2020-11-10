@@ -11,7 +11,6 @@ use GuzzleHttp\Client;
 use Symfony\Component\Cache\Adapter\AdapterInterface as CacheInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mime\Email;
 
@@ -45,7 +44,6 @@ class MailService
                 $content = $message->getContent();
                 $html = $content;
             }
-
 
             $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
 
