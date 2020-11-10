@@ -117,9 +117,6 @@ class Message
      * @example https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
      * @Gedmo\Versioned
-     * @Assert\Length(
-     *      max = 255
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string")
      */
