@@ -80,7 +80,6 @@ class MailService
                 $filenames[] = $filename;
             }
 
-            /** @var Symfony\Component\Mailer\SentMessage $sentEmail */
             $mailer->send($email);
 
             $message->setSend(new \Datetime());
