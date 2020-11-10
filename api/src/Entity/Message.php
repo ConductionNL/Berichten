@@ -98,12 +98,25 @@ class Message
     private $sender;
 
     /**
+     * @var string subject of the mail
+     *
+     * @example reset mail
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $subject;
+
+    /**
      * @var string The webresource template object (from wrc) that is used as content for this message
      *
      * @example https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f
      *
      * @Gedmo\Versioned
-     * @Assert\Url
      * @Assert\Length(
      *      max = 255
      * )
@@ -247,6 +260,18 @@ class Message
     public function setReciever(?string $reciever): self
     {
         $this->reciever = $reciever;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(?string $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }

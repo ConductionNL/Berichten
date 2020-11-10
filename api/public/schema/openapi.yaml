@@ -2056,6 +2056,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[subject]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[content]'
           in: query
           required: false
@@ -6308,10 +6317,12 @@ components:
           description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
+        subject:
+          description: 'subject of the mail'
+          type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
         type:
           description: 'The type of this message.'
@@ -6369,10 +6380,12 @@ components:
           description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
+        subject:
+          description: 'subject of the mail'
+          type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
         type:
           description: 'The type of this message.'
@@ -6427,10 +6440,12 @@ components:
           description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
+        subject:
+          description: 'subject of the mail'
+          type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
         type:
           description: 'The type of this message.'
@@ -6497,10 +6512,12 @@ components:
           description: 'Either a contact component person, or wrc application or an plain email that sends this message'
           type: string
           nullable: true
+        subject:
+          description: 'subject of the mail'
+          type: string
+          nullable: true
         content:
           description: 'The webresource template object (from wrc) that is used as content for this message'
-          externalDocs:
-            url: 'http://schema.org/url'
           type: string
         type:
           description: 'The type of this message.'
@@ -6949,11 +6966,15 @@ definitions:
         type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
         maxLength: 255
+      subject:
+        description: 'subject of the mail'
+        type: string
+        example: 'reset mail'
+        maxLength: 255
       content:
         description: 'The webresource template object (from wrc) that is used as content for this message'
         type: string
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
-        format: url
         maxLength: 255
       type:
         description: 'The type of this message.'
@@ -7003,11 +7024,15 @@ definitions:
         type: string
         example: 'https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
         maxLength: 255
+      subject:
+        description: 'subject of the mail'
+        type: string
+        example: 'reset mail'
+        maxLength: 255
       content:
         description: 'The webresource template object (from wrc) that is used as content for this message'
         type: string
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
-        format: url
         maxLength: 255
       type:
         description: 'The type of this message.'
@@ -7292,12 +7317,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-10 13:19:48'
+        example: '2020-11-10 18:37:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-10 13:19:48'
+        example: '2020-11-10 18:37:04'
     required: []
   AuditTrail-write:
     properties:
@@ -7345,12 +7370,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-10 13:19:48'
+        example: '2020-11-10 18:37:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-10 13:19:48'
+        example: '2020-11-10 18:37:04'
     required: []
   ChangeLog-write:
     properties:
