@@ -8,6 +8,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
@@ -49,7 +51,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"type": "exact", "resource": "exact"})
  */
 class Message
 {
@@ -68,12 +70,11 @@ class Message
     private $id;
 
     /**
-     * @var string Either a contact component person or contact list that will recieve this message
+     * @var string Either a contact component person or contact list or an plain email that will recieve this message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
      * @Gedmo\Versioned
-     * @Assert\Url
      * @Assert\Length(
      *      max = 255
      * )
@@ -83,12 +84,11 @@ class Message
     private $reciever;
 
     /**
-     * @var string Either a contact component person, or wrc application that sends this message
+     * @var string Either a contact component person, or wrc application or an plain email that sends this message
      *
      * @example https://cc.zaakonline.nl/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
      * @Gedmo\Versioned
-     * @Assert\Url
      * @Assert\Length(
      *      max = 255
      * )
@@ -111,6 +111,36 @@ class Message
      * @ORM\Column(type="string", length=255)
      */
     private $content;
+
+    /**
+     * @var string The type of this message.
+     *
+     * @example WarningMessageX
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string A resource used for this message.
+     *
+     * @example https://dev.zuid-drecht.nl/api/v1/uc/users/2881bb7a-4e1a-49ga-a824-af6c9917a3e5
+     *
+     * @Gedmo\Versioned
+     * @Assert\Url
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resource;
 
     /**
      * @Gedmo\Versioned
@@ -153,7 +183,6 @@ class Message
      * @var DateTime The moment this message was send
      *
      * @Gedmo\Versioned
-     * @Assert\DateTime
      * @Groups({"read"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -172,7 +201,6 @@ class Message
     /**
      * @var Datetime The moment this request was created
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
@@ -182,12 +210,22 @@ class Message
     /**
      * @var Datetime The moment this request last Modified
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
+
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=Attachment::class, mappedBy="message", cascade={"persist", "remove"})
+     */
+    private $attachments;
+
+    public function __construct()
+    {
+        $this->attachments = new ArrayCollection();
+    }
 
     public function getId(): ?string
     {
@@ -233,6 +271,30 @@ class Message
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getResource(): ?string
+    {
+        return $this->resource;
+    }
+
+    public function setResource(string $resource): self
+    {
+        $this->resource = $resource;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
@@ -317,6 +379,37 @@ class Message
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Attachment[]
+     */
+    public function getAttachments(): Collection
+    {
+        return $this->attachments;
+    }
+
+    public function addAttachment(Attachment $attachment): self
+    {
+        if (!$this->attachments->contains($attachment)) {
+            $this->attachments[] = $attachment;
+            $attachment->setMessage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAttachment(Attachment $attachment): self
+    {
+        if ($this->attachments->contains($attachment)) {
+            $this->attachments->removeElement($attachment);
+            // set the owning side to null (unless already changed)
+            if ($attachment->getMessage() === $this) {
+                $attachment->setMessage(null);
+            }
+        }
 
         return $this;
     }

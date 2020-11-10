@@ -109,7 +109,7 @@ class Service
      * @Assert\Length(
      *      max = 255
      * )
-     * @Groups({"write"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true, name ="authorization_key")
      */
     private $authorization;
@@ -134,7 +134,6 @@ class Service
     /**
      * @var Datetime The moment this request was created
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
@@ -144,7 +143,6 @@ class Service
     /**
      * @var Datetime The moment this request last Modified
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
