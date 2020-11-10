@@ -118,7 +118,7 @@ class Message
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     private $content;
 
