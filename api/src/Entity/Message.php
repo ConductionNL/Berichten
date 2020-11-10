@@ -276,7 +276,6 @@ class Message
         return $this;
     }
 
-
     public function getSender(): ?string
     {
         return $this->sender;
