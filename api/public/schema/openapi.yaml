@@ -6975,7 +6975,6 @@ definitions:
         description: 'The webresource template object (from wrc) that is used as content for this message'
         type: string
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
-        maxLength: 255
       type:
         description: 'The type of this message.'
         type: string
@@ -7033,7 +7032,6 @@ definitions:
         description: 'The webresource template object (from wrc) that is used as content for this message'
         type: string
         example: 'https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f'
-        maxLength: 255
       type:
         description: 'The type of this message.'
         type: string
@@ -7317,12 +7315,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-10 18:37:04'
+        example: '2020-11-13 10:55:41'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-10 18:37:04'
+        example: '2020-11-13 10:55:41'
     required: []
   AuditTrail-write:
     properties:
@@ -7370,12 +7368,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-11-10 18:37:04'
+        example: '2020-11-13 10:55:41'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-11-10 18:37:04'
+        example: '2020-11-13 10:55:41'
     required: []
   ChangeLog-write:
     properties:
