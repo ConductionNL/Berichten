@@ -9,7 +9,7 @@ use App\Service\MessageService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 class MessageSubscriber implements EventSubscriberInterface
@@ -34,7 +34,7 @@ class MessageSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function message(GetResponseForControllerResultEvent $event)
+    public function message(ViewEvent $event)
     {
         $result = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();

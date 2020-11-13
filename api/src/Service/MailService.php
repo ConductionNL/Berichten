@@ -36,49 +36,59 @@ class MailService
             $transport = Transport::fromDsn($message->getService()->getAuthorization());
             $mailer = new Mailer($transport);
 
+            if (filter_var($message->getContent(), FILTER_VALIDATE_URL) && $this->commonGroundService->isResource($message->getContent())) {
+                $variables = ['variables' => $message->getData()];
+                $content = $this->commonGroundService->createResource($variables, $message->getContent().'/render');
+                $html = $content['content'];
+            } else {
+                $content = $message->getContent();
+                $html = $content;
+            }
 
-            $variables = ['variables' => $message->getData()];
-
-            $content = $this->commonGroundService->createResource($variables, $message->getContent().'/render');
-
-            $html = $content['content'];
             $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
 
-            if(filter_var($message->getSender(), FILTER_VALIDATE_URL))
-            {
+            if (filter_var($message->getSender(), FILTER_VALIDATE_URL)) {
                 $sender = $this->commonGroundService->getResource($message->getSender());
                 $sender = $sender['emails'][0]['email'];
-            }
-            else
-            {
+            } else {
                 $sender = $message->getSender();
             }
 
-            if(filter_var($message->getReciever(), FILTER_VALIDATE_URL))
-            {
+            if (filter_var($message->getReciever(), FILTER_VALIDATE_URL)) {
                 $reciever = $this->commonGroundService->getResource($message->getReciever());
                 $reciever = $reciever['emails'][0]['email'];
-            }
-            else
-            {
+            } else {
                 $reciever = $message->getReciever();
             }
 
             // If no sender is suplied we are going to self send the message
-            if(!$sender){
+            if (!$sender) {
                 $sender = $reciever;
             }
 
-            $email = (new Email())
-                ->from($sender)
-                ->to($reciever)
-                //->cc('cc@example.com')
-                //->bcc('bcc@example.com')
-                //->replyTo('fabien@example.com')
-                //->priority(Email::PRIORITY_HIGH)
-                ->subject($content['name'])
-                ->html($html)
-                ->text($text);
+            if ($message->getSubject() != null) {
+                $email = (new Email())
+                    ->from($sender)
+                    ->to($reciever)
+                    //->cc('cc@example.com')
+                    //->bcc('bcc@example.com')
+                    //->replyTo('fabien@example.com')
+                    //->priority(Email::PRIORITY_HIGH)
+                    ->subject($message->getSubject())
+                    ->html($html)
+                    ->text($text);
+            } else {
+                $email = (new Email())
+                    ->from($sender)
+                    ->to($reciever)
+                    //->cc('cc@example.com')
+                    //->bcc('bcc@example.com')
+                    //->replyTo('fabien@example.com')
+                    //->priority(Email::PRIORITY_HIGH)
+                    ->subject($content['name'])
+                    ->html($html)
+                    ->text($text);
+            }
 
             $filenames = [];
             foreach ($message->getAttachments() as $attachment) {
@@ -133,7 +143,7 @@ class MailService
         $client = new Client($guzzleConfig);
 
         $response = $client->post($attachment->getUri().'/render', [
-            'body'    => json_encode($attachment->getResources()),
+            'body'    => json_encode(['variables'=>$attachment->getResources()]),
             'headers' => $headers,
             'sink'    => $file,
         ]);

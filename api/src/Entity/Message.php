@@ -51,7 +51,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"type": "exact", "resource": "exact"})
  */
 class Message
 {
@@ -98,9 +98,49 @@ class Message
     private $sender;
 
     /**
+     * @var string subject of the mail
+     *
+     * @example reset mail
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $subject;
+
+    /**
      * @var string The webresource template object (from wrc) that is used as content for this message
      *
      * @example https://wrc.zaakonline.nl/templates/013276cc-1483-46b4-ad5b-1cba5acf6d9f
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="text")
+     */
+    private $content;
+
+    /**
+     * @var string The type of this message.
+     *
+     * @example WarningMessageX
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string A resource used for this message.
+     *
+     * @example https://dev.zuid-drecht.nl/api/v1/uc/users/2881bb7a-4e1a-49ga-a824-af6c9917a3e5
      *
      * @Gedmo\Versioned
      * @Assert\Url
@@ -108,9 +148,9 @@ class Message
      *      max = 255
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $content;
+    private $resource;
 
     /**
      * @Gedmo\Versioned
@@ -153,7 +193,6 @@ class Message
      * @var DateTime The moment this message was send
      *
      * @Gedmo\Versioned
-     * @Assert\DateTime
      * @Groups({"read"})
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -172,7 +211,6 @@ class Message
     /**
      * @var Datetime The moment this request was created
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
@@ -182,7 +220,6 @@ class Message
     /**
      * @var Datetime The moment this request last Modified
      *
-     * @Assert\DateTime
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
@@ -224,6 +261,18 @@ class Message
         return $this;
     }
 
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(?string $subject): self
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
     public function getSender(): ?string
     {
         return $this->sender;
@@ -244,6 +293,30 @@ class Message
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getResource(): ?string
+    {
+        return $this->resource;
+    }
+
+    public function setResource(string $resource): self
+    {
+        $this->resource = $resource;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
