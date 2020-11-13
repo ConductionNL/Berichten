@@ -36,11 +36,15 @@ class MailService
             $transport = Transport::fromDsn($message->getService()->getAuthorization());
             $mailer = new Mailer($transport);
 
-            $variables = ['variables' => $message->getData()];
+            if (filter_var($message->getContent(), FILTER_VALIDATE_URL) && $this->commonGroundService->isResource($message->getContent())) {
+                $variables = ['variables' => $message->getData()];
+                $content = $this->commonGroundService->createResource($variables, $message->getContent().'/render');
+                $html = $content['content'];
+            } else {
+                $content = $message->getContent();
+                $html = $content;
+            }
 
-            $content = $this->commonGroundService->createResource($variables, $message->getContent().'/render');
-
-            $html = $content['content'];
             $text = strip_tags(preg_replace('#<br\s*/?>#i', "\n", $html), '\n');
 
             if (filter_var($message->getSender(), FILTER_VALIDATE_URL)) {
@@ -62,16 +66,29 @@ class MailService
                 $sender = $reciever;
             }
 
-            $email = (new Email())
-                ->from($sender)
-                ->to($reciever)
-                //->cc('cc@example.com')
-                //->bcc('bcc@example.com')
-                //->replyTo('fabien@example.com')
-                //->priority(Email::PRIORITY_HIGH)
-                ->subject($content['name'])
-                ->html($html)
-                ->text($text);
+            if ($message->getSubject() != null) {
+                $email = (new Email())
+                    ->from($sender)
+                    ->to($reciever)
+                    //->cc('cc@example.com')
+                    //->bcc('bcc@example.com')
+                    //->replyTo('fabien@example.com')
+                    //->priority(Email::PRIORITY_HIGH)
+                    ->subject($message->getSubject())
+                    ->html($html)
+                    ->text($text);
+            } else {
+                $email = (new Email())
+                    ->from($sender)
+                    ->to($reciever)
+                    //->cc('cc@example.com')
+                    //->bcc('bcc@example.com')
+                    //->replyTo('fabien@example.com')
+                    //->priority(Email::PRIORITY_HIGH)
+                    ->subject($content['name'])
+                    ->html($html)
+                    ->text($text);
+            }
 
             $filenames = [];
             foreach ($message->getAttachments() as $attachment) {
