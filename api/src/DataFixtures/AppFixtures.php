@@ -79,7 +79,7 @@ class AppFixtures extends Fixture
             $service = new Service();
             $service->setType('mailer');
             $service->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
-            $service->setAuthorization($this->params->get('mailgun_key'));
+            $service->setAuthorization('mailgun+api://!changeme!:mail.checking.nu@api.eu.mailgun.net');
             $manager->persist($service);
             $service->setId($id);
             $manager->persist($service);
@@ -96,6 +96,54 @@ class AppFixtures extends Fixture
             $service->setType('mailer');
             $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
             $service->setAuthorization('mailgun+api://!changeme!:mail.westfriesland.commonground.nu@api.eu.mailgun.net');
+            $manager->persist($service);
+            $service->setId($id);
+            $manager->persist($service);
+
+            $manager->flush();
+        }
+        if (
+            strpos($this->params->get('app_domain'), 'commonground.nu') != false ||
+            $this->params->get('app_domain') == 'commonground.nu'
+
+        ) {
+            $id = Uuid::fromString('30a1ccce-6ed5-4647-af04-d319b292e232');
+            $service = new Service();
+            $service->setType('mailer');
+            $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'073741b3-f756-4767-aa5d-240f167ca89d']));
+            $service->setAuthorization('mailgun+api://!changeme!:mail.commonground.nu@api.eu.mailgun.net');
+            $manager->persist($service);
+            $service->setId($id);
+            $manager->persist($service);
+
+            $manager->flush();
+        }
+        if (
+            strpos($this->params->get('app_domain'), 'id-vault.com') != false ||
+            $this->params->get('app_domain') == 'id-vault.com'
+
+        ) {
+            $id = Uuid::fromString('765b1186-1730-4b08-8c15-e6be0886d1fa');
+            $service = new Service();
+            $service->setType('mailer');
+            $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'360e17fb-1a98-48b7-a2a8-212c79a5f51a']));
+            $service->setAuthorization('mailgun+api://!changeme!:mail.id-vault.com@api.eu.mailgun.net');
+            $manager->persist($service);
+            $service->setId($id);
+            $manager->persist($service);
+
+            $manager->flush();
+        }
+        if (
+            strpos($this->params->get('app_domain'), 'conduction.academy') != false ||
+            $this->params->get('app_domain') == 'conduction.academy'
+
+        ) {
+            $id = Uuid::fromString('e0c98e7a-7462-448c-9b25-7d23b81c7190');
+            $service = new Service();
+            $service->setType('mailer');
+            $service->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
+            $service->setAuthorization('mailgun+api://!changeme!:mail.conduction.academy@api.eu.mailgun.net');
             $manager->persist($service);
             $service->setId($id);
             $manager->persist($service);
