@@ -2,11 +2,8 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Application;
-use App\Entity\Image;
-use App\Entity\Organization;
 use App\Entity\SendList;
-use App\Entity\Style;
+use App\Entity\Service;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;

@@ -2,18 +2,8 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Application;
-use App\Entity\Configuration;
-use App\Entity\Image;
-use App\Entity\Menu;
-use App\Entity\MenuItem;
-use App\Entity\Organization;
 use App\Entity\SendList;
 use App\Entity\Service;
-use App\Entity\Slug;
-use App\Entity\Style;
-use App\Entity\Template;
-use App\Entity\TemplateGroup;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
