@@ -52,6 +52,17 @@ class StageFixtures extends Fixture implements DependentFixtureInterface
             return false;
         }
 
+        $id = Uuid::fromString('e0c98e7a-7462-448c-9b25-7d23b81c7190');
+        $service = new Service();
+        $service->setType('mailer');
+        $service->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/4d1eded3-fbdf-438f-9536-8747dd8ab591');
+        $service->setAuthorization('mailgun+api://!changeme!:mail.conduction.academy@api.eu.mailgun.net');
+        $manager->persist($service);
+        $service->setId($id);
+        $manager->persist($service);
+
+        $manager->flush();
+
         $id = Uuid::fromString('8b929e53-1e16-4e59-a254-6af6b550bd08');
         $newsLetterList = new SendList();
         $newsLetterList->setName('Newsletter');

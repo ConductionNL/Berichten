@@ -37,6 +37,17 @@ class CommongroundFixtures extends Fixture
             return false;
         }
 
+        $id = Uuid::fromString('30a1ccce-6ed5-4647-af04-d319b292e232');
+        $service = new Service();
+        $service->setType('mailer');
+        $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'073741b3-f756-4767-aa5d-240f167ca89d']));
+        $service->setAuthorization('mailgun+api://!changeme!:mail.commonground.nu@api.eu.mailgun.net');
+        $manager->persist($service);
+        $service->setId($id);
+        $manager->persist($service);
+
+        $manager->flush();
+
         $id = Uuid::fromString('70061485-7f3b-4b12-8755-30021faea80c');
         $newsLetterList = new SendList();
         $newsLetterList->setName('Newsletter');

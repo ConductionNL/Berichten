@@ -8,8 +8,6 @@ use App\Entity\Image;
 use App\Entity\Menu;
 use App\Entity\MenuItem;
 use App\Entity\Organization;
-use App\Entity\SendList;
-use App\Entity\Service;
 use App\Entity\Slug;
 use App\Entity\Style;
 use App\Entity\Template;
@@ -21,7 +19,7 @@ use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class CheckinFixtures extends Fixture implements DependentFixtureInterface
+class IdVaultFixtures extends Fixture implements DependentFixtureInterface
 {
     private $params;
     /**
@@ -46,33 +44,21 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
     {
         if (
             !$this->params->get('app_build_all_fixtures') &&
-            $this->params->get('app_domain') != 'checking.nu' && strpos($this->params->get('app_domain'), 'checking.nu') == false &&
+            $this->params->get('app_domain') != 'id-vault.com' && strpos($this->params->get('app_domain'), 'id-vault.com') == false &&
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
         }
 
-        $id = Uuid::fromString('eb7ffa01-4803-44ce-91dc-d4e3da7917da');
+        $id = Uuid::fromString('765b1186-1730-4b08-8c15-e6be0886d1fa');
         $service = new Service();
         $service->setType('mailer');
-        $service->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
-        $service->setAuthorization('mailgun+api://!changeme!:mail.checking.nu@api.eu.mailgun.net');
+        $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'360e17fb-1a98-48b7-a2a8-212c79a5f51a']));
+        $service->setAuthorization('mailgun+api://!changeme!:mail.id-vault.com@api.eu.mailgun.net');
         $manager->persist($service);
         $service->setId($id);
         $manager->persist($service);
-
-        $manager->flush();
-
-        $id = Uuid::fromString('98e72bec-e632-4b61-ba0f-53452ffe5ed9');
-        $newsLetterList = new SendList();
-        $newsLetterList->setName('Newsletter');
-        $newsLetterList->setDescription('Newsletter for Checkin');
-        $newsLetterList->setMail(true);
-        $newsLetterList->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
-        $manager->persist($newsLetterList);
-        $newsLetterList->setId($id);
-        $manager->persist($newsLetterList);
 
         $manager->flush();
     }
