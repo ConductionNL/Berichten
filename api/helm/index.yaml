@@ -3,10 +3,10 @@ entries:
   bs:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-11-13T18:48:06.3414688Z"
+    created: "2020-12-03T10:14:08.9760764Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 9597e1681d296385632f79e2c8c1275be691c09e10d6074e1aba166b54eca2e2
+    digest: 0efcbc020c9cc2506dbfcbc26e59f2e6346430479ce0cb9ddffbc1772fbd1a3c
     home: pc.zaakonline.nl
     icon: pc.zaakonline.nl
     name: bs
@@ -16,7 +16,7 @@ entries:
   postgresql:
   - apiVersion: v1
     appVersion: 11.7.0
-    created: "2020-11-13T18:48:06.3616912Z"
+    created: "2020-12-03T10:14:08.9891602Z"
     deprecated: true
     description: DEPRECATED Chart for PostgreSQL, an object-relational database management
       system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
@@ -36,4 +36,4 @@ entries:
     urls:
     - charts/postgresql-8.6.4.tgz
     version: 8.6.4
-generated: "2020-11-13T18:48:06.3322402Z"
+generated: "2020-12-03T10:14:08.9685772Z"
