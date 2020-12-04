@@ -46,7 +46,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $id = Uuid::fromString('eb7ffa01-4803-44ce-91dc-d4e3da7917da');
         $service = new Service();
         $service->setType('mailer');
-        $service->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
+        $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'c571bdad-f34c-4e24-94e7-74629cfaccc9']));
         $service->setAuthorization('mailgun+api://!changeme!:mail.checking.nu@api.eu.mailgun.net');
         $manager->persist($service);
         $service->setId($id);
@@ -59,7 +59,7 @@ class CheckinFixtures extends Fixture implements DependentFixtureInterface
         $newsLetterList->setName('Newsletter');
         $newsLetterList->setDescription('Newsletter for Checkin');
         $newsLetterList->setMail(true);
-        $newsLetterList->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/c571bdad-f34c-4e24-94e7-74629cfaccc9');
+        $newsLetterList->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'c571bdad-f34c-4e24-94e7-74629cfaccc9']));
         $manager->persist($newsLetterList);
         $newsLetterList->setId($id);
         $manager->persist($newsLetterList);
