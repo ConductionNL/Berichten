@@ -50,7 +50,7 @@ class CommongroundFixtures extends Fixture
         $newsLetterList->setName('Newsletter');
         $newsLetterList->setDescription('Newsletter for Commonground.nu');
         $newsLetterList->setMail(true);
-        $newsLetterList->setOrganization('https://dev.zuid-drecht.nl/api/v1/wrc/organizations/073741b3-f756-4767-aa5d-240f167ca89d');
+        $newsLetterList->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'073741b3-f756-4767-aa5d-240f167ca89d']));
         $manager->persist($newsLetterList);
         $newsLetterList->setId($id);
         $manager->persist($newsLetterList);

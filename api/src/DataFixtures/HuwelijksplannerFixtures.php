@@ -34,7 +34,7 @@ class HuwelijksplannerFixtures extends Fixture
         $id = Uuid::fromString('a8b29815-7fdd-45a1-9951-aab9462b4457');
         $service = new Service();
         $service->setType('mailer');
-        $service->setOrganization('https://wrc.huwelijksplanner.online/organizations/68b64145-0740-46df-a65a-9d3259c2fec8');
+        $service->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'68b64145-0740-46df-a65a-9d3259c2fec8']));
         $service->setAuthorization('mailgun+api://key-PLACEHOLDER:mail.huwelijksplanner.online@default');
         $manager->persist($service);
         $service->setId($id);
