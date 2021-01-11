@@ -3191,6 +3191,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[resource]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -3264,6 +3273,22 @@ paths:
             type: string
         -
           name: 'organization[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: resource
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'resource[]'
           in: query
           required: false
           schema:
@@ -6601,8 +6626,12 @@ components:
           description: 'True if this is an phone list.'
           type: boolean
         organization:
-          description: 'A organization in Web Resource Catalogus'
+          description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
           type: string
+        resource:
+          description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+          type: string
+          nullable: true
         dateCreated:
           description: 'The moment this proof was created'
           type: string
@@ -6641,8 +6670,12 @@ components:
           description: 'True if this is an phone list.'
           type: boolean
         organization:
-          description: 'A organization in Web Resource Catalogus'
+          description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
           type: string
+        resource:
+          description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+          type: string
+          nullable: true
         subscribers:
           type: array
           items:
@@ -6681,8 +6714,12 @@ components:
           description: 'True if this is an phone list.'
           type: boolean
         organization:
-          description: 'A organization in Web Resource Catalogus'
+          description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
           type: string
+        resource:
+          description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+          type: string
+          nullable: true
         dateCreated:
           description: 'The moment this proof was created'
           type: string
@@ -6730,8 +6767,12 @@ components:
           description: 'True if this is an phone list.'
           type: boolean
         organization:
-          description: 'A organization in Web Resource Catalogus'
+          description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
           type: string
+        resource:
+          description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+          type: string
+          nullable: true
         subscribers:
           type: array
           items:
@@ -7086,6 +7127,85 @@ definitions:
         type: \Service
       attachments: []
     required: []
+  SendList-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this SendList.'
+        type: string
+        example: 'News email'
+        maxLength: 255
+      description:
+        description: 'The description of this SendList.'
+        type: string
+        example: 'Mailing list for sending news'
+        maxLength: 255
+      mail:
+        description: 'True if this is an mailing list.'
+        type: bool
+        example: 'true'
+      phone:
+        description: 'True if this is an phone list.'
+        type: bool
+        example: 'true'
+      organization:
+        description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
+        type: string
+        example: 'https://dev.id-vault.com/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      resource:
+        description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+        type: string
+        example: 'https://dev.larping.eu/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this proof was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this proof was last Modified'
+        type: \Datetime
+      subscribers: []
+    required:
+      - name
+      - organization
+  SendList-write:
+    properties:
+      name:
+        description: 'The name of this SendList.'
+        type: string
+        example: 'News email'
+        maxLength: 255
+      description:
+        description: 'The description of this SendList.'
+        type: string
+        example: 'Mailing list for sending news'
+        maxLength: 255
+      mail:
+        description: 'True if this is an mailing list.'
+        type: bool
+        example: 'true'
+      phone:
+        description: 'True if this is an phone list.'
+        type: bool
+        example: 'true'
+      organization:
+        description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
+        type: string
+        example: 'https://dev.id-vault.com/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      resource:
+        description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+        type: string
+        example: 'https://dev.larping.eu/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      subscribers: []
+    required:
+      - name
+      - organization
   Service-read:
     properties:
       id:
@@ -7143,75 +7263,6 @@ definitions:
     required:
       - organization
       - authorization
-  SendList-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this SendList.'
-        type: string
-        example: 'News email'
-        maxLength: 255
-      description:
-        description: 'The description of this SendList.'
-        type: string
-        example: 'Mailing list for sending news'
-        maxLength: 255
-      mail:
-        description: 'True if this is an mailing list.'
-        type: bool
-        example: 'true'
-      phone:
-        description: 'True if this is an phone list.'
-        type: bool
-        example: 'true'
-      organization:
-        description: 'A organization in Web Resource Catalogus'
-        type: string
-        example: 'https://dev.zuid-drecht.nl/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this proof was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this proof was last Modified'
-        type: \Datetime
-      subscribers: []
-    required:
-      - name
-      - organization
-  SendList-write:
-    properties:
-      name:
-        description: 'The name of this SendList.'
-        type: string
-        example: 'News email'
-        maxLength: 255
-      description:
-        description: 'The description of this SendList.'
-        type: string
-        example: 'Mailing list for sending news'
-        maxLength: 255
-      mail:
-        description: 'True if this is an mailing list.'
-        type: bool
-        example: 'true'
-      phone:
-        description: 'True if this is an phone list.'
-        type: bool
-        example: 'true'
-      organization:
-        description: 'A organization in Web Resource Catalogus'
-        type: string
-        example: 'https://dev.zuid-drecht.nl/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        maxLength: 255
-      subscribers: []
-    required:
-      - name
-      - organization
   Subscriber-read:
     properties:
       id:
@@ -7243,59 +7294,6 @@ definitions:
       sendLists: []
     required:
       - person
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-12-04 11:58:29'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-12-04 11:58:29'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
   AuditTrail-read:
     properties:
       id:
@@ -7400,12 +7398,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-04 11:58:29'
+        example: '2021-01-11 14:25:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-04 11:58:29'
+        example: '2021-01-11 14:25:15'
     required: []
   AuditTrail-write:
     properties:
@@ -7413,6 +7411,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2021-01-11 14:25:15'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2021-01-11 14:25:15'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -7423,15 +7474,15 @@ tags:
       
       
   -
-    name: Service
-    description: |
-      A service that sends messages e.g. email or sms.
-      
-      
-  -
     name: SendList
     description: |
       SendList is a way for Organizations to send messages through email or phone.
+      
+      
+  -
+    name: Service
+    description: |
+      A service that sends messages e.g. email or sms.
       
       
   -
@@ -7441,13 +7492,13 @@ tags:
       
       
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -7458,15 +7509,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
