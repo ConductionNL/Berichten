@@ -3282,6 +3282,22 @@ paths:
           style: form
           explode: true
         -
+          name: resource
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'resource[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -7382,12 +7398,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-01-11 14:18:33'
+        example: '2021-01-11 14:25:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-01-11 14:18:33'
+        example: '2021-01-11 14:25:15'
     required: []
   AuditTrail-write:
     properties:
@@ -7435,12 +7451,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-01-11 14:18:33'
+        example: '2021-01-11 14:25:15'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-01-11 14:18:33'
+        example: '2021-01-11 14:25:15'
     required: []
   ChangeLog-write:
     properties:
