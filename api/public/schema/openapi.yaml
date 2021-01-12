@@ -7127,6 +7127,63 @@ definitions:
         type: \Service
       attachments: []
     required: []
+  Service-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
+        example: smtp
+        maxLength: 255
+      organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
+        example: '002851234'
+        maxLength: 255
+      authorization:
+        description: 'The autorization be it password or api key that is used to connect to the service'
+        type: string
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
+      configuration:
+        description: 'Any specific setting for this service'
+        type: array
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+    required:
+      - organization
+      - authorization
+  Service-write:
+    properties:
+      type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
+        example: smtp
+        maxLength: 255
+      organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
+        example: '002851234'
+        maxLength: 255
+      authorization:
+        description: 'The autorization be it password or api key that is used to connect to the service'
+        type: string
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
+      configuration:
+        description: 'Any specific setting for this service'
+        type: array
+    required:
+      - organization
+      - authorization
   SendList-read:
     properties:
       id:
@@ -7206,63 +7263,6 @@ definitions:
     required:
       - name
       - organization
-  Service-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      type:
-        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
-        type: string
-        example: smtp
-        maxLength: 255
-      organization:
-        description: 'The RSIN of the organization that ownes this service'
-        type: string
-        example: '002851234'
-        maxLength: 255
-      authorization:
-        description: 'The autorization be it password or api key that is used to connect to the service'
-        type: string
-        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
-        maxLength: 255
-      configuration:
-        description: 'Any specific setting for this service'
-        type: array
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \Datetime
-    required:
-      - organization
-      - authorization
-  Service-write:
-    properties:
-      type:
-        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
-        type: string
-        example: smtp
-        maxLength: 255
-      organization:
-        description: 'The RSIN of the organization that ownes this service'
-        type: string
-        example: '002851234'
-        maxLength: 255
-      authorization:
-        description: 'The autorization be it password or api key that is used to connect to the service'
-        type: string
-        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
-        maxLength: 255
-      configuration:
-        description: 'Any specific setting for this service'
-        type: array
-    required:
-      - organization
-      - authorization
   Subscriber-read:
     properties:
       id:
@@ -7294,6 +7294,59 @@ definitions:
       sendLists: []
     required:
       - person
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2021-01-12 09:08:39'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2021-01-12 09:08:39'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -7398,12 +7451,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-01-12 08:33:37'
+        example: '2021-01-12 09:08:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-01-12 08:33:37'
+        example: '2021-01-12 09:08:39'
     required: []
   AuditTrail-write:
     properties:
@@ -7411,59 +7464,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2021-01-12 08:33:37'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2021-01-12 08:33:37'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -7474,15 +7474,15 @@ tags:
       
       
   -
-    name: SendList
-    description: |
-      SendList is a way for Organizations to send messages through email or phone.
-      
-      
-  -
     name: Service
     description: |
       A service that sends messages e.g. email or sms.
+      
+      
+  -
+    name: SendList
+    description: |
+      SendList is a way for Organizations to send messages through email or phone.
       
       
   -
@@ -7492,13 +7492,13 @@ tags:
       
       
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
@@ -7509,15 +7509,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
