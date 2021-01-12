@@ -33,7 +33,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"claim.id": "exact"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "organization": "exact",
+ *     "resource": "exact"
+ * })
  */
 class SendList
 {
@@ -103,9 +106,9 @@ class SendList
     private $phone = false;
 
     /**
-     * @var string A organization in Web Resource Catalogus
+     * @var string An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)
      *
-     * @example https://dev.zuid-drecht.nl/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7
+     * @example https://dev.id-vault.com/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7
      *
      * @Gedmo\Versioned
      * @Assert\Length(
@@ -116,6 +119,20 @@ class SendList
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $organization;
+
+    /**
+     * @var string A extra resource (Mostly used if this list is for an organization in a id-vault application)
+     *
+     * @example https://dev.larping.eu/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resource;
 
     /**
      * @var Datetime The moment this proof was created
@@ -215,6 +232,18 @@ class SendList
     public function setOrganization(string $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    public function getResource(): ?string
+    {
+        return $this->resource;
+    }
+
+    public function setResource(string $resource): self
+    {
+        $this->resource = $resource;
 
         return $this;
     }
