@@ -10,6 +10,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\SubscriberRepository;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,8 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class, properties={
- *     "claim.id": "exact",
- *     "person": "exact"
+ *     "email": "exact"
  * })
  */
 class Subscriber
@@ -55,9 +55,9 @@ class Subscriber
     private $id;
 
     /**
-     * @var string A contact in Contact Catalogus
+     * @var string email of the subscriber
      *
-     * @example https://dev.zuid-drecht.nl/api/v1/cc/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7
+     * @example test@conduction.nl
      *
      * @Gedmo\Versioned
      * @Assert\Length(
@@ -67,7 +67,37 @@ class Subscriber
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private $person;
+    private $email;
+
+    /**
+     * @var DateTime The moment the invite was send
+     *
+     * @example 20190101
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateInvited;
+
+    /**
+     * @var DateTime The moment the invite was accepted by the organization
+     *
+     * @example 20190101
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateAcceptedOrganization;
+
+    /**
+     * @var DateTime The moment the invite was accepted by the user
+     *
+     * @example 20190101
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateAcceptedUser;
 
     /**
      * @var Datetime The moment this proof was created
@@ -111,14 +141,14 @@ class Subscriber
         return $this;
     }
 
-    public function getPerson(): ?string
+    public function getEmail(): ?string
     {
-        return $this->person;
+        return $this->email;
     }
 
-    public function setPerson(string $person): self
+    public function setEmail(string $email): self
     {
-        $this->person = $person;
+        $this->email = $email;
 
         return $this;
     }
@@ -143,6 +173,42 @@ class Subscriber
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    public function getDateAcceptedUser(): ?\DateTimeInterface
+    {
+        return $this->dateAcceptedUser;
+    }
+
+    public function setDateAcceptedUser(DateTimeInterface $dateAcceptedUser): self
+    {
+        $this->dateAcceptedUser = $dateAcceptedUser;
+
+        return $this;
+    }
+
+    public function getDateAcceptedOrganization(): ?\DateTimeInterface
+    {
+        return $this->dateAcceptedOrganization;
+    }
+
+    public function setDateAcceptedOrganization(DateTimeInterface $dateAcceptedOrganization): self
+    {
+        $this->dateAcceptedOrganization = $dateAcceptedOrganization;
+
+        return $this;
+    }
+
+    public function getDateInvited(): ?\DateTimeInterface
+    {
+        return $this->dateInvited;
+    }
+
+    public function setDateInvited(DateTimeInterface $dateInvited): self
+    {
+        $this->dateInvited = $dateInvited;
 
         return $this;
     }

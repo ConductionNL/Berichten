@@ -15,7 +15,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "58c841b2-c570-4a16-a3ad-f009bab53541",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -251,7 +250,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "60152ab1-59ee-4bbf-9876-dfcffaee73bd",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -289,6 +287,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -333,10 +346,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"type\": \"messagebird\",\r\n\t\"organization\": \"002851234\",\r\n\t\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\t\"configuration\": [\"string\"]\r\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\r\n\t\"type\": \"messagebird\",\r\n\t\"organization\": \"002851234\",\r\n\t\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\t\"configuration\": [\"string\"]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/services",
@@ -550,8 +560,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "services/{id}",
@@ -562,7 +571,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "20c793d1-33ef-472e-93ef-4b798ecb06c7",
 								"exec": [
 									"// example using pm.response.to.have",
 									"pm.test(\"response is ok\", function () {",
@@ -589,6 +597,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -843,7 +866,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0c4faa2c-07f4-442d-891b-cc24ad157cb4",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -870,6 +892,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -914,10 +951,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"type\": \"mailer\",\r\n\t\"organization\": \"002851234\",\r\n\t\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\t\"configuration\": [\"string\"]\r\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\r\n\t\"type\": \"mailer\",\r\n\t\"organization\": \"002851234\",\r\n\t\"authorization\": \"013276cc-1483-46b4-ad5b-1cba5acf6d9f\",\r\n\t\"configuration\": [\"string\"]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/services/{{service}}",
@@ -1155,7 +1189,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1b3f1086-ae04-44c6-b008-01e86dbe3c7c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1165,15 +1198,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c9ebadf8-410a-48ce-95ba-8e73795cb21a",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "messages",
@@ -1184,7 +1215,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "02db8d27-4e83-4ce5-81a1-2a40ac02c8b9",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -1420,7 +1450,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "48097f0f-7bf3-4932-8cad-34ab3b4bcce2",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -1458,6 +1487,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1502,10 +1546,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"reciever\": \"https://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"sender\": \"https://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"content\": \"http://wrc.dev.zuid-drecht.nl/templates/01cb91e9-7211-45b8-aee9-6f044f3b41dc\",\r\n\"externalServiceId\": \"013276cc-1483-46b4-ad5b-1cbcf69f\",\r\n\"send\": null,\r\n\"status\": \"concept\",\r\n\"service\":\"/services/{{service}}\"\r\n\r\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\r\n\"reciever\": \"https://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"sender\": \"https://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"content\": \"http://wrc.dev.zuid-drecht.nl/templates/01cb91e9-7211-45b8-aee9-6f044f3b41dc\",\r\n\"externalServiceId\": \"013276cc-1483-46b4-ad5b-1cbcf69f\",\r\n\"send\": null,\r\n\"status\": \"concept\",\r\n\"service\":\"/services/{{service}}\"\r\n\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/messages",
@@ -1719,8 +1760,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "messages/{id}",
@@ -1731,7 +1771,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8d4ecd0a-7903-4560-bb3a-2059e2ab9b78",
 								"exec": [
 									"// example using pm.response.to.have",
 									"pm.test(\"response is ok\", function () {",
@@ -1758,6 +1797,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -2012,7 +2066,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "57f27bed-4336-45ca-95ad-53512d5f0b25",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -2039,6 +2092,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -2083,10 +2151,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"reciever\": \"http://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"sender\": \"http://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"content\": \"http://wrc.dev.zuid-drecht.nl/templates/01cb91e9-7211-45b8-aee9-6f044f3b41dc\",\r\n\"externalServiceId\": \"013276cc-1483-46b4-ad5b-1cbcf69f\",\r\n\"send\": null,\r\n\"status\": \"concept\",\r\n\"service\":\"/services/{{service}}\"\r\n\r\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\r\n\"reciever\": \"http://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"sender\": \"http://cc.dev.zuid-drecht.nl/people/f7f9afcf-9aaf-4e36-8911-4cf1ebf3270f\",\r\n\"content\": \"http://wrc.dev.zuid-drecht.nl/templates/01cb91e9-7211-45b8-aee9-6f044f3b41dc\",\r\n\"externalServiceId\": \"013276cc-1483-46b4-ad5b-1cbcf69f\",\r\n\"send\": null,\r\n\"status\": \"concept\",\r\n\"service\":\"/services/{{service}}\"\r\n\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/messages/{{message}}",
@@ -2319,8 +2384,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "send_lists",
@@ -2331,7 +2395,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2b2702e5-09ef-427f-b4bf-6bd2018222d7",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -2431,6 +2494,13 @@
 							],
 							"path": [
 								"send_lists"
+							],
+							"query": [
+								{
+									"key": "organization",
+									"value": "https://dev.zuid-drecht.nl/api/v1/wrc/organizations/4d1eded3-fbdf-438f-9536-8747dd8ab591",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -2442,7 +2512,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d98166c9-f316-4f6a-ba21-1050c4332cc8",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -2479,6 +2548,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -2523,10 +2607,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/360e17fb-1a98-48b7-a2a8-212c79a5f51a\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/360e17fb-1a98-48b7-a2a8-212c79a5f51a\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/send_lists",
@@ -2742,8 +2823,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "send_lists/{id}",
@@ -2754,7 +2834,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3b3499a7-1303-46ff-be0c-a6d8cf848b62",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -2781,6 +2860,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -3036,7 +3130,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1c246c98-b825-4b7f-9e21-98c00f5880a1",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -3063,6 +3156,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -3107,10 +3215,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/360e17fb-1a98-48b7-a2a8-212c79a5f51a\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"News email\",\n    \"description\": \"Mailing list for sending news\",\n    \"mail\": true,\n    \"organization\": \"https://dev.zuid-drecht.nl/api/v1/wrc/organizations/360e17fb-1a98-48b7-a2a8-212c79a5f51a\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/send_lists/{{send_list}}",
@@ -3345,8 +3450,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "subscribers",
@@ -3357,7 +3461,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ef2b0b29-c4c9-45d5-94de-36473e1b4a93",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -3384,6 +3487,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -3453,7 +3571,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "94f7c602-ad93-4aec-bc5a-dce3d7a8186c",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -3549,10 +3666,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"person\": \"https://dev.zuid-drecht.nl/api/v1/cc/people/499aedcd-5bfe-4718-a785-7d0a1764eb0b\",\n    \"sendLists\": [\n        \"/send_lists/{{send_list}}\"\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"email\": \"test@mail.com\",\n    \"sendLists\": [\n        \"/send_lists/{{send_list}}\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/subscribers",
@@ -3768,8 +3882,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "subscribers/{id}",
@@ -3780,7 +3893,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "beb15a51-14d1-410f-a727-2ec6016a15d9",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -3807,6 +3919,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -4062,7 +4189,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4534330c-61b5-454a-92be-829dad5e2a76",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -4089,6 +4215,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -4133,10 +4274,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"person\": \"https://dev.zuid-drecht.nl/api/v1/cc/people/499aedcd-5bfe-4718-a785-7d0a1764eb0b\",\n    \"sendLists\": [\n        \"/send_lists/{{send_list}}\"\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"email\": \"test@mail.com\",\n    \"sendLists\": [\n        \"/send_lists/{{send_list}}\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/subscribers/{{subscriber}}",
@@ -4371,8 +4509,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "cleanup",
@@ -4383,7 +4520,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "44de3b4b-5b94-4a0f-a4ce-d6e6aa2e9f63",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -4396,6 +4532,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -4651,7 +4802,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "86ce6a43-d1be-4695-9afd-96be65d5a10c",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -4664,6 +4814,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -4919,7 +5084,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5f1ea515-cf92-48fe-98e4-b03c3edd97ac",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -4932,6 +5096,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -5187,7 +5366,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c690bdbc-6b1a-48ff-949a-74ed962dfc3c",
 								"exec": [
 									"// example using pm.response.to.have\r",
 									"pm.test(\"response is ok\", function () {\r",
@@ -5200,6 +5378,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -5449,8 +5642,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"auth": {
@@ -5472,7 +5664,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "4ed4a522-049e-4fa6-b556-194e5cc36894",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -5482,7 +5673,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "624ed1a0-d3c6-4083-bf1b-cdfcfd2ce329",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -5492,15 +5682,12 @@
 	],
 	"variable": [
 		{
-			"id": "cc76b174-6bb4-4a5b-b11c-e14b5fbc20e2",
 			"key": "baseUrl",
 			"value": "localhost"
 		},
 		{
-			"id": "be56d910-e2af-4fff-9b6c-29f78058e96e",
 			"key": "authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
