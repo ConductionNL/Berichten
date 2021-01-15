@@ -7,6 +7,7 @@ use App\Entity\Subscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -22,26 +23,27 @@ class SubscriberSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::VIEW => ['subscriber', EventPriorities::PRE_SERIALIZE],
+            KernelEvents::VIEW => ['subscriber', EventPriorities::PRE_VALIDATE],
         ];
     }
 
     public function subscriber(ViewEvent $event)
     {
         $subscriber = $event->getControllerResult();
+        $method = $event->getRequest()->getMethod();
         $route = $event->getRequest()->attributes->get('_route');
 
-        if ($route != 'api_subscribers_post_collection') {
+        if (($route != 'api_subscribers_post_collection') || (Request::METHOD_POST !== $method)) {
             return;
         }
         if ($subscriber instanceof Subscriber) {
             if (!$subscriber->getResource() && !$subscriber->getEmail()) {
                 throw new Exception('email & resource: Deze waardes mogen niet beide null zijn.');
             }
-            if ($newSubscriber = $this->em->getRepository(Subscriber::class)->findOneBy(['email' => $subscriber->getEmail()])) {
+            if ($subscriber->getEmail() and $route == 'api_subscribers_post_collection' and $newSubscriber = $this->em->getRepository(Subscriber::class)->findOneBy(['email' => $subscriber->getEmail()])) {
                 throw new Exception('There already is a subscriber with this email.');
             }
-            if ($newSubscriber = $this->em->getRepository(Subscriber::class)->findOneBy(['resource' => $subscriber->getResource()])) {
+            if ($subscriber->getResource() and $route == 'api_subscribers_post_collection' and $newSubscriber = $this->em->getRepository(Subscriber::class)->findOneBy(['resource' => $subscriber->getResource()])) {
                 throw new Exception('There already is a subscriber with this resource.');
             }
         }
