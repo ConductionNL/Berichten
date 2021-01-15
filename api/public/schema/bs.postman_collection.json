@@ -3666,7 +3666,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"aSuperRandomEmailToMakeSureThisIsNotAnExistingSubscriberForPostmanTests@mail.com\",\n    \"sendLists\": [\n        \"/send_lists/d5b488d1-9c6c-4fd8-adc0-4b19995e9f63\"\n    ]\n}"
+							"raw": "{\n    \"email\": \"aSuperRandomEmailToMakeSureThisIsNotAnExistingSubscriberForPostmanTests@mail.com\",\n    \"sendLists\": [\n        \"/send_lists/{{send_list}}\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/subscribers",
