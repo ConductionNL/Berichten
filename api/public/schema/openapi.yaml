@@ -5128,7 +5128,43 @@ paths:
               - asc
               - desc
         -
-          name: 'order[person]'
+          name: 'order[email]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[resource]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateInvited]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateAcceptedOrganization]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateAcceptedUser]'
           in: query
           required: false
           schema:
@@ -5154,6 +5190,78 @@ paths:
             enum:
               - asc
               - desc
+        -
+          name: 'dateInvited[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateInvited[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateInvited[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateInvited[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedOrganization[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedOrganization[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedOrganization[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedOrganization[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedUser[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedUser[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedUser[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateAcceptedUser[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: 'dateCreated[before]'
           in: query
@@ -5203,13 +5311,29 @@ paths:
           schema:
             type: string
         -
-          name: person
+          name: email
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'person[]'
+          name: 'email[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: resource
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'resource[]'
           in: query
           required: false
           schema:
@@ -6928,9 +7052,31 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
-        person:
-          description: 'A contact in Contact Catalogus'
+        email:
+          description: 'email of the subscriber'
           type: string
+          nullable: true
+        resource:
+          description: 'resource of this subscriber, for example: wac/group, uc/user or cc/person'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        dateInvited:
+          description: 'The moment the invite was send'
+          type: string
+          format: date-time
+          nullable: true
+        dateAcceptedOrganization:
+          description: 'The moment the invite was accepted by the organization'
+          type: string
+          format: date-time
+          nullable: true
+        dateAcceptedUser:
+          description: 'The moment the invite was accepted by the user'
+          type: string
+          format: date-time
+          nullable: true
         dateCreated:
           description: 'The moment this proof was created'
           type: string
@@ -6946,20 +7092,37 @@ components:
           items:
             $ref: '#/components/schemas/SendList-read'
       required:
-        - person
+        - sendLists
     Subscriber-write:
       type: object
       description: 'SendList is a way for Applications to send messages through email or phone.'
-      required:
-        - person
       properties:
-        person:
-          description: 'A contact in Contact Catalogus'
+        email:
+          description: 'email of the subscriber'
           type: string
+          nullable: true
+        resource:
+          description: 'resource of this subscriber, for example: wac/group, uc/user or cc/person'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        dateAcceptedOrganization:
+          description: 'The moment the invite was accepted by the organization'
+          type: string
+          format: date-time
+          nullable: true
+        dateAcceptedUser:
+          description: 'The moment the invite was accepted by the user'
+          type: string
+          format: date-time
+          nullable: true
         sendLists:
           type: array
           items:
             $ref: '#/components/schemas/SendList-write'
+      required:
+        - sendLists
     'Subscriber:jsonld-read':
       type: object
       description: 'SendList is a way for Applications to send messages through email or phone.'
@@ -6980,9 +7143,31 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
-        person:
-          description: 'A contact in Contact Catalogus'
+        email:
+          description: 'email of the subscriber'
           type: string
+          nullable: true
+        resource:
+          description: 'resource of this subscriber, for example: wac/group, uc/user or cc/person'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        dateInvited:
+          description: 'The moment the invite was send'
+          type: string
+          format: date-time
+          nullable: true
+        dateAcceptedOrganization:
+          description: 'The moment the invite was accepted by the organization'
+          type: string
+          format: date-time
+          nullable: true
+        dateAcceptedUser:
+          description: 'The moment the invite was accepted by the user'
+          type: string
+          format: date-time
+          nullable: true
         dateCreated:
           description: 'The moment this proof was created'
           type: string
@@ -6998,12 +7183,10 @@ components:
           items:
             $ref: '#/components/schemas/SendList:jsonld-read'
       required:
-        - person
+        - sendLists
     'Subscriber:jsonld-write':
       type: object
       description: 'SendList is a way for Applications to send messages through email or phone.'
-      required:
-        - person
       properties:
         '@context':
           readOnly: true
@@ -7014,13 +7197,32 @@ components:
         '@type':
           readOnly: true
           type: string
-        person:
-          description: 'A contact in Contact Catalogus'
+        email:
+          description: 'email of the subscriber'
           type: string
+          nullable: true
+        resource:
+          description: 'resource of this subscriber, for example: wac/group, uc/user or cc/person'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        dateAcceptedOrganization:
+          description: 'The moment the invite was accepted by the organization'
+          type: string
+          format: date-time
+          nullable: true
+        dateAcceptedUser:
+          description: 'The moment the invite was accepted by the user'
+          type: string
+          format: date-time
+          nullable: true
         sendLists:
           type: array
           items:
             $ref: '#/components/schemas/SendList:jsonld-write'
+      required:
+        - sendLists
 definitions:
   Message-read:
     properties:
@@ -7270,11 +7472,29 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      person:
-        description: 'A contact in Contact Catalogus'
+      email:
+        description: 'email of the subscriber'
         type: string
-        example: 'https://dev.zuid-drecht.nl/api/v1/cc/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        example: test@conduction.nl
         maxLength: 255
+      resource:
+        description: 'resource of this subscriber, for example: wac/group, uc/user or cc/person'
+        type: string
+        example: 'https://id-vault.com/api/v1/wac/groups/cd48e62a-0a5b-4ace-a519-01321a928dd0'
+        format: url
+        maxLength: 255
+      dateInvited:
+        description: 'The moment the invite was send'
+        type: \DateTime
+        example: '20190101'
+      dateAcceptedOrganization:
+        description: 'The moment the invite was accepted by the organization'
+        type: \DateTime
+        example: '20190101'
+      dateAcceptedUser:
+        description: 'The moment the invite was accepted by the user'
+        type: \DateTime
+        example: '20190101'
       dateCreated:
         description: 'The moment this proof was created'
         type: \Datetime
@@ -7283,17 +7503,31 @@ definitions:
         type: \Datetime
       sendLists: []
     required:
-      - person
+      - sendLists
   Subscriber-write:
     properties:
-      person:
-        description: 'A contact in Contact Catalogus'
+      email:
+        description: 'email of the subscriber'
         type: string
-        example: 'https://dev.zuid-drecht.nl/api/v1/cc/people/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        example: test@conduction.nl
         maxLength: 255
+      resource:
+        description: 'resource of this subscriber, for example: wac/group, uc/user or cc/person'
+        type: string
+        example: 'https://id-vault.com/api/v1/wac/groups/cd48e62a-0a5b-4ace-a519-01321a928dd0'
+        format: url
+        maxLength: 255
+      dateAcceptedOrganization:
+        description: 'The moment the invite was accepted by the organization'
+        type: \DateTime
+        example: '20190101'
+      dateAcceptedUser:
+        description: 'The moment the invite was accepted by the user'
+        type: \DateTime
+        example: '20190101'
       sendLists: []
     required:
-      - person
+      - sendLists
   ChangeLog-read:
     properties:
       id:
@@ -7332,12 +7566,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-01-12 09:08:39'
+        example: '2021-01-15 15:18:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-01-12 09:08:39'
+        example: '2021-01-15 15:18:13'
     required: []
   ChangeLog-write:
     properties:
@@ -7451,12 +7685,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-01-12 09:08:39'
+        example: '2021-01-15 15:18:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-01-12 09:08:39'
+        example: '2021-01-15 15:18:13'
     required: []
   AuditTrail-write:
     properties:
