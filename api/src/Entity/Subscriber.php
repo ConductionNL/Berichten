@@ -35,7 +35,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class, properties={
- *     "email": "exact"
+ *     "email": "exact",
+ *     "resource": "exact"
  * })
  */
 class Subscriber
@@ -64,10 +65,24 @@ class Subscriber
      *      max = 255
      * )
      * @Groups({"read", "write"})
-     * @Assert\NotNull
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
+
+    /**
+     * @var string resource of this subscriber, for example: wac/group, uc/user or cc/person
+     *
+     * @example https://id-vault.com/api/v1/wac/groups/cd48e62a-0a5b-4ace-a519-01321a928dd0
+     *
+     * @Assert\Url
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resource;
 
     /**
      * @var DateTime The moment the invite was send
@@ -119,8 +134,10 @@ class Subscriber
 
     /**
      * @Groups({"read","write"})
+     * @Assert\NotNull
      * @MaxDepth(1)
      * @ORM\ManyToMany(targetEntity=SendList::class, mappedBy="subscribers")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $sendLists;
 
@@ -149,6 +166,18 @@ class Subscriber
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getResource(): ?string
+    {
+        return $this->resource;
+    }
+
+    public function setResource(string $resource): self
+    {
+        $this->resource = $resource;
 
         return $this;
     }
