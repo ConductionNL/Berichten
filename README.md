@@ -76,6 +76,8 @@ Credits
 
 Information about the authors of this component can be found [here](AUTHORS.md)
 
+Credits
+----
 
 
 
