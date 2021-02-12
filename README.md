@@ -1,7 +1,6 @@
 # About this component
 
-Het "berichten" component is ontwikkeld voor de gemeente Utrecht en heeft als doel het functionele berichten verkeer te faciliteren. Denk hierbij aan berichten via een email naar een klant waar een, mogelijk sjabloon in gebruikt wordt.
-
+The "messages" (berichten) component has been developed for the municipality of Utrecht and aims to facilitate functional message traffic. Think of messages via an email to a customer where a possible template is used.
 ## Documentation
 
 - [Installation manual](https://github.com/ConductionNL/love-common-ground/blob/master/INSTALLATION.md).
