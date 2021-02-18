@@ -1,8 +1,9 @@
+
 # berichtservice
 
 Description
 ----
-Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.
+The "messages" component has been developed for the municipality of Utrecht and aims to facilitate functional message traffic. Think of messages via an email to a customer where a possible template is used.
 
 Additional Information
 ----
@@ -30,7 +31,8 @@ As a haven compliant commonground component this component is installable on kub
 ```CLI
 $ helm install [name] ./api/helm --kubeconfig kubeconfig.yaml --namespace [name] --set settings.env=prod,settings.debug=0,settings.cache=1
 ```
-For an in depth installation guide you can refer to the [installation guide](/api/helm) contained with the helm files, it also contains a short tutorial on getting your cluster ready to expose your installation to the world
+
+For an in depth installation guide you can refer to the [installation guide](INSTALLATION.md), it also contains a short tutorial on getting your cluster ready to expose your installation to the world
 
 Standards
 ----
@@ -75,5 +77,8 @@ But most imporantly, welcome! We strife to keep an active community at [commongr
 Credits
 ----
 Information about the authors of this component can be found [here](AUTHORS.md)
+
+Credits
+----
 
 Copyright © [Utrecht](https://www.utrecht.nl/) 2019
