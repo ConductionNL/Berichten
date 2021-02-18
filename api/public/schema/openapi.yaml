@@ -1,16 +1,16 @@
 openapi: 3.0.2
 info:
-  title: 'Berichten Service'
+  title: ''
   version: V1.0
   description: |
     API Details
-    - Component: Berichten Service
-    - Reference: bs
+    - Component: 
+    - Reference: berichtservice
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/berichtservice) / [zip](https://github.com/ConductionNL/berichtservice/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/bs-php) 
-    - Datamodel: [postman](/schema/bs.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
+    - Docker Image: [online]() 
+    - Datamodel: [postman](/schema/berichtservice.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
@@ -7632,12 +7632,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-16 22:23:54'
+        example: '2021-02-18 12:04:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-16 22:23:54'
+        example: '2021-02-18 12:04:56'
     required: []
   AuditTrail-write:
     properties:
@@ -7685,12 +7685,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-16 22:23:54'
+        example: '2021-02-18 12:04:56'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-16 22:23:54'
+        example: '2021-02-18 12:04:56'
     required: []
   ChangeLog-write:
     properties:
@@ -7756,7 +7756,7 @@ host: irc.zaakonline.nl
 servers:
   -
     name: zuid-drecht.nl
-    url: bs.dev.zuid-drecht.nl
+    url: berichtservice.dev.zuid-drecht.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
