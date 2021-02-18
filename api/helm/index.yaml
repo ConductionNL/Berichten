@@ -1,22 +1,35 @@
 apiVersion: v1
 entries:
-  bs:
+  berichtservice:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-02-18T18:11:46.7258511Z"
+    created: "2021-02-18T21:16:42.370995Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 00cea3d441a957dc91a221b35b8349c6e63e43650cb84de4ced32e6b1de4101f
-    home: pc.zaakonline.nl
-    icon: pc.zaakonline.nl
-    name: bs
+    digest: 8f76b11013bd8a2699bea6f3417fd1844f2a35bce65434342bada2d1f1cfd23f
+    home: https://www.conduction.nl
+    icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
+    keywords:
+    - commonground
+    - haven
+    - nlx
+    - component
+    maintainers:
+    - email: ruben@conduction.nl
+      name: Ruben van der Linde
+    - email: info@conduction.nl
+      name: Conduction
+    name: berichtservice
+    sources:
+    - https://commonground.conduction.nl/
+    - https://www.commonground.nl/
     urls:
-    - bs-0.1.0.tgz
+    - berichtservice-0.1.0.tgz
     version: 0.1.0
   postgresql:
   - apiVersion: v1
     appVersion: 11.7.0
-    created: "2021-02-18T18:11:46.7373839Z"
+    created: "2021-02-18T21:16:42.3786385Z"
     deprecated: true
     description: DEPRECATED Chart for PostgreSQL, an object-relational database management
       system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
@@ -36,4 +49,4 @@ entries:
     urls:
     - charts/postgresql-8.6.4.tgz
     version: 8.6.4
-generated: "2021-02-18T18:11:46.7214945Z"
+generated: "2021-02-18T21:16:42.3628469Z"
