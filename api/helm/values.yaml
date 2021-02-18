@@ -11,8 +11,8 @@ settings:
   repro: https://github.com/ConductionNL/berichtservice
   demo: bs.zaakonline.nl
   domain: zuid-drecht.nl
-  subdomain: bs
-  subpath: bs
+  subdomain: berichtservice
+  subpath: berichtservice
   subpathRouting: true
   env: dev
   web: false
