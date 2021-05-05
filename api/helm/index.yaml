@@ -3,10 +3,10 @@ entries:
   berichtservice:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-03-01T19:15:22.329875Z"
+    created: "2021-05-05T11:20:56.6529967Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 8d890dda8c73ed9d539fb157688d8007a750545ac4e67bbb1fea2fc58d8f8950
+    digest: e6691d0450539930bd433ebe86b26f7d87625b5a5d4c2c9dcd49e5a690599005
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -29,7 +29,7 @@ entries:
   postgresql:
   - apiVersion: v1
     appVersion: 11.7.0
-    created: "2021-03-01T19:15:22.3414642Z"
+    created: "2021-05-05T11:20:56.6562899Z"
     deprecated: true
     description: DEPRECATED Chart for PostgreSQL, an object-relational database management
       system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
@@ -49,4 +49,4 @@ entries:
     urls:
     - charts/postgresql-8.6.4.tgz
     version: 8.6.4
-generated: "2021-03-01T19:15:22.3198516Z"
+generated: "2021-05-05T11:20:56.6478123Z"
