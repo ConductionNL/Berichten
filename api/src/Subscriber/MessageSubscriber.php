@@ -3,7 +3,6 @@
 namespace App\Subscriber;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
-use App\Entity\Message;
 use App\Service\MailService;
 use App\Service\MessageService;
 use Doctrine\ORM\EntityManagerInterface;
