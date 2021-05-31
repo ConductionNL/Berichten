@@ -18,3 +18,4 @@ exclude:
     - /api/vendor/.*
     - /api/src/Entity/.*
     - /api/src/DataFixtures/.*
+    - /api/src/Repository/.*
