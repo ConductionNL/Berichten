@@ -5,6 +5,12 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/ConductionNL/berichtservice?branch=master)](https://bettercodehub.com/)
 
 [comment]: <> ([![FOSSA Status]&#40;https://app.fossa.com/api/projects/git%2Bgithub.com%2FConductionNL%2Fberichtservice.svg?type=shield&#41;]&#40;https://app.fossa.com/projects/git%2Bgithub.com%2FConductionNL%2Fberichtservice?ref=badge_shield&#41;)
+[![BCH compliance](https://bettercodehub.com/edge/badge/ConductionNL/berichtservice?branch=master)](https://bettercodehub.com/results/ConductionNL/berichtservice)
+[![StyleCI](https://github.styleci.io/repos/206144502/shield?branch=master)](https://github.styleci.io/repos/206144502)
+[![Docker Image CI](https://github.com/ConductionNL/berichtservice/actions/workflows/dockerimage.yml/badge.svg)](https://github.com/ConductionNL/berichtservice/actions/workflows/dockerimage.yml)
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/berichtservice)](https://artifacthub.io/packages/helm/berichtservice/berichtservice)
+[![Componenten Catalogus](https://img.shields.io/badge/vng--componentencatalogus-posted-green)](https://componentencatalogus.commonground.nl/componenten/30?)
+
 [comment]: <> ([![codecov]&#40;https://codecov.io/gh/ConductionNL/berichtservice/branch/master/graph/badge.svg?token=UP5F3S1SVS&#41;]&#40;https://codecov.io/gh/ConductionNL/berichtservice&#41;)
 [![Status badge](https://shields.api-test.nl/endpoint.svg?style=for-the-badge&url=https%3A//api-test.nl/api/v1/provider-latest-badge/0d7ac3f7-52e1-477b-9aee-d871a4b793f6/)](https://api-test.nl/server/4/1222a5b4-7faa-433b-8bdd-d0bc0fd9f829/0d7ac3f7-52e1-477b-9aee-d871a4b793f6/latest/)
 
