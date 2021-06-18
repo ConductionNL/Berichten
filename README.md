@@ -1,8 +1,4 @@
 # berichtservice
-[![StyleCI](https://github.styleci.io/repos/206144502/shield?branch=master)](https://github.styleci.io/repos/206144502?branch=master)
-[![Docker Image CI](https://github.com/ConductionNL/berichtservice/workflows/Docker%20Image%20CI/badge.svg?branch=master)](https://github.com/ConductionNL/berichtservice/actions?query=workflow%3A"Docker+Image+CI")
-[![Artifacthub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/berichtenservice)](https://artifacthub.io/packages/helm/berichtenservice/berichtenservice)
-[![BCH compliance](https://bettercodehub.com/edge/badge/ConductionNL/berichtservice?branch=master)](https://bettercodehub.com/)
 
 [comment]: <> ([![FOSSA Status]&#40;https://app.fossa.com/api/projects/git%2Bgithub.com%2FConductionNL%2Fberichtservice.svg?type=shield&#41;]&#40;https://app.fossa.com/projects/git%2Bgithub.com%2FConductionNL%2Fberichtservice?ref=badge_shield&#41;)
 [![BCH compliance](https://bettercodehub.com/edge/badge/ConductionNL/berichtservice?branch=master)](https://bettercodehub.com/results/ConductionNL/berichtservice)
