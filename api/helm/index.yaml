@@ -3,10 +3,17 @@ entries:
   berichtservice:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-06-16T11:18:43.3421354Z"
-    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
-      beschikbaar.
-    digest: 02816f89e83a85f092a20998be2e0036afdabbd77d89bca615a6e699952fcc36
+    created: "2021-06-21T08:06:03.345022Z"
+    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld
+      aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert
+      het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings),
+      als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen
+      van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails
+      en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route
+      en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren,
+      als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird,
+      etc)
+    digest: 4c9cf55fcdad20c79b7bf9f10984eb8fc69b8ecd07a53dbe7ad4625323e5079a
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -29,7 +36,7 @@ entries:
   postgresql:
   - apiVersion: v1
     appVersion: 11.7.0
-    created: "2021-06-16T11:18:43.3637731Z"
+    created: "2021-06-21T08:06:03.3497034Z"
     deprecated: true
     description: DEPRECATED Chart for PostgreSQL, an object-relational database management
       system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
@@ -49,4 +56,4 @@ entries:
     urls:
     - charts/postgresql-8.6.4.tgz
     version: 8.6.4
-generated: "2021-06-16T11:18:43.3110384Z"
+generated: "2021-06-21T08:06:03.3394021Z"
