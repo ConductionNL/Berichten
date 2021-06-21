@@ -1,14 +1,52 @@
 apiVersion: v1
 entries:
-  postgresql:
+  berichtservice:
   - apiVersion: v1
-    appVersion: 11.7.0
-    created: "2021-06-21T09:15:52.0471696Z"
-    deprecated: true
-    description: DEPRECATED Chart for PostgreSQL, an object-relational database management
-      system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
-    digest: 00745b88e84403be696b7514c6e8c02710d81eb6074876b0700fa28fd47a9b43
-    home: https://www.postgresql.org/
+    appVersion: V1.0
+    created: "2021-06-21T11:54:13.4249555+02:00"
+    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld
+      aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert
+      het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings),
+      als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen
+      van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails
+      en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route
+      en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren,
+      als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird,
+      etc)
+    digest: 300097b1cc64801f6b126b61f8bd9c7517acc067de59a3d5fec064ab6d1cee38
+    home: https://www.conduction.nl
+    icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
+    keywords:
+    - commonground
+    - haven
+    - nlx
+    - component
+    maintainers:
+    - email: ruben@conduction.nl
+      name: Ruben van der Linde
+    - email: info@conduction.nl
+      name: Conduction
+    name: berichtservice
+    sources:
+    - https://commonground.conduction.nl/
+    - https://www.commonground.nl/
+    urls:
+    - berichtservice-0.1.0.tgz
+    version: 0.1.0
+  postgresql:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 11.10.0
+    created: "2021-06-21T11:54:13.4423254+02:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: Chart for PostgreSQL, an object-relational database management system
+      (ORDBMS) with an emphasis on extensibility and on standards-compliance.
+    digest: eebe8f456cf98d5927a35666d1d899174dc4d3e09f26788033f761527bc90749
+    home: https://github.com/bitnami/charts/tree/master/bitnami/postgresql
     icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-110x117.png
     keywords:
     - postgresql
@@ -17,10 +55,50 @@ entries:
     - sql
     - replication
     - cluster
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
     name: postgresql
     sources:
     - https://github.com/bitnami/bitnami-docker-postgresql
+    - https://www.postgresql.org/
     urls:
-    - charts/postgresql-8.6.4.tgz
-    version: 8.6.4
-generated: "2021-06-21T09:15:52.0427417Z"
+    - charts/postgresql-10.1.1.tgz
+    version: 10.1.1
+  redis:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 6.0.11
+    created: "2021-06-21T11:54:13.4642445+02:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Open source, advanced key-value store. It is often referred to as
+      a data structure server since keys can contain strings, hashes, lists, sets
+      and sorted sets.
+    digest: 2d70861d16fc410ed6d6c818b97f7b0d519031147e5c7b42c5691d4c38742c44
+    home: https://github.com/bitnami/charts/tree/master/bitnami/redis
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: redis
+    sources:
+    - https://github.com/bitnami/bitnami-docker-redis
+    - http://redis.io/
+    urls:
+    - charts/redis-12.7.7.tgz
+    version: 12.7.7
+generated: "2021-06-21T11:54:13.3906399+02:00"
