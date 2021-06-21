@@ -11,9 +11,8 @@ info:
     - Repository: [online](https://github.com/ConductionNL/berichtservice) / [zip](https://github.com/ConductionNL/berichtservice/archive/master.zip)
     - Docker Image: [online]() 
     - Datamodel: [postman](/schema/berichtservice.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
-    
+
     De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings), als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren, als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird, etc)         
-    
 paths:
   /audit_trails:
     get:
@@ -7224,6 +7223,85 @@ components:
       required:
         - sendLists
 definitions:
+  SendList-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this SendList.'
+        type: string
+        example: 'News email'
+        maxLength: 255
+      description:
+        description: 'The description of this SendList.'
+        type: string
+        example: 'Mailing list for sending news'
+        maxLength: 255
+      mail:
+        description: 'True if this is an mailing list.'
+        type: bool
+        example: 'true'
+      phone:
+        description: 'True if this is an phone list.'
+        type: bool
+        example: 'true'
+      organization:
+        description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
+        type: string
+        example: 'https://dev.id-vault.com/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      resource:
+        description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+        type: string
+        example: 'https://dev.larping.eu/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this proof was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this proof was last Modified'
+        type: \Datetime
+      subscribers: []
+    required:
+      - name
+      - organization
+  SendList-write:
+    properties:
+      name:
+        description: 'The name of this SendList.'
+        type: string
+        example: 'News email'
+        maxLength: 255
+      description:
+        description: 'The description of this SendList.'
+        type: string
+        example: 'Mailing list for sending news'
+        maxLength: 255
+      mail:
+        description: 'True if this is an mailing list.'
+        type: bool
+        example: 'true'
+      phone:
+        description: 'True if this is an phone list.'
+        type: bool
+        example: 'true'
+      organization:
+        description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
+        type: string
+        example: 'https://dev.id-vault.com/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      resource:
+        description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
+        type: string
+        example: 'https://dev.larping.eu/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
+        maxLength: 255
+      subscribers: []
+    required:
+      - name
+      - organization
   Message-read:
     properties:
       id:
@@ -7329,142 +7407,6 @@ definitions:
         type: \Service
       attachments: []
     required: []
-  SendList-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this SendList.'
-        type: string
-        example: 'News email'
-        maxLength: 255
-      description:
-        description: 'The description of this SendList.'
-        type: string
-        example: 'Mailing list for sending news'
-        maxLength: 255
-      mail:
-        description: 'True if this is an mailing list.'
-        type: bool
-        example: 'true'
-      phone:
-        description: 'True if this is an phone list.'
-        type: bool
-        example: 'true'
-      organization:
-        description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
-        type: string
-        example: 'https://dev.id-vault.com/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        maxLength: 255
-      resource:
-        description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
-        type: string
-        example: 'https://dev.larping.eu/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this proof was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this proof was last Modified'
-        type: \Datetime
-      subscribers: []
-    required:
-      - name
-      - organization
-  SendList-write:
-    properties:
-      name:
-        description: 'The name of this SendList.'
-        type: string
-        example: 'News email'
-        maxLength: 255
-      description:
-        description: 'The description of this SendList.'
-        type: string
-        example: 'Mailing list for sending news'
-        maxLength: 255
-      mail:
-        description: 'True if this is an mailing list.'
-        type: bool
-        example: 'true'
-      phone:
-        description: 'True if this is an phone list.'
-        type: bool
-        example: 'true'
-      organization:
-        description: 'An organization in Web Resource Catalogus (Will mostly be the id-vault application->organization)'
-        type: string
-        example: 'https://dev.id-vault.com/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        maxLength: 255
-      resource:
-        description: 'A extra resource (Mostly used if this list is for an organization in a id-vault application)'
-        type: string
-        example: 'https://dev.larping.eu/api/v1/wrc/organizations/06cd0132-5b39-44cb-b320-a9531b2c4ac7'
-        maxLength: 255
-      subscribers: []
-    required:
-      - name
-      - organization
-  Service-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this resource'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      type:
-        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
-        type: string
-        example: smtp
-        maxLength: 255
-      organization:
-        description: 'The RSIN of the organization that ownes this service'
-        type: string
-        example: '002851234'
-        maxLength: 255
-      authorization:
-        description: 'The autorization be it password or api key that is used to connect to the service'
-        type: string
-        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
-        maxLength: 255
-      configuration:
-        description: 'Any specific setting for this service'
-        type: array
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \Datetime
-    required:
-      - organization
-      - authorization
-  Service-write:
-    properties:
-      type:
-        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
-        type: string
-        example: smtp
-        maxLength: 255
-      organization:
-        description: 'The RSIN of the organization that ownes this service'
-        type: string
-        example: '002851234'
-        maxLength: 255
-      authorization:
-        description: 'The autorization be it password or api key that is used to connect to the service'
-        type: string
-        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
-        maxLength: 255
-      configuration:
-        description: 'Any specific setting for this service'
-        type: array
-    required:
-      - organization
-      - authorization
   Subscriber-read:
     properties:
       id:
@@ -7528,6 +7470,116 @@ definitions:
       sendLists: []
     required:
       - sendLists
+  Service-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
+        example: smtp
+        maxLength: 255
+      organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
+        example: '002851234'
+        maxLength: 255
+      authorization:
+        description: 'The autorization be it password or api key that is used to connect to the service'
+        type: string
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
+      configuration:
+        description: 'Any specific setting for this service'
+        type: array
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+    required:
+      - organization
+      - authorization
+  Service-write:
+    properties:
+      type:
+        description: 'The type of this service, iether use a pre configures service or just plain simple old smtp'
+        type: string
+        example: smtp
+        maxLength: 255
+      organization:
+        description: 'The RSIN of the organization that ownes this service'
+        type: string
+        example: '002851234'
+        maxLength: 255
+      authorization:
+        description: 'The autorization be it password or api key that is used to connect to the service'
+        type: string
+        example: 013276cc-1483-46b4-ad5b-1cba5acf6d9f
+        maxLength: 255
+      configuration:
+        description: 'Any specific setting for this service'
+        type: array
+    required:
+      - organization
+      - authorization
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2021-06-21 08:41:57'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2021-06-21 08:41:57'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -7632,12 +7684,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-06-16 11:22:59'
+        example: '2021-06-21 08:41:57'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-06-16 11:22:59'
+        example: '2021-06-21 08:41:57'
     required: []
   AuditTrail-write:
     properties:
@@ -7647,95 +7699,38 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2021-06-16 11:22:59'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2021-06-16 11:22:59'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
 tags:
   -
-    name: Message
-    description: |
-      A  message to be send to a spefic recipient or list troug a message service.
-      
-      
-  -
     name: SendList
-    description: |
+    description: |+
       SendList is a way for Organizations to send messages through email or phone.
-      
-      
+
   -
-    name: Service
-    description: |
-      A service that sends messages e.g. email or sms.
-      
-      
+    name: Message
+    description: |+
+      A  message to be send to a spefic recipient or list troug a message service.
+
   -
     name: Subscriber
-    description: |
+    description: |+
       SendList is a way for Applications to send messages through email or phone.
-      
-      
+
   -
-    name: AuditTrail
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
+    name: Service
+    description: |+
+      A service that sends messages e.g. email or sms.
+
   -
     name: ChangeLog
-    description: |
+    description: |-
       An resource representing a log line.
-      
+
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
+  -
+    name: AuditTrail
+    description: |-
+      An resource representing a log line.
+
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
 securityDefinitions:
   JWT-Oauth:
@@ -7743,15 +7738,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
