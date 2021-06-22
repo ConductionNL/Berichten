@@ -32,10 +32,6 @@ jobs:
         run: |
           export NAME=$(grep APP_NAME= .env | cut -d '=' -f2)
           echo "APP_NAME=$NAME" >> $GITHUB_ENV
-      -   name: Setting APP_NAME_TECHNICAL
-          run: |
-              export NAME_TECHNICAL=$(grep APP_NAME= .env | cut -d '=' -f2)
-              echo "APP_NAME_TEHCNICAL=$NAME_TECHNICAL" >> $GITHUB_ENV
       - name: Print app name
         run: echo "APP_NAME = $APP_NAME"
       - name: Setting APP_ENV to dev
@@ -91,7 +87,7 @@ jobs:
       - name: Add docker tags
         if: github.ref == 'refs/heads/master'
         run: |
-            images=$(docker-compose images -q | xargs docker inspect --format='{{ index .RepoTags 0}}' | cut -d':' -f1 | grep $APP_NAME_TECHNICAL)
+            images=$(docker-compose images -q | xargs docker inspect --format='{{ index .RepoTags 0}}' | cut -d':' -f1 | grep $APP_NAME)
             for image in $images
             do
               docker tag "${image}":latest "${image}":"${APP_BUILD}"
