@@ -3,7 +3,7 @@ entries:
   berichtservice:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-06-21T11:18:41.0425579Z"
+    created: "2021-06-22T08:21:16.1803288Z"
     description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld
       aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert
       het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings),
@@ -13,7 +13,7 @@ entries:
       en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren,
       als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird,
       etc)
-    digest: 73a78af606a545ab7e425b464a64adc3e8b853d3325c585bfcee97c5204913f8
+    digest: 2717cc2c7b695c395f5a5be5c9870c571b371558126dc730e5f512a65c8ccf89
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -38,7 +38,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-06-21T11:18:41.0476817Z"
+    created: "2021-06-22T08:21:16.185409Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -72,7 +72,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.0.11
-    created: "2021-06-21T11:18:41.057542Z"
+    created: "2021-06-22T08:21:16.1897457Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -101,4 +101,4 @@ entries:
     urls:
     - charts/redis-12.7.7.tgz
     version: 12.7.7
-generated: "2021-06-21T11:18:41.0079867Z"
+generated: "2021-06-22T08:21:16.1631458Z"
