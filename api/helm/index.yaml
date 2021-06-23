@@ -5,7 +5,7 @@ entries:
       artifacthub.io/containsSecurityUpdates: "true"
     apiVersion: v2
     appVersion: V1.0
-    created: "2021-06-22T10:05:40.8809536Z"
+    created: "2021-06-23T07:44:07.3425844Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -24,7 +24,7 @@ entries:
       en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren,
       als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird,
       etc)
-    digest: ba337c473b8ad178e79fb94dff3f3b2ac58b44372be7a16ad594a7f14e1c28a7
+    digest: 306cdb494c8f5a77f881dd0818e361b91a11b3436b0b8606d85a81a397910913
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -46,7 +46,7 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-06-22T10:05:40.8695711Z"
+    created: "2021-06-23T07:44:07.3259548Z"
     description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld
       aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert
       het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings),
@@ -81,7 +81,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-06-22T10:05:40.8869635Z"
+    created: "2021-06-23T07:44:07.3475275Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -115,7 +115,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.0.11
-    created: "2021-06-22T10:05:40.893046Z"
+    created: "2021-06-23T07:44:07.3548737Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -144,4 +144,4 @@ entries:
     urls:
     - charts/redis-12.7.7.tgz
     version: 12.7.7
-generated: "2021-06-22T10:05:40.8547912Z"
+generated: "2021-06-23T07:44:07.3059861Z"
