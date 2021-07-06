@@ -5,7 +5,7 @@ entries:
       artifacthub.io/containsSecurityUpdates: "true"
     apiVersion: v2
     appVersion: V1.0
-    created: "2021-06-23T09:06:54.3038542Z"
+    created: "2021-07-06T19:16:13.3834431+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -15,16 +15,8 @@ entries:
       name: redis
       repository: https://charts.bitnami.com/bitnami
       version: 12.7.7
-    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld
-      aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert
-      het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings),
-      als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen
-      van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails
-      en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route
-      en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren,
-      als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird,
-      etc)
-    digest: 456272841ac05c9dcdfb653ff29629b87af08eca322dbcd995b599bd021dd2d6
+    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings), als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren, als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird, etc)
+    digest: d7e256c41e405d17914a4037c659761f7c3bef49f8b37ed3945443c954197753
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -46,16 +38,8 @@ entries:
     version: 1.0.0
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-06-23T09:06:54.2912882Z"
-    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld
-      aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert
-      het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings),
-      als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen
-      van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails
-      en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route
-      en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren,
-      als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird,
-      etc)
+    created: "2021-07-06T19:16:13.3754424+02:00"
+    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings), als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren, als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird, etc)
     digest: 86a17dcf2f27b415fced213a281b71eac6ee6f0edd500cc0c6e5d99e84a1268a
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
@@ -81,13 +65,12 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-06-23T09:06:54.3108092Z"
+    created: "2021-07-06T19:16:13.3864458+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
       version: 1.x.x
-    description: Chart for PostgreSQL, an object-relational database management system
-      (ORDBMS) with an emphasis on extensibility and on standards-compliance.
+    description: Chart for PostgreSQL, an object-relational database management system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
     digest: eebe8f456cf98d5927a35666d1d899174dc4d3e09f26788033f761527bc90749
     home: https://github.com/bitnami/charts/tree/master/bitnami/postgresql
     icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-110x117.png
@@ -115,16 +98,14 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.0.11
-    created: "2021-06-23T09:06:54.3217824Z"
+    created: "2021-07-06T19:16:13.390443+02:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
       tags:
       - bitnami-common
       version: 1.x.x
-    description: Open source, advanced key-value store. It is often referred to as
-      a data structure server since keys can contain strings, hashes, lists, sets
-      and sorted sets.
+    description: Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
     digest: 2d70861d16fc410ed6d6c818b97f7b0d519031147e5c7b42c5691d4c38742c44
     home: https://github.com/bitnami/charts/tree/master/bitnami/redis
     icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
@@ -144,4 +125,4 @@ entries:
     urls:
     - charts/redis-12.7.7.tgz
     version: 12.7.7
-generated: "2021-06-23T09:06:54.2717123Z"
+generated: "2021-07-06T19:16:13.3664276+02:00"
