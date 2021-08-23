@@ -29,7 +29,8 @@ class TaalhuizenFixtures extends Fixture
     {
         if (
             !$this->params->get('app_build_all_fixtures') &&
-            $this->params->get('app_domain') != 'taalhuizen-bisc.commonground.nu' && strpos($this->params->get('app_domain'), 'taalhuizen-bisc.commonground.nu') == false
+            $this->params->get('app_domain') != 'taalhuizen-bisc.commonground.nu' && strpos($this->params->get('app_domain'), 'taalhuizen-bisc.commonground.nu') == false &&
+            $this->params->get('app_domain') != 'acceptatietaalhuizen-bisc.commonground.nu' && strpos($this->params->get('app_domain'), 'acceptatietaalhuizen-bisc.commonground.nu') == false
         ) {
             return false;
         }
