@@ -1,27 +1,78 @@
 apiVersion: v1
 entries:
-  bs:
+  berichtservice:
+  - annotations:
+      artifacthub.io/containsSecurityUpdates: "true"
+    apiVersion: v2
+    appVersion: V1.0
+    created: "2021-07-06T20:37:39.0269372+02:00"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.1.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.7.7
+    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings), als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren, als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird, etc)
+    digest: c5d54d0a79a020de6d948bb3381ac857fb326da9b1d79bbc166bb9c20cb02018
+    home: https://www.conduction.nl
+    icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
+    keywords:
+    - commonground
+    - haven
+    - nlx
+    - component
+    maintainers:
+    - email: ruben@conduction.nl
+      name: Ruben van der Linde
+    - email: info@conduction.nl
+      name: Conduction
+    name: berichtservice
+    sources:
+    - https://commonground.conduction.nl/
+    - https://www.commonground.nl/
+    urls:
+    - berichtservice-1.0.0.tgz
+    version: 1.0.0
   - apiVersion: v1
     appVersion: V1.0
-    created: "2021-01-15T16:49:53.2335876Z"
-    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
-      beschikbaar.
-    digest: 496d6b87bb4ee2d3b3d32994827c4ad0027de36982d6e979f4bdab1d700477a1
-    home: pc.zaakonline.nl
-    icon: pc.zaakonline.nl
-    name: bs
+    created: "2021-07-06T20:37:39.0149375+02:00"
+    description: De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings), als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren, als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird, etc)
+    digest: 86a17dcf2f27b415fced213a281b71eac6ee6f0edd500cc0c6e5d99e84a1268a
+    home: https://www.conduction.nl
+    icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
+    keywords:
+    - commonground
+    - haven
+    - nlx
+    - component
+    maintainers:
+    - email: ruben@conduction.nl
+      name: Ruben van der Linde
+    - email: info@conduction.nl
+      name: Conduction
+    name: berichtservice
+    sources:
+    - https://commonground.conduction.nl/
+    - https://www.commonground.nl/
     urls:
-    - bs-0.1.0.tgz
+    - berichtservice-0.1.0.tgz
     version: 0.1.0
   postgresql:
-  - apiVersion: v1
-    appVersion: 11.7.0
-    created: "2021-01-15T16:49:53.2426163Z"
-    deprecated: true
-    description: DEPRECATED Chart for PostgreSQL, an object-relational database management
-      system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
-    digest: 00745b88e84403be696b7514c6e8c02710d81eb6074876b0700fa28fd47a9b43
-    home: https://www.postgresql.org/
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 11.10.0
+    created: "2021-07-06T20:37:39.0299373+02:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: Chart for PostgreSQL, an object-relational database management system (ORDBMS) with an emphasis on extensibility and on standards-compliance.
+    digest: eebe8f456cf98d5927a35666d1d899174dc4d3e09f26788033f761527bc90749
+    home: https://github.com/bitnami/charts/tree/master/bitnami/postgresql
     icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-110x117.png
     keywords:
     - postgresql
@@ -30,10 +81,48 @@ entries:
     - sql
     - replication
     - cluster
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
     name: postgresql
     sources:
     - https://github.com/bitnami/bitnami-docker-postgresql
+    - https://www.postgresql.org/
     urls:
-    - charts/postgresql-8.6.4.tgz
-    version: 8.6.4
-generated: "2021-01-15T16:49:53.2255502Z"
+    - charts/postgresql-10.1.1.tgz
+    version: 10.1.1
+  redis:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 6.0.11
+    created: "2021-07-06T20:37:39.0329368+02:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
+    digest: 2d70861d16fc410ed6d6c818b97f7b0d519031147e5c7b42c5691d4c38742c44
+    home: https://github.com/bitnami/charts/tree/master/bitnami/redis
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: redis
+    sources:
+    - https://github.com/bitnami/bitnami-docker-redis
+    - http://redis.io/
+    urls:
+    - charts/redis-12.7.7.tgz
+    version: 12.7.7
+generated: "2021-07-06T20:37:39.0049381+02:00"
