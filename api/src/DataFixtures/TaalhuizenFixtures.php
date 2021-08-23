@@ -27,13 +27,13 @@ class TaalhuizenFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        if (
-            !$this->params->get('app_build_all_fixtures') &&
-            $this->params->get('app_domain') != 'taalhuizen-bisc.commonground.nu' && strpos($this->params->get('app_domain'), 'taalhuizen-bisc.commonground.nu') == false &&
-            $this->params->get('app_domain') != 'acceptatietaalhuizen-bisc.commonground.nu' && strpos($this->params->get('app_domain'), 'acceptatietaalhuizen-bisc.commonground.nu') == false
-        ) {
-            return false;
-        }
+//        if (
+//            !$this->params->get('app_build_all_fixtures') &&
+//            $this->params->get('app_domain') != 'taalhuizen-bisc.commonground.nu' && strpos($this->params->get('app_domain'), 'taalhuizen-bisc.commonground.nu') == false &&
+//            $this->params->get('app_domain') != 'acceptatietaalhuizen-bisc.commonground.nu' && strpos($this->params->get('app_domain'), 'acceptatietaalhuizen-bisc.commonground.nu') == false
+//        ) {
+//            return false;
+//        }
 
         $id = Uuid::fromString('088f7b63-1693-4f27-9911-dadcb83ae5db');
         $service = new Service();
