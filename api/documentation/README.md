@@ -1,8 +1,11 @@
+    
 # berichtservice
 
 Description
 ----
-Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.
+[![StyleCI](https://github.styleci.io/repos/206144502/shield?branch=master)](https://github.styleci.io/repos/206144502?branch=master) [![Docker Image CI](https://github.com/ConductionNL/berichtservice/workflows/Docker%20Image%20CI/badge.svg?branch=master)](https://github.com/ConductionNL/berichtservice/actions?query=workflow%3A&quot;Docker+Image+CI&quot;) [![Artifacthub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/berichtenservice)](https://artifacthub.io/packages/helm/berichtenservice/berichtenservice) [![BCH compliance](https://bettercodehub.com/edge/badge/ConductionNL/berichtservice?branch=master)](https://bettercodehub.com/) [![Status badge](https://shields.api-test.nl/endpoint.svg?style=for-the-badge&amp;url=https%3A//api-test.nl/api/v1/provider-latest-badge/0d7ac3f7-52e1-477b-9aee-d871a4b793f6/)](https://api-test.nl/server/4/1222a5b4-7faa-433b-8bdd-d0bc0fd9f829/0d7ac3f7-52e1-477b-9aee-d871a4b793f6/latest/) 
+
+De Berichtenservice faciliteert het versturen van berichten (bijvoorbeeld aan de hand van WRC sjablonen) en het rapporteren daarover. Hiervoor levert het zowel bulk-capaciteiten (voor bijvoorbeeld het versturen van mailings), als opvolg-capaciteiten (voor het controleren van bijvoorbeeld het aankomen van emails). Vooralsnog ondersteunt de Berichtenservice het versturen van mails en sms-berichten, maar er wordt nagedacht over het toevoegen van een post route en chatfunctionaliteit (social media). Het kan hierbij zowel zelfstandig opereren, als een front leveren voor functionaliteit van derden (Mailgun, Mailchimp, Messagbird, etc)
 
 Additional Information
 ----
@@ -76,4 +79,3 @@ Credits
 ----
 Information about the authors of this component can be found [here](AUTHORS.md)
 
-Copyright © [Utrecht](https://www.utrecht.nl/) 2019
