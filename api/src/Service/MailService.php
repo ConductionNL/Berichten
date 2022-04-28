@@ -100,7 +100,7 @@ class MailService
             /** @var Symfony\Component\Mailer\SentMessage $sentEmail */
             $mailer->send($email);
 
-            $message->setSend(new \Datetime());
+            $message->setSend(new \DateTime());
             $message->setStatus('send');
 
             foreach ($filenames as $filename) {

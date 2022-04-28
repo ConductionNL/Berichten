@@ -2,8 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Email;
-use App\Entity\Person;
 use App\Entity\Service;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
